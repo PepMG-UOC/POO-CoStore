@@ -9,10 +9,7 @@ package POOandCo.modelo;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- * Esta clase representara los pedidos de la tienda.
- * @author Pep Margarit
- */
+
 public class Pedido {
     private int numPedido;
     private Articulo articulo;

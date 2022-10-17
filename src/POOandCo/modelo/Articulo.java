@@ -1,10 +1,7 @@
 
 package POOandCo.modelo;
 
-/**
- * Esta clase representara los articulos de la tienda.
- * @author Pep Margarit
- */
+
 public class Articulo {
     private String codigo;
     private String descripcion;

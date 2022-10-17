@@ -7,10 +7,7 @@ package POOandCo.controlador;
 
 import POOandCo.modelo.Cliente;
 import POOandCo.vista.FormCliente;
-/**
- *
- * @author Pep Margarit
- */
+
 public class ALTA_CLIENTE {
     String eMail;
     String nombre;

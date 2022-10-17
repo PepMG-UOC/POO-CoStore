@@ -4,10 +4,7 @@
  */
 package POOandCo.modelo;
 
-/**
- *
- * @author Hernan
- */
+
 public class ClientePremium extends Cliente{
     
     private float cuota;

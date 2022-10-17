@@ -4,10 +4,7 @@
  */
 package POOandCo.controlador;
 
-/**
- *
- * @author Perry
- */
+
 public class Controlador {
     
 }

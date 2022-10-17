@@ -4,10 +4,7 @@
  */
 package POOandCo.modelo;
 
-/**
- *
- * @author hernan
- */
+
 public class Datos {
     
 }

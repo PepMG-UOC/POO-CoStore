@@ -7,10 +7,7 @@ package POOandCo.vista;
 
 import javax.swing.JTextField;
 
-/**
- *
- * @author Pep Margarit
- */
+
 public class FormArticulo extends javax.swing.JPanel {
 
     /**

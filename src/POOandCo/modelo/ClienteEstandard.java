@@ -4,10 +4,7 @@
  */
 package POOandCo.modelo;
 
-/**
- *
- * @author Hernan
- */
+
 public class ClienteEstandard extends Cliente{
 
 

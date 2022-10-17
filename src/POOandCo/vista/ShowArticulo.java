@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package POOandCo.vista;
 
 import javax.swing.JLabel;
 
-/**
- *
- * @author HP-OMEN
- */
+
 public class ShowArticulo extends javax.swing.JPanel {
 
     /**

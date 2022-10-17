@@ -1,11 +1,7 @@
 
 package POOandCo.modelo;
 
-/**
- * Esta clase representara los clientes de la tienda.
- * @author Pep Margarit
- * @version 1.0 
- */
+
 public abstract class Cliente {
     private String eMail;
     private String nombre;

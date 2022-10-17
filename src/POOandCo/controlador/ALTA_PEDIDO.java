@@ -5,10 +5,7 @@
  */
 package POOandCo.controlador;
 
-/**
- *
- * @author Pep Margarit
- */
+
 public class ALTA_PEDIDO {
     
 }

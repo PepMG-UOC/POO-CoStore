@@ -8,10 +8,7 @@ package POOandCo.controlador;
 import POOandCo.modelo.Articulo;
 import POOandCo.vista.FormArticulo;
 
-/**
- *
- * @author Pep Margarit
- */
+
 public class ALTA_ARTICULO {
     String codigo;
     String descripcion;

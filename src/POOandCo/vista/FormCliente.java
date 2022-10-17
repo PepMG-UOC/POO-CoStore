@@ -7,10 +7,7 @@ package POOandCo.vista;
 
 import javax.swing.JTextField;
 
-/**
- *
- * @author HP-OMEN
- */
+
 public class FormCliente extends javax.swing.JPanel {
 
     /**
