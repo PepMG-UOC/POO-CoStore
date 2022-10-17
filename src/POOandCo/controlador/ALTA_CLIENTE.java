@@ -28,6 +28,6 @@ public class ALTA_CLIENTE {
     }
     
     public void GrabarDatosCliente(){
-        setCliente = new Cliente(eMail, nombre, domicilio, nif);
+      //  setCliente = new Cliente(eMail, nombre, domicilio, nif);
     }
 }
