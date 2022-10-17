@@ -6,7 +6,7 @@ package POOandCo.modelo;
 
 /**
  *
- * @author Perry
+ * @author Hernan
  */
 public class ClientePremium extends Cliente{
     
@@ -19,5 +19,23 @@ public class ClientePremium extends Cliente{
         this.descuento = descuento;
 
     }
+        
+        
+    public String tipoCliente() {
+        return tipo; 
+    } 
+    
+    
+    public float calcAnual() {
+        return calculo; 
+    } 
+    
+    
+        public float descuentoEnv() {
+    
+        return descuento;
+    
+    }
+    
     
 }

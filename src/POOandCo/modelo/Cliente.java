@@ -10,11 +10,10 @@ public abstract class Cliente {
     private String eMail;
     private String nombre;
     private String domicilio;
-    
-    //Tengo entendido que en java no se pueden crear variables abstractas
-    //entra en contradiccion lo que se nos pide???
-    
-    //public abstract String tipoCliente();
+    public String tipo;
+    public float calculo;
+    public float descuento;
+  
 
     //public abstract float calcAnual();
 
@@ -51,6 +50,16 @@ public abstract class Cliente {
         this.domicilio = domicilio;
     }
    
+    
+    
+    //metodos abstractos
+    
+    public abstract String tipoCliente();
+
+    public abstract float calcAnual();
+
+    public abstract float descuentoEnv();
+    
     
     
 }

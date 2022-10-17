@@ -6,7 +6,7 @@ package POOandCo.modelo;
 
 /**
  *
- * @author Perry
+ * @author hernan
  */
 public class Datos {
     

@@ -6,7 +6,7 @@ package POOandCo.modelo;
 
 /**
  *
- * @author Perry
+ * @author Hernan
  */
 public class ClienteEstandard extends Cliente{
 
@@ -15,6 +15,21 @@ public class ClienteEstandard extends Cliente{
         super(eMail, nombre, domicilio);
 
     }
-
+    
+    public String tipoCliente() {
+        return tipo; 
+    } 
+    
+      public float calcAnual() {
+        return calculo; 
+    } 
+      
+      
+    public float descuentoEnv() {
+    
+        return descuento;
+    
+    }
+    
 }
 
