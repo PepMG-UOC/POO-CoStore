@@ -1,37 +1,51 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package POOandCo.modelo;
 
 
 public class ClientePremium extends Cliente{
     
-    private float cuota;
+    private float calculo;
     private float descuento;
     
-        public ClientePremium(String eMail, String nombre, String domicilio) {
-        super(eMail, nombre, domicilio);
-        this.cuota = cuota;
-        this.descuento = descuento;
+    
+    public ClientePremium(String eMail, String nombre, String domicilio, String nif) {
+        super(eMail, nombre, domicilio, nif);    
+    }
+    
 
+    public float getCalculo() {
+        return calculo;
+    }
+
+    public void setCalculo(float calculo) {
+        this.calculo = calculo;
+    }
+
+    public float getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(float descuento) {
+        this.descuento = descuento;
     }
         
+    
         
+    @Override
     public String tipoCliente() {
-        return tipo; 
+        return tipo="Premium"; 
     } 
     
     
+    @Override
     public float calcAnual() {
-        return calculo; 
+        return calculo=30; 
     } 
     
     
-        public float descuentoEnv() {
-    
-        return descuento;
-    
+    @Override
+    public float descuentoEnv() {    
+        return descuento=(100-20)/100;    
     }
     
     

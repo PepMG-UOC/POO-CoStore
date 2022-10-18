@@ -75,15 +75,33 @@ public class Pedido {
         this.hora = hora;
     }
 
+    public boolean pedidoEnviado(){
+        return true;
+    }
+    
+    public float precioEnvio(){
+        float temp;
+        temp = articulo.getGastosEnvio();
+        temp = temp* cliente.descuentoEnv();
+        return temp;
+    }
     
     @Override
     public String toString(){
         return "Numero de Pedido: " + this.numPedido + "\n"
-             + "Articulo: " + this.articulo + "\n"              
-             + "Cantidad: " + this.cantidad + "\n" 
-             + "Cliente: " + this.cliente + "\n"
              + "Fecha del pedido: " + this.fecha  + "\n"
-             + "Hora del pedido: " + this.hora + "\n";
+             + "Hora del pedido: " + this.hora + "\n"
+             + "NIF del Cliente: " + this.cliente.getNif() + "\n"
+             + "Nombre Cliente: " + this.cliente.getNombre() + "\n"
+             + "Codigo Articulo: " + this.articulo.getCodigo() + "\n" 
+             + "Descripcion Articulo: " + this.articulo.getDescripcion() + "\n"
+             + "Cantidad: " + this.cantidad + "\n" 
+             + "Pvp Articulo: " + String.valueOf(this.articulo.getPvpVenta())  + "\n"
+             + "Coste envio: " + String.valueOf(this.articulo.getGastosEnvio()) + "\n"
+             + "Pvp Total: " + String.valueOf(cantidad*this.articulo.getPvpVenta());           
+             
+             
+            
     }
     
     

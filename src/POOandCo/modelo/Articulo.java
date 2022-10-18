@@ -5,12 +5,12 @@ package POOandCo.modelo;
 public class Articulo {
     private String codigo;
     private String descripcion;
-    private double pvpVenta;
-    private double gastosEnvio;
+    private float pvpVenta;
+    private float gastosEnvio;
     private int tiempoPreparacion;
     
     
-    public Articulo(String codigo, String descripcion, double pvpVenta, double gastosEnvio, int tiempoPreparacion) {
+    public Articulo(String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.pvpVenta = pvpVenta;
@@ -34,19 +34,19 @@ public class Articulo {
         this.descripcion = descripcion;
     }
 
-    public Double getPvpVenta() {
+    public float getPvpVenta() {
         return pvpVenta;
     }
 
-    public void setPvpVenta(double pvpVenta) {
+    public void setPvpVenta(float pvpVenta) {
         this.pvpVenta = pvpVenta;
     }
 
-    public Double getGastosEnvio() {
+    public float getGastosEnvio() {
         return gastosEnvio;
     }
 
-    public void setGastosEnvio(double gastosEnvio) {
+    public void setGastosEnvio(float gastosEnvio) {
         this.gastosEnvio = gastosEnvio;
     }
 

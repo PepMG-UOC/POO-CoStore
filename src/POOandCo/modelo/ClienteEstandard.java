@@ -1,31 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package POOandCo.modelo;
 
 
 public class ClienteEstandard extends Cliente{
+    
+    private float calculo;
+    private float descuento;
 
-
-    public ClienteEstandard(String eMail, String nombre, String domicilio) {
-        super(eMail, nombre, domicilio);
-
+    public ClienteEstandard(String eMail, String nombre, String domicilio, String nif) {
+        super(eMail, nombre, domicilio, nif);
     }
     
+    
+    @Override
     public String tipoCliente() {
-        return tipo; 
+        return tipo="Standard"; 
     } 
     
+    @Override
       public float calcAnual() {
-        return calculo; 
+        return calculo=0; 
     } 
       
       
-    public float descuentoEnv() {
-    
-        return descuento;
-    
+    @Override
+    public float descuentoEnv() {    
+        return descuento=1;    
     }
     
 }
