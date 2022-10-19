@@ -1,10 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package POOandCo.modelo;
 
 
 public class Datos {
+    private ListaArticulos listaArticulos;
+    private ListaClientes listaClientes;
+    private ListaPedidos listaPedidos;
     
+    public Datos (){
+        listaArticulos = new ListaArticulos ();
+        listaClientes = new ListaClientes();
+        listaPedidos = new ListaPedidos ();
+    }
+// TO-BE-DONE
 }

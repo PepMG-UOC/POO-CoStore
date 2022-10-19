@@ -7,6 +7,7 @@ package POOandCo.modelo;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 
@@ -17,12 +18,14 @@ public class Pedido {
     private Cliente cliente;
     private LocalDate fecha;
     private LocalTime hora;
+    private LocalDateTime fechaYhora;
 
     public Pedido(int numPedido, Articulo articulo, int cantidad, Cliente cliente) {
         this.numPedido = numPedido;
         this.articulo = articulo;
         this.cantidad = cantidad;
         this.cliente = cliente;
+        this.fechaYhora = LocalDateTime.now();
         this.fecha = LocalDate.now();
         this.hora = LocalTime.now();
     }
@@ -76,7 +79,8 @@ public class Pedido {
     }
 
     public boolean pedidoEnviado(){
-        return true;
+        LocalDateTime ahora = LocalDateTime.now();
+        return ((fechaYhora.plusMinutes(articulo.getTiempoPreparacion())).isBefore(ahora)); 
     }
     
     public float precioEnvio(){
