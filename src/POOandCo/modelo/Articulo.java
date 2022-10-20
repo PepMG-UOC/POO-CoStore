@@ -21,7 +21,7 @@ public class Articulo {
     }
 
     private String pruebaModificacion() {
-        return "Graba";
+        return "Grabas";
     }
 
     public void setCodigo(String codigo) {
