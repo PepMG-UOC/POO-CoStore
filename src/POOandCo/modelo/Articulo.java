@@ -1,15 +1,13 @@
 
 package POOandCo.modelo;
 
-
 public class Articulo {
     private String codigo;
     private String descripcion;
     private float pvpVenta;
     private float gastosEnvio;
     private int tiempoPreparacion;
-    
-    
+
     public Articulo(String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
@@ -61,14 +59,14 @@ public class Articulo {
     public void setTiempoPreparacion(int tiempoPreparacion) {
         this.tiempoPreparacion = tiempoPreparacion;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Codigo: " + this.codigo + "\n"
-             + "Descripcion: " + this.descripcion + "\n"              
-             + "PVP de Venta: " + this.pvpVenta + "\n" 
-             + "Gastos de envio: " + this.gastosEnvio + "\n"
-             + "Tiempo preparacion: " + this.tiempoPreparacion + " minutos.\n";
+                + "Descripcion: " + this.descripcion + "\n"
+                + "PVP de Venta: " + this.pvpVenta + "\n"
+                + "Gastos de envio: " + this.gastosEnvio + "\n"
+                + "Tiempo preparacion: " + this.tiempoPreparacion + " minutos.\n";
     }
-    
+
 }
