@@ -26,7 +26,7 @@ public class GestionOS {
             opcio = pedirOpcion();
             switch (opcio) {
                 case '1':
-                    Controlador control = new Controlador();
+                   // controlador.setDatos(datos);
                     
                     Lista<Articulo> cosa = new Lista<>();
                     cosa.getSize();
