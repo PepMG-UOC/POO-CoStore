@@ -22,6 +22,10 @@ public class Articulo {
         return codigo;
     }
 
+    private String pruebaModificacion() {
+        return "Graba";
+    }
+
     public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
