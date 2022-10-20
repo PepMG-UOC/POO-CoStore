@@ -2,7 +2,9 @@
 package POOandCo.vista;
 
 import POOandCo.controlador.Controlador;
+import POOandCo.modelo.Articulo;
 import java.util.Scanner;
+import POOandCo.modelo.Lista;
 
 public class GestionOS {
     private Controlador controlador;
@@ -24,6 +26,10 @@ public class GestionOS {
             opcio = pedirOpcion();
             switch (opcio) {
                 case '1':
+                    Controlador control = new Controlador();
+                    
+                    Lista<Articulo> cosa = new Lista<>();
+                    cosa.getSize();
                     // TO-BE-DONE
                 break;
                 case '2':

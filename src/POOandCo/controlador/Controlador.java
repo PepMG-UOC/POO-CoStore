@@ -10,6 +10,16 @@ public class Controlador {
     public Controlador() {
         datos = new Datos ();
     }
+    
+    
 // TO-BE-DONE
+
+    public Datos getDatos() {
+        return datos;
+    }
+
+    public void setDatos(Datos datos) {
+        this.datos = datos;
+    }
 
 }
