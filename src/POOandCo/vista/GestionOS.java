@@ -2,23 +2,26 @@
 package POOandCo.vista;
 
 import POOandCo.controlador.Controlador;
-import POOandCo.modelo.Articulo;
+
 import java.util.Scanner;
-import POOandCo.modelo.Lista;
+
 
 public class GestionOS {
     private Controlador controlador;
     
     Scanner teclado = new Scanner(System.in);
+    MenuArticulo articulos = new MenuArticulo();
     
     public GestionOS() {
         controlador = new Controlador();
     }
-    
+   
     public void inicio() {
+       // controlador.setDatos(Lista<>);
         boolean salir = false;
         char opcio;
         do {
+            System.out.println(); 
             System.out.println("1. Gestión Articulos");
             System.out.println("2. Gestión Clientes");
             System.out.println("3. Gestión Pedidos");
@@ -26,17 +29,13 @@ public class GestionOS {
             opcio = pedirOpcion();
             switch (opcio) {
                 case '1':
-                   // controlador.setDatos(datos);
-                    
-                    Lista<Articulo> cosa = new Lista<>();
-                    cosa.getSize();
-                    // TO-BE-DONE
+                   articulos.menu();
                 break;
                 case '2':
-                    // TO-BE-DONE
+                    menuClientes();
                 break;
                 case '3':
-                    // TO-BE-DONE
+                    menuPedidos();
                 break;
                 case '0':
                     salir = true;
@@ -46,12 +45,71 @@ public class GestionOS {
     
     char pedirOpcion() {
         String resp;
-        System.out.println("Elige una opción (1,2,3 o 0):");
+        System.out.print("Elige una opción (1,2,3 o 0): ");
         resp = teclado.nextLine();
         if (resp.isEmpty()) {
             resp = " ";
         }
         return resp.charAt(0);
+    }
+
+
+    private void menuClientes() {
+        boolean salir = false;
+        char opcio;
+        do {
+            System.out.println("1. Añadir Cliente");
+            System.out.println("2. Mostrar Clientes");
+            System.out.println("3. Mostrar Clientes Estándar");
+            System.out.println("4. Mostrar Clientes Premium");
+            System.out.println("0. Salir");
+            opcio = pedirOpcion();
+            switch (opcio) {
+                case '1':
+                   // TO-BE-DONE
+                break;
+                case '2':
+                    // TO-BE-DONE
+                break;
+                case '3':
+                    // TO-BE-DONE
+                break;
+                 case '4':
+                    // TO-BE-DONE
+                break;
+                case '0':
+                    salir = true;
+                }
+            } while (!salir);
+    }
+
+    private void menuPedidos() {
+        boolean salir = false;
+        char opcio;
+        do {
+            System.out.println("1. Añadir Pedido");
+            System.out.println("2. Eliminar Pedido");
+            System.out.println("3. Mostrar pedidos pendientes de envio");
+            System.out.println("4. Mostrar pedidos enviados");
+            System.out.println("0. Salir");
+            opcio = pedirOpcion();
+            switch (opcio) {
+                case '1':
+                   // TO-BE-DONE
+                break;
+                case '2':
+                    // TO-BE-DONE
+                break;
+                case '3':
+                    // TO-BE-DONE
+                break;
+                 case '4':
+                    // TO-BE-DONE
+                break;
+                case '0':
+                    salir = true;
+                }
+            } while (!salir);
     }
 }
     
