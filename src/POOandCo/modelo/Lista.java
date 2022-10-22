@@ -17,7 +17,8 @@ public class Lista<T> {
     }
     
     public void add(T t) {
-    // TO-BE-DONE
+        lista.add(t);
+        
     }
     
     public void borrar(T t) {

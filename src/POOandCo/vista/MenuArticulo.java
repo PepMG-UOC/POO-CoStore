@@ -2,10 +2,14 @@
 package POOandCo.vista;
 
 import java.util.Scanner;
-
+import POOandCo.controlador.Controlador;
 
 public class MenuArticulo {
     Scanner teclado = new Scanner(System.in);
+
+    /*public MenuArticulo(Controlador controlador) {
+         controlador.datos.listaArticulos.lista.add(new Articulo(codigo,descripcion,pvpVenta,gastosEnvio,tiempoPreparacion));
+    }*/
     
     public void menu() {
        boolean salir = false;
@@ -18,7 +22,8 @@ public class MenuArticulo {
             opcio = pedirOpcion();
             switch (opcio) {
                 case '1':
-                  addArticulo();
+                 addArticulo();
+                  
                 break;
                 case '2':
                     // TO-BE-DONE
@@ -57,8 +62,11 @@ public class MenuArticulo {
         gastosEnvio = Float.valueOf(teclado.nextLine());
         System.out.print("Tiempo preparacion (min): ");
         tiempoPreparacion = Integer.valueOf(teclado.nextLine());
-            
-            
+         
+      //  controlador.setDatos();
+      //   controlador.datos.articulo(codigo,descripcion,pvpVenta,gastosEnvio,tiempoPreparacion);
+      //  controlador.datos.listaArticulos.lista.add(Articulo(codigo,descripcion,pvpVenta,gastosEnvio,tiempoPreparacion));
+ 
             
        
     }

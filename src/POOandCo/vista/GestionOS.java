@@ -14,11 +14,11 @@ public class GestionOS {
     
     public GestionOS() {
         controlador = new Controlador();
+       // controlador.datos.
     }
    
     public void inicio() {
-       // controlador.setDatos(Lista<>);
-        boolean salir = false;
+               boolean salir = false;
         char opcio;
         do {
             System.out.println(); 
@@ -30,6 +30,9 @@ public class GestionOS {
             switch (opcio) {
                 case '1':
                    articulos.menu();
+                 //  this.controlador.
+                  // controlador.
+                 // controlador.datos.listaArticulos.articulo.setCodigo("873");
                 break;
                 case '2':
                     menuClientes();

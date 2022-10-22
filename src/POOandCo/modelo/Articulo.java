@@ -7,6 +7,8 @@ public class Articulo {
     private float pvpVenta;
     private float gastosEnvio;
     private int tiempoPreparacion;
+    
+    
 
     public Articulo(String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
         this.codigo = codigo;
