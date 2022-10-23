@@ -17,17 +17,17 @@ public class Lista<T> {
     }
     
     public void add(T t) {
-    // TO-BE-DONE
+        lista.add(t);
+        
     }
     
     public void borrar(T t) {
     // TO-BE-DONE
     }
     
-   // public T getAt(int position) {
-    // TO-BE-DONE
-     //   return T(position);
-    //}
+    public T getAt(int position) {    
+       return  lista.get(position);      
+    }
     
     public void clear() {
     // TO-BE-DONE

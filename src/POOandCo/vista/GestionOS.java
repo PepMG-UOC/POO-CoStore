@@ -7,18 +7,18 @@ import java.util.Scanner;
 
 
 public class GestionOS {
-    private Controlador controlador;
-    
-    Scanner teclado = new Scanner(System.in);
-    MenuArticulo articulos = new MenuArticulo();
-    
+    Controlador controlador= new Controlador();
+        
     public GestionOS() {
-        controlador = new Controlador();
+      // Controlador controlador = new Controlador();
+       // controlador.datos.
     }
+    Scanner teclado = new Scanner(System.in);
+    MenuArticulo articulos = new MenuArticulo(controlador);
+    
    
     public void inicio() {
-       // controlador.setDatos(Lista<>);
-        boolean salir = false;
+               boolean salir = false;
         char opcio;
         do {
             System.out.println(); 
@@ -30,6 +30,9 @@ public class GestionOS {
             switch (opcio) {
                 case '1':
                    articulos.menu();
+                 //  this.controlador.
+                  // controlador.
+                 // controlador.datos.listaArticulos.articulo.setCodigo("873");
                 break;
                 case '2':
                     menuClientes();
