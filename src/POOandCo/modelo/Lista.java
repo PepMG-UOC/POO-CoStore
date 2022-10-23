@@ -25,10 +25,9 @@ public class Lista<T> {
     // TO-BE-DONE
     }
     
-   // public T getAt(int position) {
-    // TO-BE-DONE
-     //   return T(position);
-    //}
+    public T getAt(int position) {    
+       return  lista.get(position);      
+    }
     
     public void clear() {
     // TO-BE-DONE

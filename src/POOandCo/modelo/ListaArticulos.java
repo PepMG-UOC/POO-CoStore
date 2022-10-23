@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 public class ListaArticulos extends Lista<Articulo> {
-    private Articulo articulo;
+    //private Articulo articulo;
     
     public ArrayList<Articulo> getLista() {
         return lista;
@@ -14,14 +14,14 @@ public class ListaArticulos extends Lista<Articulo> {
     public void setLista(ArrayList<Articulo> lista) {
         this.lista = lista;
     }
-     
+   /*  
      public Articulo getArticulo() {
         return articulo;
     }
 
     public void setArticulo(Articulo articulo) {
         this.articulo = articulo;
-    }
+    }*/
     
     
     

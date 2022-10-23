@@ -8,7 +8,9 @@ public class Articulo {
     private float gastosEnvio;
     private int tiempoPreparacion;
     
-    
+    /*
+    public Articulo() {        
+    }
 
     public Articulo(String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
         this.codigo = codigo;
@@ -16,7 +18,7 @@ public class Articulo {
         this.pvpVenta = pvpVenta;
         this.gastosEnvio = gastosEnvio;
         this.tiempoPreparacion = tiempoPreparacion;
-    }
+    }*/
 
     public String getCodigo() {
         return codigo;

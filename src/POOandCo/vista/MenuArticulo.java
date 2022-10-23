@@ -6,10 +6,17 @@ import POOandCo.controlador.Controlador;
 
 public class MenuArticulo {
     Scanner teclado = new Scanner(System.in);
+    private Controlador controlador;
+    static String codigo;
+    static String descripcion;
+    static float pvpVenta;
+    static float gastosEnvio;
+    static int tiempoPreparacion;
 
-    /*public MenuArticulo(Controlador controlador) {
-         controlador.datos.listaArticulos.lista.add(new Articulo(codigo,descripcion,pvpVenta,gastosEnvio,tiempoPreparacion));
-    }*/
+    public MenuArticulo(Controlador controlador) {
+        this.controlador = controlador;
+         //controlador.datos.listaArticulos.lista.add(new Articulo(codigo,descripcion,pvpVenta,gastosEnvio,tiempoPreparacion));
+    }
     
     public void menu() {
        boolean salir = false;
@@ -22,11 +29,10 @@ public class MenuArticulo {
             opcio = pedirOpcion();
             switch (opcio) {
                 case '1':
-                 addArticulo();
-                  
+                 addArticulo();                  
                 break;
                 case '2':
-                    // TO-BE-DONE
+                 muestraArticulo();  
                 break;                
                 case '0':
                     salir = true;
@@ -44,12 +50,8 @@ public class MenuArticulo {
     }
 
     private void addArticulo() {
-        String codigo;
-        String descripcion;
-        float pvpVenta;
-        float gastosEnvio;
-        int tiempoPreparacion;
-                  
+       
+        System.out.println(); 
         System.out.println("===== Introducir Artículo =====");
         System.out.println(); 
         System.out.print("Codigo: ");
@@ -63,11 +65,26 @@ public class MenuArticulo {
         System.out.print("Tiempo preparacion (min): ");
         tiempoPreparacion = Integer.valueOf(teclado.nextLine());
          
-      //  controlador.setDatos();
-      //   controlador.datos.articulo(codigo,descripcion,pvpVenta,gastosEnvio,tiempoPreparacion);
-      //  controlador.datos.listaArticulos.lista.add(Articulo(codigo,descripcion,pvpVenta,gastosEnvio,tiempoPreparacion));
- 
-            
+        controlador._Articulo(codigo,descripcion,pvpVenta,gastosEnvio,tiempoPreparacion);
+        //controlador.ArticuloToList();             
+    }
+    
+    private void muestraArticulo() {
+        int item;
+        System.out.println(); 
+        System.out.println("===== Mostrar Artículo =====");
+        System.out.println(); 
+        System.out.print("Codigo de Artículo: ");
+        codigo = teclado.nextLine();
+        item = controlador.ArticuloByCodigo(codigo);
+        if (item!=-1) {
+            System.out.print( controlador.getDatos().getListaArticulos().getLista().get(item).toString());
+        }
+        else {
+             System.out.print("El codigo " + codigo + " no existe.");
+             System.out.println();
+        }
        
     }
+    
 }

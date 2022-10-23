@@ -7,15 +7,15 @@ import java.util.Scanner;
 
 
 public class GestionOS {
-    private Controlador controlador;
-    
-    Scanner teclado = new Scanner(System.in);
-    MenuArticulo articulos = new MenuArticulo();
-    
+    Controlador controlador= new Controlador();
+        
     public GestionOS() {
-        controlador = new Controlador();
+      // Controlador controlador = new Controlador();
        // controlador.datos.
     }
+    Scanner teclado = new Scanner(System.in);
+    MenuArticulo articulos = new MenuArticulo(controlador);
+    
    
     public void inicio() {
                boolean salir = false;
