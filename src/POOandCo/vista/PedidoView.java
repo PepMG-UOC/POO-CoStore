@@ -11,12 +11,14 @@ public class PedidoView {
      Scanner teclado = new Scanner(System.in);
      static Controlador controlador;
      private int numPedido;
-     //private Articulo articulo;
+     //private Articulo articulo;  No se debe usar (usar controlador.datos...)
      private int cantidad;
-    // private Cliente cliente;
+     // private Cliente cliente;
      private LocalDate fecha;
      private LocalTime hora;
      private LocalDateTime fechaYhora;
+     static String eMail;
+     static String codigo;
       
      public PedidoView(Controlador controlador) {
         this.controlador = controlador;
@@ -65,10 +67,28 @@ public class PedidoView {
         return resp.charAt(0);        
      }
     
-    public void addPedido(){
-      
-        vistaCliente.addCliente();
-        
+    public int addPedido(){
+        System.out.println(); 
+        System.out.println("===== Introducir Pedido =====");
+        System.out.println(); 
+        System.out.print("eMail del cliente: ");
+        eMail = teclado.nextLine();
+        if (controlador.clienteByEmail(eMail)==-1){    
+             vistaCliente.addCliente();
+        } 
+        else {
+            System.out.print("Codigo del articulo: ");
+            codigo = teclado.nextLine();
+            if (controlador.articuloByCodigo(codigo)==-1){    
+             System.out.print("El articulo no existe.");
+             System.out.println();
+             return -1;
+            } 
+            else {
+                
+            }
+        }  
+        return 1;
     }
     
 }
