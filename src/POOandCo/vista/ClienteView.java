@@ -13,7 +13,7 @@ public class ClienteView {
      static String nif;
      static String tipo;
      
-     public ClienteView(Controlador controlador) {
+    public ClienteView(Controlador controlador) {
         this.controlador = controlador;
     }     
     
@@ -57,7 +57,7 @@ public class ClienteView {
         return resp.charAt(0);
     }
     
-    private void addCliente() {       
+    public void addCliente() {       
         System.out.println(); 
         System.out.println("===== Introducir Cliente =====");
         System.out.println(); 
@@ -80,7 +80,7 @@ public class ClienteView {
         }         
     }
     
-    private void showClientes(){
+    public void showClientes(){
         System.out.println();
         System.out.println("===== Mostrar TODOS LOS Clientes =====");
         System.out.println();
