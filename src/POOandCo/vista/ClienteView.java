@@ -22,6 +22,7 @@ public class ClienteView {
         boolean salir = false;
         char opcio;
         do {
+            System.out.println(); 
             System.out.println("1. Añadir Cliente");
             System.out.println("2. Mostrar Clientes");
             System.out.println("3. Mostrar Clientes Estándar");
@@ -33,7 +34,7 @@ public class ClienteView {
                    addCliente();
                 break;
                 case '2':
-                    // TO-BE-DONE
+                    showClientes();
                 break;
                 case '3':
                     // TO-BE-DONE
@@ -64,6 +65,11 @@ public class ClienteView {
         System.out.println(); 
         System.out.print("eMail: ");
         eMail = teclado.nextLine();
+        if (controlador.clienteByEmail(eMail)!=-1){    
+             System.out.print("El cliente con eMail: " + eMail + " ya existe.");
+             System.out.println();
+        } 
+        else {
         System.out.print("Nombre: ");
         nombre = teclado.nextLine();
         System.out.print("Domicilio: ");
@@ -72,6 +78,17 @@ public class ClienteView {
         nif = teclado.nextLine();
         System.out.print("(1)Estandard / (2)Premium");
         tipo = teclado.nextLine();
+        controlador.getDatos().setCliente(eMail, nombre, domicilio, nif, tipo);
+        }      
         
+    }
+    
+    private void showClientes(){
+        System.out.println();
+        System.out.println("===== Mostrar TODOS LOS Clientes =====");
+        System.out.println();
+        System.out.print( controlador.getDatos().getListaClientes().getLista().toString());
+        System.out.println();
+
     }
 }

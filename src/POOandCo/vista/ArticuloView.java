@@ -55,6 +55,11 @@ public class ArticuloView {
         System.out.println(); 
         System.out.print("Codigo: ");
         codigo = teclado.nextLine();
+        if (controlador.articuloByCodigo(codigo)!=-1){    
+             System.out.print("El articulo " + codigo + " ya existe.");
+             System.out.println();
+        } 
+        else {
         System.out.print("Descripcion: ");  
         descripcion = teclado.nextLine();
         System.out.print("Pvp de venta: ");
@@ -62,10 +67,9 @@ public class ArticuloView {
         System.out.print("Gastos de envio: ");
         gastosEnvio = Float.valueOf(teclado.nextLine());
         System.out.print("Tiempo preparacion (min): ");
-        tiempoPreparacion = Integer.valueOf(teclado.nextLine());
-        
+        tiempoPreparacion = Integer.valueOf(teclado.nextLine());        
         controlador.getDatos().setArticulo(codigo, descripcion, pvpVenta, gastosEnvio, tiempoPreparacion);
-      
+        }       
     }
     
     private void muestraArticulo() {
@@ -75,7 +79,7 @@ public class ArticuloView {
         System.out.println(); 
         System.out.print("Codigo de Artículo: ");
         codigo = teclado.nextLine();
-        item = controlador.ArticuloByCodigo(codigo);
+        item = controlador.articuloByCodigo(codigo);
         if (item!=-1) {
             System.out.print( controlador.getDatos().getListaArticulos().getLista().get(item).toString());
         }

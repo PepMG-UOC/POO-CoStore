@@ -9,6 +9,7 @@ public class Datos {
     private Articulo articulo;
     private ClienteEstandard clienteStd;
     private ClientePremium clientePrm;
+    private Pedido pedido;
        
     public Datos (){
         listaArticulos = new ListaArticulos();
@@ -17,50 +18,27 @@ public class Datos {
     }    
    
     public void setArticulo (String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
-        articulo = new Articulo();
-        articulo.setCodigo(codigo);
-        articulo.setDescripcion(descripcion);
-        articulo.setPvpVenta(pvpVenta);
-        articulo.setGastosEnvio(gastosEnvio);
-        articulo.setTiempoPreparacion(tiempoPreparacion);    
-        addArticulos(articulo);
+        listaArticulos.add(articulo = new Articulo(codigo, descripcion, pvpVenta, gastosEnvio, tiempoPreparacion));   
     }
-    
-     public void addArticulos(Articulo articulo) {
-        listaArticulos.add(articulo);
-    }
-    
-     
-    public void setClienteStd(String eMail, String nombre, String domicilio, String nif){
-        clienteStd = new ClienteEstandard(eMail,nombre,domicilio,nif);
-        clienteStd.calcAnual();
         
+    public void setCliente(String eMail, String nombre, String domicilio, String nif, String tipo){
+        if (tipo.equals("1")) listaClientes.add(clienteStd = new ClienteEstandard(eMail,nombre,domicilio,nif));
+        else listaClientes.add(clientePrm = new ClientePremium(eMail,nombre,domicilio,nif));             
     }
      
     public ListaArticulos getListaArticulos() {
         return listaArticulos;
     }
 
-    public void setListaArticulos(ListaArticulos listaArticulos) {
-        
-        this.listaArticulos = listaArticulos;
-    }
-
-   
-
     public ListaClientes getListaClientes() {
         return listaClientes;
-    }
-
-    public void setListaClientes(ListaClientes listaClientes) {
-        this.listaClientes = listaClientes;
     }
 
     public ListaPedidos getListaPedidos() {
         return listaPedidos;
     }
-
-    public void setListaPedidos(ListaPedidos listaPedidos) {
-        this.listaPedidos = listaPedidos;
+    
+    public void setPedido (int numPedido, Articulo articulo, int cantidad, Cliente cliente) {
+        listaPedidos.add(pedido = new Pedido(numPedido,articulo,cantidad,cliente));
     }
 }

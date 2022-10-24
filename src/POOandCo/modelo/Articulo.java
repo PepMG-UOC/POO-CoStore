@@ -8,14 +8,16 @@ public class Articulo {
     private float gastosEnvio;
     private int tiempoPreparacion;
        
-    
+    public Articulo(String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
+        this.codigo = codigo;
+        this.descripcion = descripcion;
+        this.pvpVenta = pvpVenta;
+        this.gastosEnvio = gastosEnvio;
+        this.tiempoPreparacion = tiempoPreparacion;
+    }
 
     public String getCodigo() {
         return codigo;
-    }
-
-    private String pruebaModificacion() {
-        return "Grabas";
     }
 
     public void setCodigo(String codigo) {
