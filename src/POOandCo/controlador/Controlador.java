@@ -39,15 +39,15 @@ public class Controlador {
         return -1;
     }
     
-    public int clienteByTipo(String tipo){
-
+    
+  /*  public int clienteByTipo(String tipo){
         for(int item=0; item<(datos.getListaClientes().getLista().size()); item++) {
             if (tipo.equals(datos.getListaClientes().getLista().get(item).tipoCliente())){
                 return item;
             }
         }
         return -1;
-    }
+    }*/
     
     public int ArticuloByCodigo(String codigo){
         

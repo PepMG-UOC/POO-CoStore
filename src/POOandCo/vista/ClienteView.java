@@ -15,8 +15,7 @@ public class ClienteView {
      
      public ClienteView(Controlador controlador) {
         this.controlador = controlador;
-    }
-     
+    }     
     
     public void menu() {
         boolean salir = false;
@@ -37,10 +36,10 @@ public class ClienteView {
                     showClientes();
                 break;
                 case '3':
-                    // TO-BE-DONE
+                    showClientesPorTipo("Estandard");
                 break;
                  case '4':
-                    // TO-BE-DONE
+                    showClientesPorTipo("Premium");
                 break;
                 case '0':
                     salir = true;
@@ -58,8 +57,7 @@ public class ClienteView {
         return resp.charAt(0);
     }
     
-    private void addCliente() {
-       
+    private void addCliente() {       
         System.out.println(); 
         System.out.println("===== Introducir Cliente =====");
         System.out.println(); 
@@ -79,8 +77,7 @@ public class ClienteView {
         System.out.print("(1)Estandard / (2)Premium");
         tipo = teclado.nextLine();
         controlador.getDatos().setCliente(eMail, nombre, domicilio, nif, tipo);
-        }      
-        
+        }         
     }
     
     private void showClientes(){
@@ -89,6 +86,20 @@ public class ClienteView {
         System.out.println();
         System.out.print( controlador.getDatos().getListaClientes().getLista().toString());
         System.out.println();
-
     }
+    
+    private void showClientesPorTipo(String tipo){
+        System.out.println();
+        System.out.println("===== Mostrar clientes estandar =====");
+        System.out.println();   
+        for(int item=0; item<(controlador.getDatos().getListaClientes().getLista().size()); item++) {
+            if (tipo.equals(controlador.getDatos().getListaClientes().getLista().get(item).tipoCliente())){
+                System.out.print(controlador.getDatos().getListaClientes().getLista().get(item));
+            }
+        }
+        System.out.println();         
+    }
+    
+    
+    
 }

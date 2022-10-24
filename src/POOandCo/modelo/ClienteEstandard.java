@@ -14,7 +14,7 @@ public class ClienteEstandard extends Cliente{
     
     @Override
     public String tipoCliente() {
-        return tipo="Standard"; 
+        return tipo="Estandard"; 
     } 
     
     @Override
