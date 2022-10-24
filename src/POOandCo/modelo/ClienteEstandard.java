@@ -18,7 +18,7 @@ public class ClienteEstandard extends Cliente{
     } 
     
     @Override
-      public float calcAnual() {
+    public float calcAnual() {
         return calculo=0; 
     } 
       

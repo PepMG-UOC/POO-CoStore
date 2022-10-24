@@ -7,24 +7,15 @@ public class Datos {
     private ListaClientes listaClientes;
     private ListaPedidos listaPedidos;
     private Articulo articulo;
-   // private ClienteEstandard clienteStd;
-   // private ClientePremium clientePrm;
-   // private Lista<Articulo> listart;
-    
+    private ClienteEstandard clienteStd;
+    private ClientePremium clientePrm;
+       
     public Datos (){
-       // listart = new Lista<>();
         listaArticulos = new ListaArticulos();
         listaClientes = new ListaClientes();
         listaPedidos = new ListaPedidos ();
-        
-        
-       // listart.lista.add(articulo);
-        //articulo = new Articulo();
-       // listaArticulos.lista.add(e);
-    }
-    
+    }    
    
-// TO-BE-DONE
     public void setArticulo (String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
         articulo = new Articulo();
         articulo.setCodigo(codigo);
@@ -35,6 +26,17 @@ public class Datos {
         addArticulos(articulo);
     }
     
+     public void addArticulos(Articulo articulo) {
+        listaArticulos.add(articulo);
+    }
+    
+     
+    public void setClienteStd(String eMail, String nombre, String domicilio, String nif){
+        clienteStd = new ClienteEstandard(eMail,nombre,domicilio,nif);
+        clienteStd.calcAnual();
+        
+    }
+     
     public ListaArticulos getListaArticulos() {
         return listaArticulos;
     }
@@ -44,9 +46,7 @@ public class Datos {
         this.listaArticulos = listaArticulos;
     }
 
-    public void addArticulos(Articulo articulo) {
-        listaArticulos.add(articulo);
-    }
+   
 
     public ListaClientes getListaClientes() {
         return listaClientes;

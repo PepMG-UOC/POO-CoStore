@@ -4,7 +4,7 @@ package POOandCo.vista;
 import java.util.Scanner;
 import POOandCo.controlador.Controlador;
 
-public class MenuArticulo {
+public class ArticuloView {
     Scanner teclado = new Scanner(System.in);
     private Controlador controlador;
     static String codigo;
@@ -13,9 +13,8 @@ public class MenuArticulo {
     static float gastosEnvio;
     static int tiempoPreparacion;
 
-    public MenuArticulo(Controlador controlador) {
+    public ArticuloView(Controlador controlador) {
         this.controlador = controlador;
-         //controlador.datos.listaArticulos.lista.add(new Articulo(codigo,descripcion,pvpVenta,gastosEnvio,tiempoPreparacion));
     }
     
     public void menu() {
@@ -39,7 +38,7 @@ public class MenuArticulo {
                 }
             } while (!salir);
     }
-     char pedirOpcion() {
+    char pedirOpcion() {
         String resp;
         System.out.print("Elige una opción (1,2,3 o 0): ");
         resp = teclado.nextLine();
@@ -64,9 +63,9 @@ public class MenuArticulo {
         gastosEnvio = Float.valueOf(teclado.nextLine());
         System.out.print("Tiempo preparacion (min): ");
         tiempoPreparacion = Integer.valueOf(teclado.nextLine());
-         
-        controlador._Articulo(codigo,descripcion,pvpVenta,gastosEnvio,tiempoPreparacion);
-        //controlador.ArticuloToList();             
+        
+        controlador.getDatos().setArticulo(codigo, descripcion, pvpVenta, gastosEnvio, tiempoPreparacion);
+      
     }
     
     private void muestraArticulo() {
