@@ -11,18 +11,23 @@ public class Lista<T> {
         lista = new ArrayList<>();
     }
     
-    public int getSize() {
-        // TO-BE-DONE
-        return 1;
+    public int getSize() {        
+        return lista.size();
     }
     
     public void add(T t) {
         lista.add(t);
         
     }
+   
     
     public void borrar(T t) {
-    // TO-BE-DONE
+        for (int i=0; i<lista.size(); i++){
+            if(t.equals(lista.get(i))) {
+                lista.remove(i);
+                break;
+            }
+        }
     }
     
     public T getAt(int position) {    
@@ -30,7 +35,7 @@ public class Lista<T> {
     }
     
     public void clear() {
-    // TO-BE-DONE
+        
     }
     public boolean isEmpty() {
     // TO-BE-DONE

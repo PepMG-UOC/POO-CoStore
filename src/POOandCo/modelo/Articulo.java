@@ -7,25 +7,17 @@ public class Articulo {
     private float pvpVenta;
     private float gastosEnvio;
     private int tiempoPreparacion;
-    
-    /*
-    public Articulo() {        
-    }
-
+       
     public Articulo(String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.pvpVenta = pvpVenta;
         this.gastosEnvio = gastosEnvio;
         this.tiempoPreparacion = tiempoPreparacion;
-    }*/
+    }
 
     public String getCodigo() {
         return codigo;
-    }
-
-    private String pruebaModificacion() {
-        return "Grabas";
     }
 
     public void setCodigo(String codigo) {
@@ -66,7 +58,8 @@ public class Articulo {
 
     @Override
     public String toString() {
-        return "Codigo: " + this.codigo + "\n"
+        return  "ARTICULO" + "\n"
+                + "Codigo: " + this.codigo + "\n"
                 + "Descripcion: " + this.descripcion + "\n"
                 + "PVP de Venta: " + this.pvpVenta + "\n"
                 + "Gastos de envio: " + this.gastosEnvio + "\n"

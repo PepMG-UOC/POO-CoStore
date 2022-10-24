@@ -22,7 +22,7 @@ public abstract class Cliente {
         return eMail;
     }
 
-    public void seteMail(String eMail) {
+    public void setEMail(String eMail) {
         this.eMail = eMail;
     }
 
@@ -62,11 +62,11 @@ public abstract class Cliente {
     
     @Override
     public String toString(){
-        return "eMail: " + this.eMail + "\n"
-             + "Nombre: " + this.nombre + "\n"              
-             + "Domicilio: " + this.domicilio + "\n" 
-             + "NIF: " + this.nif + "\n"
-             + "Tipo: " + tipoCliente();
+        return " eMail: " + this.eMail + 
+              " Nombre: " + this.nombre +            
+              " Domicilio: " + this.domicilio + 
+              " NIF: " + this.nif + 
+              " Tipo: " + tipoCliente();
     }
     
     

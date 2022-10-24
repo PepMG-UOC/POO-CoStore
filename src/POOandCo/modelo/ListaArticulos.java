@@ -5,7 +5,20 @@ import java.util.ArrayList;
 
 
 public class ListaArticulos extends Lista<Articulo> {
-    //private Articulo articulo;
+    private Articulo articulo;
+    
+     
+  /*  public void setArticulo (String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
+        articulo = new Articulo();
+        articulo.setCodigo(codigo);
+        articulo.setDescripcion(descripcion);
+        articulo.setPvpVenta(pvpVenta);
+        articulo.setGastosEnvio(gastosEnvio);
+        articulo.setTiempoPreparacion(tiempoPreparacion);    
+        addArticulos(articulo);
+    }*/
+    
+   
     
     public ArrayList<Articulo> getLista() {
         return lista;
@@ -14,12 +27,12 @@ public class ListaArticulos extends Lista<Articulo> {
     public void setLista(ArrayList<Articulo> lista) {
         this.lista = lista;
     }
-   /*  
-     public Articulo getArticulo() {
+    
+    public Articulo getArticulo() {
         return articulo;
     }
 
-    public void setArticulo(Articulo articulo) {
+   /* public void setArticulo(Articulo articulo) {
         this.articulo = articulo;
     }*/
     

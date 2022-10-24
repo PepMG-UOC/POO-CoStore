@@ -14,8 +14,8 @@ public class GestionOS {
        // controlador.datos.
     }
     Scanner teclado = new Scanner(System.in);
-    MenuArticulo articulos = new MenuArticulo(controlador);
-    
+    ArticuloView vistaAarticulo = new ArticuloView(controlador);
+    ClienteView vistaCliente = new ClienteView(controlador);
    
     public void inicio() {
                boolean salir = false;
@@ -29,13 +29,10 @@ public class GestionOS {
             opcio = pedirOpcion();
             switch (opcio) {
                 case '1':
-                   articulos.menu();
-                 //  this.controlador.
-                  // controlador.
-                 // controlador.datos.listaArticulos.articulo.setCodigo("873");
+                   vistaAarticulo.menu();                 
                 break;
                 case '2':
-                    menuClientes();
+                    vistaCliente.menu();
                 break;
                 case '3':
                     menuPedidos();
@@ -57,34 +54,6 @@ public class GestionOS {
     }
 
 
-    private void menuClientes() {
-        boolean salir = false;
-        char opcio;
-        do {
-            System.out.println("1. Añadir Cliente");
-            System.out.println("2. Mostrar Clientes");
-            System.out.println("3. Mostrar Clientes Estándar");
-            System.out.println("4. Mostrar Clientes Premium");
-            System.out.println("0. Salir");
-            opcio = pedirOpcion();
-            switch (opcio) {
-                case '1':
-                   // TO-BE-DONE
-                break;
-                case '2':
-                    // TO-BE-DONE
-                break;
-                case '3':
-                    // TO-BE-DONE
-                break;
-                 case '4':
-                    // TO-BE-DONE
-                break;
-                case '0':
-                    salir = true;
-                }
-            } while (!salir);
-    }
 
     private void menuPedidos() {
         boolean salir = false;

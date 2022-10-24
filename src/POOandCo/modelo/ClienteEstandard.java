@@ -14,11 +14,11 @@ public class ClienteEstandard extends Cliente{
     
     @Override
     public String tipoCliente() {
-        return tipo="Standard"; 
+        return tipo="Estandard"; 
     } 
     
     @Override
-      public float calcAnual() {
+    public float calcAnual() {
         return calculo=0; 
     } 
       
