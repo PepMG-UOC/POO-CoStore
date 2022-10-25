@@ -6,12 +6,9 @@ import java.util.Scanner;
 
 
 public class GestionOS {
-    private Controlador controlador;// = new Controlador(); 
+    private Controlador controlador;
     Scanner teclado = new Scanner(System.in);
-    /* ArticuloView vistaAarticulo = new ArticuloView(controlador);
-    ClienteView vistaCliente = new ClienteView(controlador);
-    PedidoView vistaPedido = new PedidoView(controlador); */
-        
+            
     public GestionOS() {
         controlador = new Controlador(); 
     }
@@ -28,11 +25,10 @@ public class GestionOS {
             opcio = pedirOpcion();
             switch (opcio) {
                 case '1':
-                    controlador.menuArticulo();
-                   //vistaAarticulo.menu();                 
+                    controlador.menuArticulo();                                  
                 break;
                 case '2':
-                    //vistaCliente.menu();
+                    controlador.menuCliente();                    
                 break;
                 case '3':
                     //vistaPedido.menu();

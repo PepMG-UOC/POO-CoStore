@@ -12,6 +12,26 @@ public class ClienteEstandard extends Cliente{
     }
     
     
+    public float getCalculo() {
+        return calculo;
+    }
+
+
+    public void setCalculo(float calculo) {
+        this.calculo = calculo;
+    }
+
+
+    public float getDescuento() {
+        return descuento;
+    }
+
+
+    public void setDescuento(float descuento) {
+        this.descuento = descuento;
+    }
+
+
     @Override
     public String tipoCliente() {
         return tipo="Estandard"; 

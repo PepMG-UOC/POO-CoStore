@@ -32,9 +32,16 @@ public class Datos {
     }
     
     public void setCliente(String eMail, String nombre, String domicilio, String nif, String tipo){
-        if (tipo.equals("1")) listaClientes.add(clienteStd = new ClienteEstandard(eMail,nombre,domicilio,nif));
-        else listaClientes.add(clientePrm = new ClientePremium(eMail,nombre,domicilio,nif));             
+        if (tipo.equals("1")) {
+            clienteStd = new ClienteEstandard(eMail,nombre,domicilio,nif);
+            listaClientes.add(clienteStd);
+        }             
+        else if (tipo.equals("2")) {
+            clientePrm = new ClientePremium(eMail,nombre,domicilio,nif);
+            listaClientes.add(clientePrm);
+        }              
     }
+
      
     public ListaArticulos getListaArticulos() {
         return listaArticulos;
