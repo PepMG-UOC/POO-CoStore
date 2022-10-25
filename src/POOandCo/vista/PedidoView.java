@@ -24,7 +24,7 @@ public class PedidoView {
         this.controlador = controlador;
      }     
      
-    ArticuloView vistaAarticulo = new ArticuloView(controlador);
+  //  ArticuloView vistaAarticulo = new ArticuloView(controlador);
     ClienteView vistaCliente = new ClienteView(controlador);
     
      public void menu() {

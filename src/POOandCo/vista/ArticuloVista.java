@@ -18,7 +18,7 @@ public class ArticuloVista {
 
     private char pedirOpcion() {
         String resp;
-        System.out.print("Elige una opción (1,2,3 o 0): ");
+        System.out.print("Elige una opción (1,2 o 0): ");
         resp = teclado.nextLine();
         if (resp.isEmpty()) {
             resp = " ";
@@ -32,8 +32,10 @@ public class ArticuloVista {
         System.out.println();         
     }
 
-    public void warning(String codigo){
-        System.out.print("El articulo " + codigo + " ya existe.");
+    public void warning(String codigo, boolean exist){
+        System.out.print("El articulo " + codigo);
+        if (exist) System.out.print(" ya existe.");
+        else System.out.print(" no existe");
         System.out.println(); 
     }
 
@@ -80,6 +82,18 @@ public class ArticuloVista {
         teclado= new Scanner(System.in);
         return tiempoPreparacion;
     }
+
+    public void showCabecera(){
+        System.out.println(); 
+        System.out.println("===== Mostar Artículo =====");
+        System.out.println();         
+    }
+
+    public void showArticulo(String articulo){
+        System.out.println(articulo);
+    }
+
+    
 
 
 }
