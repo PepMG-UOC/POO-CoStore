@@ -2,22 +2,20 @@
 package POOandCo.vista;
 
 import POOandCo.controlador.Controlador;
-
 import java.util.Scanner;
 
 
 public class GestionOS {
-    Controlador controlador = new Controlador(); 
+    private Controlador controlador;// = new Controlador(); 
+    Scanner teclado = new Scanner(System.in);
+    /* ArticuloView vistaAarticulo = new ArticuloView(controlador);
+    ClienteView vistaCliente = new ClienteView(controlador);
+    PedidoView vistaPedido = new PedidoView(controlador); */
         
     public GestionOS() {
-            
+        controlador = new Controlador(); 
     }
-    
-    Scanner teclado = new Scanner(System.in);
-    ArticuloView vistaAarticulo = new ArticuloView(controlador);
-    ClienteView vistaCliente = new ClienteView(controlador);
-    PedidoView vistaPedido = new PedidoView(controlador);
-    
+        
     public void inicio() {
                boolean salir = false;
         char opcio;
@@ -30,13 +28,14 @@ public class GestionOS {
             opcio = pedirOpcion();
             switch (opcio) {
                 case '1':
-                   vistaAarticulo.menu();                 
+                    controlador.menuArticulo();
+                   //vistaAarticulo.menu();                 
                 break;
                 case '2':
-                    vistaCliente.menu();
+                    //vistaCliente.menu();
                 break;
                 case '3':
-                    vistaPedido.menu();
+                    //vistaPedido.menu();
                 break;
                 case '0':
                     salir = true;

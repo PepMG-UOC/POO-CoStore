@@ -19,9 +19,18 @@ public class Datos {
     }    
    
     public void setArticulo (String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
-        listaArticulos.add(articulo = new Articulo(codigo, descripcion, pvpVenta, gastosEnvio, tiempoPreparacion));   
+        articulo = new Articulo(codigo, descripcion, pvpVenta, gastosEnvio, tiempoPreparacion);   
     }
-        
+    
+    public Articulo getArticulo()
+    {
+        return articulo;
+    }
+
+    public void addArticuloToList(Articulo articulo) {
+        listaArticulos.add(articulo);
+    }
+    
     public void setCliente(String eMail, String nombre, String domicilio, String nif, String tipo){
         if (tipo.equals("1")) listaClientes.add(clienteStd = new ClienteEstandard(eMail,nombre,domicilio,nif));
         else listaClientes.add(clientePrm = new ClientePremium(eMail,nombre,domicilio,nif));             
