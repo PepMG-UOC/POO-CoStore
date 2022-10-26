@@ -2,14 +2,20 @@
 package POOandCo.controlador;
 
 import java.util.List;
+
+import POOandCo.modelo.Articulo;
 import POOandCo.modelo.Datos;
+import POOandCo.modelo.ListaArticulos;
+import POOandCo.modelo.Pedido;
 import POOandCo.vista.*;
 import java.util.ArrayList;
 
 public class Controlador {
     private Datos datos;
     private ArticuloVista articuloView = new ArticuloVista(); 
-    private ClienteVista clienteVista = new ClienteVista();  
+    private ClienteVista clienteVista = new ClienteVista();
+
+    private PedidoVista pedidoVista = new PedidoVista();
 
     public Controlador() {
         datos = new Datos ();        
@@ -136,6 +142,53 @@ public class Controlador {
             }
         }
                 
+    }
+
+
+//PEDIDOS
+
+    Articulo getarticulo(String codigo){
+        for(Articulo art : datos.getListaArticulos().getLista()){
+            if(art.getCodigo().equals(codigo)){
+                return art;
+            }
+        }
+        return null;
+    }
+
+    private void añadirPedido() {
+
+        Articulo art = null;
+
+        int numPedido;
+        pedidoVista.adCabecera();
+        numPedido = pedidoVista.numPedido();
+
+        if (pedidoByNum(numPedido)!=-1)
+        {
+            pedidoVista.warning(numPedido,true);
+            return;
+        }
+
+        String codigo;
+        articuloView.codigoArticulo();
+        codigo = articuloView.codigoArticulo();
+        art = getarticulo(codigo);
+
+
+        datos.setPedido(numPedido, art,  cantidad,  cliente);
+        datos.addPedidoToList(datos.getListaPedidos().getLista().get(Pedido));
+    }
+
+
+
+    public int pedidoByNum(int numPedido){
+        for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++) {
+            if (numPedido==(datos.getListaPedidos().getLista().get(item).getNumPedido())){
+                return item;
+            }
+        }
+        return -1;
     }
 
     public int clienteByTipo(String tipo){

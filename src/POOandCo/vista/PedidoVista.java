@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+
 public class PedidoVista {
     Scanner teclado = new Scanner(System.in);
 
@@ -47,6 +48,19 @@ public class PedidoVista {
         return numPedido;
     }
 
+
+
+    public String getArticuloPedido(){
+
+        String codigo;
+        System.out.print("Codigo del articulo: ");
+        codigo= teclado.nextLine();
+        return codigo;
+    }
+
+
+
+
     public int cantidad(){
 
     
@@ -68,8 +82,8 @@ public class PedidoVista {
         return 1;
     }
 
-    public void warning(String codigo, boolean exist){
-        System.out.print("El pedido " + codigo);
+    public void warning(int numPedido, boolean exist){
+        System.out.print("El pedido " + numPedido);
         if (exist) System.out.print(" ya existe.");
         else System.out.print(" no existe");
         System.out.println(); 

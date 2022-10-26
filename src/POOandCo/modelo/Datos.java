@@ -54,6 +54,12 @@ public class Datos {
     public ListaPedidos getListaPedidos() {
         return listaPedidos;
     }
+
+
+
+    public void addPedidoToList(Pedido pedido) {
+        listaPedidos.add(pedido);
+    }
     
     public void setPedido (int numPedido, Articulo articulo, int cantidad, Cliente cliente) {
         listaPedidos.add(pedido = new Pedido(numPedido,articulo,cantidad,cliente));

@@ -19,10 +19,14 @@ public class ListaArticulos extends Lista<Articulo> {
     }*/
     
    
-    
+
+//he quitado este metodo y lo he añadido en la clase generica Lista.
+    /*
     public ArrayList<Articulo> getLista() {
         return lista;
     }
+
+     */
 
     public void setLista(ArrayList<Articulo> lista) {
         this.lista = lista;

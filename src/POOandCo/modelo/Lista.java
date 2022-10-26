@@ -42,8 +42,8 @@ public class Lista<T> {
         return true;
     }
     
-    public ArrayList<T> getArrayList() {
-        ArrayList<T> arrlist = new ArrayList<>(lista);
-        return arrlist;
+    public ArrayList<T> getLista() {
+
+        return lista;
     }
 }
