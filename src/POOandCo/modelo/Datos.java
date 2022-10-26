@@ -42,6 +42,10 @@ public class Datos {
         }              
     }
 
+    public void setPedido (int numPedido, Articulo articulo, int cantidad, Cliente cliente) {
+        pedido = new Pedido(numPedido,articulo,cantidad,cliente);
+        listaPedidos.add(pedido);
+    }
      
     public ListaArticulos getListaArticulos() {
         return listaArticulos;
@@ -55,7 +59,5 @@ public class Datos {
         return listaPedidos;
     }
     
-    public void setPedido (int numPedido, Articulo articulo, int cantidad, Cliente cliente) {
-        listaPedidos.add(pedido = new Pedido(numPedido,articulo,cantidad,cliente));
-    }
+    
 }

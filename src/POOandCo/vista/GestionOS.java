@@ -31,7 +31,7 @@ public class GestionOS {
                     controlador.menuCliente();                    
                 break;
                 case '3':
-                    //vistaPedido.menu();
+                    controlador.menuPedido();
                 break;
                 case '0':
                     salir = true;

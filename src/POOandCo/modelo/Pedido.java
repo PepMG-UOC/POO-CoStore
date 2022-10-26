@@ -15,9 +15,7 @@ public class Pedido {
     private int numPedido;
     private Articulo articulo;
     private int cantidad;
-    private Cliente cliente;
-    private LocalDate fecha;
-    private LocalTime hora;
+    private Cliente cliente;    
     private LocalDateTime fechaYhora;
 
     public Pedido(int numPedido, Articulo articulo, int cantidad, Cliente cliente) {
@@ -25,9 +23,7 @@ public class Pedido {
         this.articulo = articulo;
         this.cantidad = cantidad;
         this.cliente = cliente;
-        this.fechaYhora = LocalDateTime.now();
-        this.fecha = LocalDate.now();
-        this.hora = LocalTime.now();
+        this.fechaYhora = LocalDateTime.now();        
     }
 
     public int getNumPedido() {
@@ -62,20 +58,12 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public LocalDateTime getFechaYhora() {
+        return fechaYhora;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public LocalTime getHora() {
-        return hora;
-    }
-
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
+    public void setFechaYhora(LocalDateTime fechaYhora) {
+        this.fechaYhora = fechaYhora;
     }
 
     public boolean pedidoEnviado(){
@@ -93,8 +81,7 @@ public class Pedido {
     @Override
     public String toString(){
         return "Numero de Pedido: " + this.numPedido + "\n"
-             + "Fecha del pedido: " + this.fecha  + "\n"
-             + "Hora del pedido: " + this.hora + "\n"
+             + "Fecha y hora: " + this.fechaYhora  + "\n"            
              + "NIF del Cliente: " + this.cliente.getNif() + "\n"
              + "Nombre Cliente: " + this.cliente.getNombre() + "\n"
              + "Codigo Articulo: " + this.articulo.getCodigo() + "\n" 
@@ -106,7 +93,5 @@ public class Pedido {
              
              
             
-    }
-    
-    
+    }   
 }

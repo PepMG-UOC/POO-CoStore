@@ -3,9 +3,9 @@ package POOandCo.vista;
 
 import java.util.Scanner;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+
 
 public class PedidoVista {
     Scanner teclado = new Scanner(System.in);
@@ -47,32 +47,24 @@ public class PedidoVista {
         return numPedido;
     }
 
-    public int cantidad(){
-
-    
-       /*  //if (controlador.clienteByEmail(eMail)==-1){    
-          //   vistaCliente.addCliente();
-        } 
-        else {
-            System.out.print("Codigo del articulo: ");
-            codigo = teclado.nextLine();
-            if (controlador.articuloByCodigo(codigo)==-1){    
-             System.out.print("El articulo no existe.");
-             System.out.println();
-             return -1; 
-            } 
-            else {
-                
-            }
-        }   */
-        return 1;
+    public int cantidadPedido(){
+        int cantidad;
+        System.out.print("Cantidad: ");
+        cantidad=teclado.nextInt();
+        teclado= new Scanner(System.in);
+        return cantidad;       
+    }
+            
+    public void showpvpVenta(float pvpVentaArticlulo, int cantidad){
+        System.out.println("Pvp Venta Artculo: " + pvpVentaArticlulo);
+        System.out.println("Total pedido: " + cantidad*pvpVentaArticlulo);
     }
 
-    public void warning(String codigo, boolean exist){
-        System.out.print("El pedido " + codigo);
+    public void warning(int numPedido, boolean exist){
+        System.out.print("El pedido " + numPedido);
         if (exist) System.out.print(" ya existe.");
         else System.out.print(" no existe");
         System.out.println(); 
-    }
-    
+    }    
+   
 }

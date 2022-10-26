@@ -10,6 +10,7 @@ public class Controlador {
     private Datos datos;
     private ArticuloVista articuloView = new ArticuloVista(); 
     private ClienteVista clienteVista = new ClienteVista();  
+    private PedidoVista pedidoVista = new PedidoVista();
 
     public Controlador() {
         datos = new Datos ();        
@@ -64,6 +65,30 @@ public class Controlador {
             } while (!salir);
     }
 
+    public void menuPedido(){
+        char resultado;
+        boolean salir = false;
+        do {
+            resultado = pedidoVista.menuPrincipal();
+            switch (resultado) {
+                case '1':
+                    añadirPedido();
+                    break;
+                case '2':
+                    muestraClientes();
+                    break;
+                case '3':
+                    showClientesPorTipo("Estandard");
+                    break;
+                case '4':
+                    showClientesPorTipo("Premium");
+                    break;
+
+                }
+                if (resultado == '0') salir = true;
+            } while (!salir);
+    }
+
     private void añadirArticulo() {
         String codigo;
         articuloView.adCabecera();
@@ -89,6 +114,39 @@ public class Controlador {
         datos.setCliente(eMail,clienteVista.nombreCliente(),clienteVista.domicilioCliente(),clienteVista.nifCliente(),clienteVista.tipoCliente());        
     }
 
+    private void añadirPedido(){
+        int numPedido;
+        String eMail;
+        String codigo;   
+        int itemCliente;
+        int itemArticulo;     
+        pedidoVista.adCabecera();
+        numPedido = pedidoVista.numPedido();
+        if (pedidoByNum(numPedido)!=-1)
+        {
+            pedidoVista.warning(numPedido,true);
+            return;
+        } 
+        eMail = clienteVista.eMailCliente();
+        itemCliente = clienteByEmail(eMail);
+        if (itemCliente==-1)
+        {
+            clienteVista.warning(eMail,false);
+            añadirCliente();   
+            itemCliente = clienteByEmail(eMail);         
+        }           
+        codigo = articuloView.codigoArticulo();
+        itemArticulo = articuloByCodigo(codigo);
+        if (itemArticulo==-1)
+        {
+            articuloView.warning(codigo,false);
+            return;
+        }
+        pedidoVista.showpvpVenta(datos.getListaArticulos().getLista().get(itemArticulo).getPvpVenta(),pedidoVista.cantidadPedido());
+
+        datos.setPedido(numPedido, datos.getListaArticulos().getLista().get(itemArticulo), pedidoVista.cantidadPedido(),datos.getListaClientes().getLista().get(itemCliente));         
+    }
+
     public int articuloByCodigo(String codigo){        
         for(int item=0; item<(datos.getListaArticulos().getLista().size()); item++) { 
          if (codigo.equals(datos.getListaArticulos().getLista().get(item).getCodigo())){
@@ -101,6 +159,15 @@ public class Controlador {
     public int clienteByEmail(String eMail){
          for(int item=0; item<(datos.getListaClientes().getLista().size()); item++) {
             if (eMail.equals(datos.getListaClientes().getLista().get(item).geteMail())){
+                return item;
+            }
+        }
+        return -1;
+    }
+
+    public int pedidoByNum(int numPedido){
+        for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++) {
+            if (numPedido==(datos.getListaPedidos().getLista().get(item).getNumPedido())){
                 return item;
             }
         }
