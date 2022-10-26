@@ -12,11 +12,11 @@ public class Controlador {
     private ArticuloVista articuloView = new ArticuloVista(); 
     private ClienteVista clienteVista = new ClienteVista();  
     private PedidoVista pedidoVista = new PedidoVista();
-    private PreCargaDatos preCarga;
+    
 
     public Controlador() {
         datos = new Datos ();  
-        preCarga = new PreCargaDatos(datos);      
+        PreCargaDatos preCarga = new PreCargaDatos(datos);      
     }
     
     public Datos getDatos() {
@@ -80,11 +80,11 @@ public class Controlador {
                 case '2':
                     eliminarPedido();
                     break;
-                case '3':
-                    showPedidosPdte();
+                case '3':                    
+                    pedidosPendientes();
                     break;
                 case '4':
-                    showPedidosEnviados();
+                    pedidosEnviados();
                     break;
 
                 }
@@ -158,8 +158,26 @@ public class Controlador {
         datos.setPedido(numPedido, datos.getListaArticulos().getLista().get(itemArticulo),cantidad,datos.getListaClientes().getLista().get(itemCliente));         
     }
 
-    public void showPedidosPdte(){
-        pedidoVista.showPdteCabecera();
+    public void pedidosPendientes(){
+        pedidoVista.showPdteCabecera();        
+        char resultado;
+        boolean salir = false;
+        do {
+            resultado = pedidoVista.menuMostrar();
+            switch (resultado) {
+                case '1':
+                    allPedidosPdte();
+                    break;
+                case '2':
+                    pedidoPendienteFiltro();
+                    break;
+
+                }
+                if (resultado == '0') salir = true;
+            } while (!salir);
+        }
+
+    public void allPedidosPdte(){
         for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
             if(!pedidoEnviado(item)){
                 pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());                
@@ -167,13 +185,67 @@ public class Controlador {
         }
     }
 
-    public void showPedidosEnviados(){
+    public void pedidoPendienteFiltro(){
+        String eMail;
+        eMail = clienteVista.eMailCliente();
+        if (clienteByEmail(eMail)==-1)
+        {
+            clienteVista.warning(eMail,false);
+            return;
+        }   
+        for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
+            if(!pedidoEnviado(item)){
+                if(datos.getListaPedidos().getLista().get(item).getCliente().geteMail().equals(eMail)){
+                    pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());
+                }                                
+            }
+        } 
+    }
+
+    public void pedidosEnviados(){
+        pedidoVista.showEnviosCabecera();        
+        char resultado;
+        boolean salir = false;
+        do {
+            resultado = pedidoVista.menuMostrar();
+            switch (resultado) {
+                case '1':
+                    allPedidosEnviados();
+                    break;
+                case '2':
+                    pedidoEnviadoFiltro();
+                    break;
+
+                }
+                if (resultado == '0') salir = true;
+            } while (!salir);
+        }
+
+        
+    public void allPedidosEnviados(){
         pedidoVista.showEnviosCabecera();
         for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
             if(pedidoEnviado(item)){
                 pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());                
             }
         }
+    }
+
+    public void pedidoEnviadoFiltro(){
+        String eMail;
+        eMail = clienteVista.eMailCliente();
+        if (clienteByEmail(eMail)==-1)
+        {
+            clienteVista.warning(eMail,false);
+            return;
+        }   
+        for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
+            if(pedidoEnviado(item)){
+                if(datos.getListaPedidos().getLista().get(item).getCliente().geteMail().equals(eMail)){
+                    pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());
+                }                                
+            }
+        } 
     }
 
     public int articuloByCodigo(String codigo){        
@@ -269,6 +341,7 @@ public class Controlador {
         }
         return -1;
     }
+    
     
     public int ArticuloByCodigo(String codigo){
         

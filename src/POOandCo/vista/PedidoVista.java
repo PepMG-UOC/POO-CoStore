@@ -18,14 +18,33 @@ public class PedidoVista {
         System.out.println("3. Mostrar pedidos pendientes de envío");
         System.out.println("4. Mostrar pedidos enviados");
         System.out.println("0. Salir");
-        opcion = pedirOpcion();
-           
+        opcion = pedirOpcion();           
+        return opcion; 
+    }
+
+    public char menuMostrar() {
+        char opcion;
+        System.out.println();
+        System.out.println("1. Mostrar Todos");
+        System.out.println("2. Filtrar por Cliente");
+        System.out.println("0. Salir");
+        opcion = pedirOpcion2();           
         return opcion; 
     }
     
+    
     char pedirOpcion() {
         String resp;
-        System.out.print("Elige una opción (1,2,3 o 0): ");
+        System.out.print("Elige una opción (1,2,3,4 o 0): ");
+        resp = teclado.nextLine();
+        if (resp.isEmpty()) {
+            resp = " ";
+        }
+        return resp.charAt(0);        
+    }
+    char pedirOpcion2() {
+        String resp;
+        System.out.print("Elige una opción (1,2 o 0): ");
         resp = teclado.nextLine();
         if (resp.isEmpty()) {
             resp = " ";

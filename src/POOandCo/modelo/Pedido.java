@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package POOandCo.modelo;
 
 import java.time.LocalDateTime;
@@ -85,9 +80,6 @@ public class Pedido {
              + "Cantidad: " + this.cantidad + "\n" 
              + "Pvp Articulo: " + String.valueOf(this.articulo.getPvpVenta())  + "\n"
              + "Coste envio: " + String.valueOf(this.articulo.getGastosEnvio()) + "\n"
-             + "Pvp Total: " + String.valueOf(cantidad*this.articulo.getPvpVenta());           
-             
-             
-            
+             + "Pvp Total: " + String.valueOf(cantidad*this.articulo.getPvpVenta());              
     }   
 }
