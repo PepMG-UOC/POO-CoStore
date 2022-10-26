@@ -63,11 +63,5 @@ public class PreCargaDatos {
         tipo = "2"; // Premium
         datos.setCliente(eMail, nombre, domicilio, nif, tipo);
 
-        
-
-
-
-
-
     }
 }
