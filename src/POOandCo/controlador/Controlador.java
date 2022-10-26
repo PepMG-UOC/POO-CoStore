@@ -219,14 +219,12 @@ public class Controlador {
         }
 
         String codigo;
-        articuloView.codigoArticulo();
         codigo = articuloView.codigoArticulo();
         art = getarticulos(codigo);
 
         //comprobar si el email añadido corresponde a un cliente y si no, añadir cliente la pedido
 
         String eMail;
-        clienteVista.eMailCliente();
         eMail = clienteVista.eMailCliente();
 
         if (existeCliente(eMail)){
@@ -255,7 +253,6 @@ public class Controlador {
             pedidoVista.warning(numPedido,false);
         }
     }
-
      */
 
 
