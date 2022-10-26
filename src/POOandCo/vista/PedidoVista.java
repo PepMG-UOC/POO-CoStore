@@ -15,8 +15,8 @@ public class PedidoVista {
         System.out.println();
         System.out.println("1. Añadir Pedido");
         System.out.println("2. Eliminar Pedido");
-        System.out.println("3. Mostar pedidos pendientes de envío");
-        System.out.println("4. Mostar pedidos enviados");
+        System.out.println("3. Mostrar pedidos pendientes de envío");
+        System.out.println("4. Mostrar pedidos enviados");
         System.out.println("0. Salir");
         opcion = pedirOpcion();
            
@@ -36,6 +36,21 @@ public class PedidoVista {
     public void adCabecera(){
         System.out.println(); 
         System.out.println("===== Introducir Pedido =====");
+        System.out.println(); 
+    }
+    public void delCabecera(){
+        System.out.println(); 
+        System.out.println("===== Eliminar Pedido =====");
+        System.out.println(); 
+    }
+    public void showPdteCabecera(){
+        System.out.println(); 
+        System.out.println("===== Mostrando pedidos pendientes de envío =====");
+        System.out.println(); 
+    }
+    public void showEnviosCabecera(){
+        System.out.println(); 
+        System.out.println("===== Mostrar pedidos enviados =====");
         System.out.println(); 
     }
 
@@ -59,6 +74,11 @@ public class PedidoVista {
         System.out.println("Pvp Venta Artculo: " + pvpVentaArticlulo);
         System.out.println("Total pedido: " + cantidad*pvpVentaArticlulo);
     }
+    public void showGastosEnvio(float gasto, float descuento){
+        System.out.println("Gastos de envio: " + gasto);
+        System.out.println("Descuento envio: " + descuento + "%");
+        System.out.println("Total gastos: " + gasto*((100f-descuento)/100f));
+    }
 
     public void warning(int numPedido, boolean exist){
         System.out.print("El pedido " + numPedido);
@@ -66,5 +86,14 @@ public class PedidoVista {
         else System.out.print(" no existe");
         System.out.println(); 
     }    
+
+    public void eliminaOk(int numPedido){
+        System.out.print("El pedido " + numPedido + " se ha eliminado.");        
+        System.out.println(); 
+    }
+
+    public void showPedido(String pedido){
+        System.out.println(pedido);
+    }
    
 }

@@ -11,24 +11,23 @@ public class Datos {
     private ClientePremium clientePrm;
     private Pedido pedido;
     private Cliente cliente;
+    
        
     public Datos (){
         listaArticulos = new ListaArticulos();
         listaClientes = new ListaClientes();
         listaPedidos = new ListaPedidos ();
+        
     }    
    
     public void setArticulo (String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
-        articulo = new Articulo(codigo, descripcion, pvpVenta, gastosEnvio, tiempoPreparacion);   
+        articulo = new Articulo(codigo, descripcion, pvpVenta, gastosEnvio, tiempoPreparacion);  
+        listaArticulos.add(articulo); 
     }
     
     public Articulo getArticulo()
     {
         return articulo;
-    }
-
-    public void addArticuloToList(Articulo articulo) {
-        listaArticulos.add(articulo);
     }
     
     public void setCliente(String eMail, String nombre, String domicilio, String nif, String tipo){
