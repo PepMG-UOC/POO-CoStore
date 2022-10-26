@@ -39,13 +39,13 @@ public class ClientePremium extends Cliente{
     
     @Override
     public float calcAnual() {
-        return calculo=30; 
+        return calculo=30f; 
     } 
     
     
     @Override
     public float descuentoEnv() {    
-        return descuento=(100-20)/100;    
+        return descuento=20f;    
     }
     
     

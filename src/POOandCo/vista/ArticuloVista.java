@@ -93,7 +93,5 @@ public class ArticuloVista {
         System.out.println(articulo);
     }
 
-    
-
 
 }
