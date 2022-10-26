@@ -53,7 +53,7 @@ public class ClienteVista {
     public String eMailCliente()
     {
         String email;
-        System.out.print("eMail: ");
+        System.out.print("eMail del cliente: ");
         email=teclado.nextLine();
         return email;
     }

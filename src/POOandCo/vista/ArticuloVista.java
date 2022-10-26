@@ -43,7 +43,7 @@ public class ArticuloVista {
     public String codigoArticulo()
     {
         String codigo;
-        System.out.print("Codigo: ");
+        System.out.print("Codigo del Arículo: ");
         codigo= teclado.nextLine();
         return codigo;
     }
