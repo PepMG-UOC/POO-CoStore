@@ -3,6 +3,7 @@ package POOandCo.modelo;
 
 import java.util.ArrayList;
 
+//prueba
 public class ListaPedidos extends Lista<Pedido>{
 
     public ArrayList<Pedido> getLista() {
