@@ -3,10 +3,7 @@ package POOandCo.controlador;
 
 import java.util.List;
 
-import POOandCo.modelo.Articulo;
-import POOandCo.modelo.Datos;
-import POOandCo.modelo.ListaArticulos;
-import POOandCo.modelo.Pedido;
+import POOandCo.modelo.*;
 import POOandCo.vista.*;
 import java.util.ArrayList;
 
@@ -69,6 +66,35 @@ public class Controlador {
                 if (resultado == '0') salir = true;
             } while (!salir);
     }
+
+
+
+    public void menuPedido() {
+        char resultado;
+        boolean salir = false;
+        do {
+            resultado = pedidoVista.menuPrincipal();
+            switch (resultado) {
+                case '1':
+                    añadirPedido();
+                    break;
+                case '2':
+
+                    break;
+                case '3':
+
+                    break;
+                case '4':
+
+                    break;
+
+            }
+            if (resultado == '0') salir = true;
+        } while (!salir);
+    }
+
+
+
 
     private void añadirArticulo() {
         String codigo;
@@ -145,9 +171,9 @@ public class Controlador {
     }
 
 
-//PEDIDOS
+// AÑADIR PEDIDO
 
-    Articulo getarticulo(String codigo){
+    Articulo getarticulos(String codigo){
         for(Articulo art : datos.getListaArticulos().getLista()){
             if(art.getCodigo().equals(codigo)){
                 return art;
@@ -156,9 +182,31 @@ public class Controlador {
         return null;
     }
 
+
+    Cliente getClientes(String eMail){
+        for(Cliente cli : datos.getListaClientes().getLista()){
+            if(cli.geteMail().equals(eMail)){
+                return cli;
+            }
+        }
+        return null;
+    }
+
+
+    boolean existeCliente(String eMail){
+        for (Cliente cli : datos.getListaClientes().getLista()){
+            if (cli.geteMail().equals(eMail)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     private void añadirPedido() {
 
         Articulo art = null;
+        Cliente cli = null;
 
         int numPedido;
         pedidoVista.adCabecera();
@@ -173,12 +221,42 @@ public class Controlador {
         String codigo;
         articuloView.codigoArticulo();
         codigo = articuloView.codigoArticulo();
-        art = getarticulo(codigo);
+        art = getarticulos(codigo);
 
+        //comprobar si el email añadido corresponde a un cliente y si no, añadir cliente la pedido
 
-        datos.setPedido(numPedido, art,  cantidad,  cliente);
-        datos.addPedidoToList(datos.getListaPedidos().getLista().get(Pedido));
+        String eMail;
+        clienteVista.eMailCliente();
+        eMail = clienteVista.eMailCliente();
+
+        if (existeCliente(eMail)){
+            cli = getClientes(eMail);
+            return;
+        }else{
+           añadirCliente();
+           cli = getClientes(eMail);
+        }
+
+        datos.setPedido(numPedido, art, pedidoVista.cantidad(), cli);
+        datos.addPedidoToList(datos.getPedido());
+        System.out.println("pedido añadido");
     }
+
+
+    /*
+    private void muestraPedido() {
+        int numPedido;
+        pedidoVista.adCabecera();
+        numPedido = pedidoVista.numPedido();
+        if (pedidoByNum(numPedido)!=-1) {
+            pedidoVista.showArticulo( datos.getListaArticulos().getLista().get(articuloByCodigo(numPedido)).toString());
+        }
+        else {
+            pedidoVista.warning(numPedido,false);
+        }
+    }
+
+     */
 
 
 
