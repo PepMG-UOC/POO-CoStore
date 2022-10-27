@@ -19,8 +19,6 @@ public class Lista<T> {
         lista.add(t);
         
     }
-   
-    
     public void borrar(T t) {
         for (int i=0; i<lista.size(); i++){
             if(t.equals(lista.get(i))) {
@@ -29,21 +27,27 @@ public class Lista<T> {
             }
         }
     }
-    
     public T getAt(int position) {    
        return  lista.get(position);      
     }
     
-    public void clear() {
-        
-    }
+    public void clear() {}
     public boolean isEmpty() {
     // TO-BE-DONE
         return true;
     }
-    
+
+    public ArrayList<T> getLista() {
+        return lista;
+    }
+
+    /*
     public ArrayList<T> getArrayList() {
         ArrayList<T> arrlist = new ArrayList<>(lista);
         return arrlist;
     }
+
+     */
+
+
 }
