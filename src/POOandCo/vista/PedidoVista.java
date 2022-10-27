@@ -3,10 +3,6 @@ package POOandCo.vista;
 
 import java.util.Scanner;
 
-
-import java.time.LocalDateTime;
-
-
 public class PedidoVista {
     Scanner teclado = new Scanner(System.in);
 
@@ -75,18 +71,30 @@ public class PedidoVista {
 
     public int numPedido(){
         int numPedido;
-        System.out.print("Numero de pedido: ");
-        numPedido = teclado.nextInt();
-        teclado = new Scanner(System.in);
-        return numPedido;
-    }
+        do{
+            teclado = new Scanner(System.in);            
+            try {
+                System.out.print("Numero de pedido: ");
+                numPedido = teclado.nextInt();        
+                return numPedido;
+            } catch (Exception e){
+                System.out.println("Debe introducir un numero entero.");
+            }
+        } while(true);
+    }   
 
     public int cantidadPedido(){
         int cantidad;
-        System.out.print("Cantidad: ");
-        cantidad=teclado.nextInt();
-        teclado= new Scanner(System.in);
-        return cantidad;       
+        do{
+            teclado = new Scanner(System.in);            
+            try {
+                System.out.print("Cantidad: ");
+                cantidad=teclado.nextInt();
+                return cantidad;  
+            } catch (Exception e){
+                System.out.println("Debe introducir un numero entero.");
+            }
+        } while(true);     
     }
             
     public void showpvpVenta(float pvpVentaArticlulo, int cantidad){

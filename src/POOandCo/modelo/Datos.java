@@ -10,8 +10,7 @@ public class Datos {
     private ClienteEstandard clienteStd;
     private ClientePremium clientePrm;
     private Pedido pedido;
-    private Cliente cliente;
-    
+ 
        
     public Datos (){
         listaArticulos = new ListaArticulos();

@@ -58,29 +58,47 @@ public class ArticuloVista {
 
     public float pvpVentaArticulo()
     {
-        float pvp;
-        System.out.print("Pvp de venta: ");
-        pvp= teclado.nextFloat();
-        teclado = new Scanner(System.in);
-        return pvp;
+        float pvp=0;
+        do{
+            teclado = new Scanner(System.in);            
+            try {
+                System.out.print("Pvp de venta: ");
+                pvp= teclado.nextFloat();                
+                return pvp;         
+            } catch (Exception e){
+                System.out.println("Debe introducir un numero.");
+            }
+        } while(true);
     }
 
     public float gastosEnvioArticulo()
     {
         float gastosEnvio;
-        System.out.print("Gastos de envio: ");
-        gastosEnvio=teclado.nextFloat();
-        teclado= new Scanner(System.in);
-        return gastosEnvio;
+        do{
+            teclado = new Scanner(System.in);            
+            try {
+                System.out.print("Gastos de envio: ");
+                gastosEnvio=teclado.nextFloat();               
+                return gastosEnvio;
+            } catch (Exception e){
+                System.out.println("Debe introducir un numero.");
+            }
+        } while(true);
     }
 
     public int tiempoPreparacionArticulo()
     {
         int tiempoPreparacion;
-        System.out.print("Tiempo preparacion (min): ");
-        tiempoPreparacion=teclado.nextInt();
-        teclado= new Scanner(System.in);
-        return tiempoPreparacion;
+        do{
+            teclado = new Scanner(System.in);            
+            try {
+                System.out.print("Tiempo preparacion (min): ");
+                tiempoPreparacion=teclado.nextInt();        
+                return tiempoPreparacion;
+            } catch (Exception e){
+                System.out.println("Debe introducir un numero entero.");
+            }
+        } while(true);
     }
 
     public void showCabecera(){

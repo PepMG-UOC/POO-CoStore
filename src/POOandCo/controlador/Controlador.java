@@ -1,11 +1,10 @@
 
 package POOandCo.controlador;
 
-import java.util.List;
 import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+
 
 public class Controlador {
     private Datos datos;
