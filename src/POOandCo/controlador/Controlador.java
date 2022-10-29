@@ -5,7 +5,10 @@ import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
 import java.time.LocalDateTime;
 
-
+/**
+ *
+ * @author Pep
+ */
 public class Controlador {
     private Datos datos;
     private ArticuloVista articuloView = new ArticuloVista(); 
@@ -15,7 +18,9 @@ public class Controlador {
 
     public Controlador() {
         datos = new Datos ();  
-        PreCargaDatos preCarga = new PreCargaDatos(datos);      
+        DatosPredefinidos datosPredefinidos = new DatosPredefinidos();
+        datosPredefinidos.Carga(datos);
+        
     }
     
     public Datos getDatos() {
@@ -91,7 +96,7 @@ public class Controlador {
             } while (!salir);
     }
 
-    private void añadirArticulo() {
+    public void añadirArticulo() {
         String codigo;
         articuloView.adCabecera();
         codigo = articuloView.codigoArticulo();
@@ -104,7 +109,7 @@ public class Controlador {
         //datos.addArticuloToList(datos.getArticulo()); 
     }
 
-    private void añadirCliente() {
+    public void añadirCliente() {
         String eMail;
         clienteVista.adCabecera();
         eMail = clienteVista.eMailCliente();

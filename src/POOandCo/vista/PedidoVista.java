@@ -3,6 +3,10 @@ package POOandCo.vista;
 
 import java.util.Scanner;
 
+/**
+ *
+ * @author Pep
+ */
 public class PedidoVista {
     Scanner teclado = new Scanner(System.in);
 

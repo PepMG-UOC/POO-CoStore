@@ -61,14 +61,7 @@ public class Pedido {
         LocalDateTime ahora = LocalDateTime.now();
         return ((fechaYhora.plusMinutes(articulo.getTiempoPreparacion())).isBefore(ahora)); 
     }
-    
-    public float precioEnvio(){
-        float temp;
-        temp = articulo.getGastosEnvio();
-        temp = temp* cliente.descuentoEnv();
-        return temp;
-    }
-    
+       
     @Override
     public String toString(){
         return "Numero de Pedido: " + this.numPedido + "\n"
