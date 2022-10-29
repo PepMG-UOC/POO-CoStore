@@ -45,7 +45,7 @@ public class ClienteEstandard extends Cliente{
       
     @Override
     public float descuentoEnv() {    
-        return descuento=1;    
+        return descuento=0;    
     }
     
 }
