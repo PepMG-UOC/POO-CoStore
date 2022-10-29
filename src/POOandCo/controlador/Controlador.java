@@ -92,7 +92,7 @@ public class Controlador {
             } while (!salir);
     }
 
-    private void añadirArticulo() {
+    public void añadirArticulo() {
         String codigo;
         articuloView.adCabecera();
         codigo = articuloView.codigoArticulo();
@@ -105,7 +105,7 @@ public class Controlador {
         //datos.addArticuloToList(datos.getArticulo()); 
     }
 
-    private void añadirCliente() {
+    public void añadirCliente() {
         String eMail;
         clienteVista.adCabecera();
         eMail = clienteVista.eMailCliente();
