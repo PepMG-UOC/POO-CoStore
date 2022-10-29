@@ -1,7 +1,10 @@
 
 package POOandCo.modelo;
 
-
+/**
+ *
+ * @author Pep
+ */
 public abstract class Cliente {
     private String eMail;
     private String nombre;

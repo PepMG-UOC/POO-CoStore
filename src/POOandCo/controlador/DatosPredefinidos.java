@@ -2,11 +2,15 @@ package POOandCo.controlador;
 
 import POOandCo.modelo.Datos;
 
+/**
+ *
+ * @author Pep
+ */
 public class DatosPredefinidos {
     /**
      * Esta clase solo carga algunos datos de Articulos y Clientes para demostracion del codigo.
      */    
-    
+        
     public void Carga(Datos datos){
         String codigo;
         String descripcion;
@@ -18,7 +22,10 @@ public class DatosPredefinidos {
         String nombre;
         String domicilio;
         String nif;
-        String tipo;
+        String tipo;        
+        
+        int numPedido;
+        int cantidad;
         
         //Articulos
         codigo= "1A";
@@ -63,6 +70,16 @@ public class DatosPredefinidos {
         nif = "77748833U";
         tipo = "2"; // Premium
         datos.setCliente(eMail, nombre, domicilio, nif, tipo);
-
+        
+        // Pedidos
+        numPedido = 01;
+        cantidad = 10;
+        
+        datos.setPedido(numPedido, datos.getListaArticulos().getLista().get(0) , cantidad, datos.getListaClientes().getLista().get(1));
+      
+        numPedido = 02;
+        cantidad = 5;
+        datos.setPedido(numPedido, datos.getListaArticulos().getLista().get(1) , cantidad, datos.getListaClientes().getLista().get(2));
+      
     }
 }

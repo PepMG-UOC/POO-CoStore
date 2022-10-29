@@ -5,7 +5,10 @@ import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
 import java.time.LocalDateTime;
 
-
+/**
+ *
+ * @author Pep
+ */
 public class Controlador {
     private Datos datos;
     private ArticuloVista articuloView = new ArticuloVista(); 
@@ -17,6 +20,7 @@ public class Controlador {
         datos = new Datos ();  
         DatosPredefinidos datosPredefinidos = new DatosPredefinidos();
         datosPredefinidos.Carga(datos);
+        
     }
     
     public Datos getDatos() {
