@@ -45,9 +45,6 @@ public class ArticuloTest {
         String codigo = "03E";
         instance = new Articulo(codigo,"Articulo Test",35.0F,10.0F,8);
         instance.setCodigo(codigo);
-        
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -55,13 +52,13 @@ public class ArticuloTest {
      */
     @Test
     public void testGetDescripcion() {
-        System.out.println("getDescripcion");
-        Articulo instance = null;
-        String expResult = "";
+        System.out.println("getDescripcion");        
+        String expResult = "Articulo Test";
         String result = instance.getDescripcion();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        if(!expResult.equals(result)) {
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
@@ -71,10 +68,8 @@ public class ArticuloTest {
     public void testSetDescripcion() {
         System.out.println("setDescripcion");
         String descripcion = "";
-        Articulo instance = null;
+        instance = new Articulo("20D",descripcion,35.0F,10.0F,8);
         instance.setDescripcion(descripcion);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
