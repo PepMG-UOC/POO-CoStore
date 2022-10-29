@@ -64,7 +64,8 @@ public class Pedido {
        
     @Override
     public String toString(){
-        return "Numero de Pedido: " + this.numPedido + "\n"
+        return "\n" 
+             + "Numero de Pedido: " + this.numPedido + "\n"
              + "Fecha y hora: " + this.fechaYhora  + "\n"            
              + "NIF del Cliente: " + this.cliente.getNif() + "\n"
              + "Nombre Cliente: " + this.cliente.getNombre() + "\n"
@@ -73,6 +74,7 @@ public class Pedido {
              + "Cantidad: " + this.cantidad + "\n" 
              + "Pvp Articulo: " + String.valueOf(this.articulo.getPvpVenta())  + "\n"
              + "Coste envio: " + String.valueOf(this.articulo.getGastosEnvio()) + "\n"
-             + "Pvp Total: " + String.valueOf(cantidad*this.articulo.getPvpVenta());              
+             + "Pvp Total: " + String.valueOf(cantidad*this.articulo.getPvpVenta()) 
+                + "\n";              
     }   
 }

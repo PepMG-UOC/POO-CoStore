@@ -75,28 +75,29 @@ public class PedidoVista {
 
     public int numPedido(){
         int numPedido;
-        do{
-            teclado = new Scanner(System.in);            
+        do{                     
             try {
                 System.out.print("Numero de pedido: ");
                 numPedido = teclado.nextInt();        
                 return numPedido;
             } catch (Exception e){
                 System.out.println("Debe introducir un numero entero.");
+                teclado.nextLine();
             }
         } while(true);
     }   
 
     public int cantidadPedido(){
         int cantidad;
-        do{
-            teclado = new Scanner(System.in);            
+        do{                       
             try {
                 System.out.print("Cantidad: ");
                 cantidad=teclado.nextInt();
+                teclado.nextLine();
                 return cantidad;  
             } catch (Exception e){
                 System.out.println("Debe introducir un numero entero.");
+                teclado.nextLine();
             }
         } while(true);     
     }
@@ -116,11 +117,13 @@ public class PedidoVista {
         if (exist) System.out.print(" ya existe.");
         else System.out.print(" no existe");
         System.out.println(); 
+        teclado.nextLine();
     }    
 
     public void eliminaOk(int numPedido){
         System.out.print("El pedido " + numPedido + " se ha eliminado.");        
         System.out.println(); 
+        teclado.nextLine();
     }
 
     public void showPedido(String pedido){
