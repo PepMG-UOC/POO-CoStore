@@ -21,34 +21,18 @@ public class ArticuloTest {
     public ArticuloTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
+    Articulo instance = new Articulo("02D","Articulo Test",35.0F,10.0F,8);
     /**
      * Test of getCodigo method, of class Articulo.
      */
     @Test
     public void testGetCodigo() {
-        System.out.println("getCodigo");
-        Articulo instance =  new Articulo("4C","Test Article",23f,8f,7);
-        String expResult = "4C";
+        System.out.println("getCodigo");        
+        String expResult = "02D";
         String result = instance.getCodigo();
         assertEquals(expResult, result);
-        if(!result.equals(expResult)) {
-            fail("Fallo obtencion codigo.");
+        if(!expResult.equals(result)) {
+            fail("The test case is a prototype.");
         }
     }
 
@@ -58,11 +42,12 @@ public class ArticuloTest {
     @Test
     public void testSetCodigo() {
         System.out.println("setCodigo");
-        String codigo = "";
-        Articulo instance = null;
+        String codigo = "03E";
+        instance = new Articulo(codigo,"Articulo Test",35.0F,10.0F,8);
         instance.setCodigo(codigo);
+        
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
