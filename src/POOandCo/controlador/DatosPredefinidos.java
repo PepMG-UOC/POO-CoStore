@@ -2,11 +2,12 @@ package POOandCo.controlador;
 
 import POOandCo.modelo.Datos;
 
-public class PreCargaDatos {
+public class DatosPredefinidos {
     /**
      * Esta clase solo carga algunos datos de Articulos y Clientes para demostracion del codigo.
-     */
-    public PreCargaDatos(Datos datos){
+     */    
+    
+    public void Carga(Datos datos){
         String codigo;
         String descripcion;
         float pvpVenta;

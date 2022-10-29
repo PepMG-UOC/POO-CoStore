@@ -15,7 +15,8 @@ public class Controlador {
 
     public Controlador() {
         datos = new Datos ();  
-        PreCargaDatos preCarga = new PreCargaDatos(datos);      
+        DatosPredefinidos datosPredefinidos = new DatosPredefinidos();
+        datosPredefinidos.Carga(datos);
     }
     
     public Datos getDatos() {
