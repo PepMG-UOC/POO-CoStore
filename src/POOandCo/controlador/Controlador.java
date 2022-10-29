@@ -5,10 +5,7 @@ import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
 import java.time.LocalDateTime;
 
-/**
- *
- * @author Pep
- */
+
 public class Controlador {
     private Datos datos;
     private ArticuloVista articuloView = new ArticuloVista(); 
