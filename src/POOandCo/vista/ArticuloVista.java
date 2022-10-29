@@ -5,9 +5,8 @@ import java.util.Scanner;
 public class ArticuloVista {
     Scanner teclado = new Scanner(System.in);
 
-    public char menuPrincipal() {
-        char opcion;
-        
+    public char menuPrincipal() {        
+        char opcion;            
             System.out.println(); 
             System.out.println("1. Añadir Articulo");
             System.out.println("2. Mostrar Articulo");            
@@ -19,7 +18,7 @@ public class ArticuloVista {
     private char pedirOpcion() {
         String resp;
         System.out.print("Elige una opción (1,2 o 0): ");
-        resp = teclado.nextLine();
+        resp = teclado.nextLine();        
         if (resp.isEmpty()) {
             resp = " ";
         }
@@ -32,7 +31,7 @@ public class ArticuloVista {
         System.out.println();         
     }
 
-    public void warning(String codigo, boolean exist){
+    public void warning(String codigo, boolean exist){        
         System.out.print("El articulo " + codigo);
         if (exist) System.out.print(" ya existe.");
         else System.out.print(" no existe");
@@ -41,32 +40,32 @@ public class ArticuloVista {
 
 
     public String codigoArticulo()
-    {
+    {        
         String codigo;
         System.out.print("Codigo del Arículo: ");
-        codigo= teclado.nextLine();
+        codigo= teclado.nextLine();        
         return codigo;
     }
     
     public String descripcionArticulo()
-    {
+    {        
         String descripcion;
         System.out.print("Descripcion: "); 
-        descripcion= teclado.nextLine();
+        descripcion= teclado.nextLine();        
         return descripcion;
     }
 
     public float pvpVentaArticulo()
     {
         float pvp=0;
-        do{
-            teclado = new Scanner(System.in);            
+        do{                     
             try {
                 System.out.print("Pvp de venta: ");
-                pvp= teclado.nextFloat();                
+                pvp= teclado.nextFloat();               
                 return pvp;         
             } catch (Exception e){
                 System.out.println("Debe introducir un numero.");
+                teclado.nextLine();
             }
         } while(true);
     }
@@ -74,14 +73,14 @@ public class ArticuloVista {
     public float gastosEnvioArticulo()
     {
         float gastosEnvio;
-        do{
-            teclado = new Scanner(System.in);            
+        do{                    
             try {
                 System.out.print("Gastos de envio: ");
                 gastosEnvio=teclado.nextFloat();               
                 return gastosEnvio;
             } catch (Exception e){
                 System.out.println("Debe introducir un numero.");
+               teclado.nextLine();
             }
         } while(true);
     }
@@ -89,14 +88,15 @@ public class ArticuloVista {
     public int tiempoPreparacionArticulo()
     {
         int tiempoPreparacion;
-        do{
-            teclado = new Scanner(System.in);            
+        do{                       
             try {
                 System.out.print("Tiempo preparacion (min): ");
-                tiempoPreparacion=teclado.nextInt();        
+                tiempoPreparacion=teclado.nextInt();  
+                teclado.nextLine();
                 return tiempoPreparacion;
             } catch (Exception e){
                 System.out.println("Debe introducir un numero entero.");
+                teclado.nextLine();              
             }
         } while(true);
     }
