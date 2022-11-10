@@ -32,7 +32,7 @@ public class DatosPredefinidos {
         descripcion = "Articulo 1 Precargado";
         pvpVenta = 30f;
         gastosEnvio = 10f;
-        tiempoPreparacion = 5;         
+        tiempoPreparacion = 1;
         datos.setArticulo(codigo, descripcion, pvpVenta, gastosEnvio, tiempoPreparacion);
         //---
         codigo= "2A";
@@ -70,6 +70,9 @@ public class DatosPredefinidos {
         nif = "77748833U";
         tipo = "2"; // Premium
         datos.setCliente(eMail, nombre, domicilio, nif, tipo);
+
+
+
         
         // Pedidos
         numPedido = 01;
