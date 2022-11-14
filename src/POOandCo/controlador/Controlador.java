@@ -2,7 +2,7 @@
 package POOandCo.controlador;
 
 import POOandCo.dao.ArticuloDaoImpl;
-import POOandCo.idao.IclienteDao;
+import POOandCo.idao.IDAO;
 import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
 import java.time.LocalDateTime;
@@ -95,13 +95,16 @@ public class Controlador {
             } while (!salir);
     }
 
-    public void añadirArticulo2()
-    {
+    public void añadirArticulo2() {
         articuloView.adCabecera();
         datos.setArticulo2(articuloView.codigoArticulo(), articuloView.descripcionArticulo(), articuloView.pvpVentaArticulo()
         ,articuloView.gastosEnvioArticulo(),articuloView.tiempoPreparacionArticulo());
-        IclienteDao dao= new ArticuloDaoImpl();
-        dao.añadirArticulo2(datos.getArticulo());
+        IDAO dao= new ArticuloDaoImpl();
+        try {
+            dao.registrar(datos.getArticulo());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

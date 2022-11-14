@@ -1,56 +1,24 @@
 package POOandCo.dao;
 import java.sql.*;
 
-
 public class Conexion {
 
+    public static Connection conectar() {
+        Connection con = null;
 
-    protected Connection miConexion;
-    private final String urlBD = "jdbc:mysql://localhost:3306/productotres";
-    private final String user = "root";
-    private final String pass = "";
-
-
-    //Para conectar a la BD
-    public void conectar(){
-        try{
-            Connection miConexion= DriverManager.getConnection(urlBD, user, pass);
-        }catch(Exception e){
-            System.out.println("no conecta");
+        String password = "1111";
+        String usuario = "root";
+        String url = "jdbc:mysql://localhost:3306/producto3?user=" + usuario
+                + "&password=" + password;
+        try {
+            con = DriverManager.getConnection(url);
+            if (con != null) {
+                System.out.println("Conectado");
+            }
+        } catch (SQLException e) {
+            System.out.println("No se pudo conectar a la base de datos");
             e.printStackTrace();
         }
+        return con;
     }
-
-
-    //para cerrar la conexion
-    public void cerrar() throws SQLException{
-        if(miConexion != null){
-            if(!miConexion.isClosed()){
-                miConexion.close();
-            }
-        }
-    }
-
-
-
-
-
-    /*
-    Connection miConexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/productotres", "root", "Perryman43");
-
-    //CREAR OBJETO STATEMENT
-    Statement miStatement = miConexion.createStatement();
-
-    //EJECUTAR SQL
-    ResultSet miResulset = miStatement.executeQuery("SELECT * FROM ARTICULOS");
-
-    //RECORRER EL RESULSET y mostrar los datos de la tabla
-
-            while (miResulset.next()){
-
-        System.out.println(miResulset.getString("CODIGOARTICULO") + " " + miResulset.getString("NOMBREARTICULO"));
-
-    }
-
-     */
 }

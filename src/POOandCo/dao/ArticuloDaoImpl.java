@@ -1,22 +1,19 @@
 package POOandCo.dao;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
-import POOandCo.dao.Conexion;
-import POOandCo.idao.IclienteDao;
+import POOandCo.idao.IDAO;
 import POOandCo.modelo.Articulo;
 
 
-public class ArticuloDaoImpl implements IclienteDao{
+public class ArticuloDaoImpl implements DAOarticulo {
 
 
     @Override
-    public boolean añadirArticulo2(Articulo articulo) {
+    public boolean registrar(Articulo articulo) throws SQLException {
         Statement stm= null;
         Connection con=null;
         boolean altaArticulo=false;
@@ -25,7 +22,7 @@ public class ArticuloDaoImpl implements IclienteDao{
                 "','"+articulo.getDescripcion()+"','"+articulo.getPvpVenta()+
                 "','"+ articulo.getGastosEnvio()+"','"+ articulo.getTiempoPreparacion()+"')";
         try {
-            con=Conexion2.conectar();
+            con= Conexion.conectar();
             stm= con.createStatement();
             stm.execute(sql);
 
@@ -39,13 +36,31 @@ public class ArticuloDaoImpl implements IclienteDao{
         }
 
         return altaArticulo;
-
-
-
     }
 
     @Override
     public void mostrarArticulo2() {
+
+    }
+
+    @Override
+    public List<Articulo> listar() throws Exception {
+        return null;
+    }
+
+    @Override
+    public void mostrar(Articulo articulo) throws Exception {
+
+    }
+
+
+    @Override
+    public void modificar(Articulo articulo) throws Exception {
+
+    }
+
+    @Override
+    public void eliminar(Articulo articulo) throws Exception {
 
     }
 }
