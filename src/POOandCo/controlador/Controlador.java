@@ -2,7 +2,7 @@
 package POOandCo.controlador;
 
 import POOandCo.dao.ArticuloDaoImpl;
-import POOandCo.idao.IclienteDao;
+import POOandCo.idao.IDatosDao;
 import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
 import java.time.LocalDateTime;
@@ -40,7 +40,7 @@ public class Controlador {
                     añadirArticulo2();
                     break;
                 case '2':
-                    muestraArticulo();
+                    muestraArticulo2();
                     break;
                 }
                 if (resultado == '0') salir = true;
@@ -95,22 +95,35 @@ public class Controlador {
             } while (!salir);
     }
 
+    private void muestraArticulo2() {
+        String codigo;
+        articuloView.showCabecera();
+
+        codigo=articuloView.codigoArticulo();
+        IDatosDao dao= new ArticuloDaoImpl();
+        if (datos.setArticulo3(dao.mostrarArticulo2(codigo))!=null)
+        {
+            articuloView.showArticulo( datos.getArticulo().toString());
+
+
+        } else articuloView.warning(codigo,false);
+
+
+    }
+
     public void añadirArticulo2()
     {
         articuloView.adCabecera();
         datos.setArticulo2(articuloView.codigoArticulo(), articuloView.descripcionArticulo(), articuloView.pvpVentaArticulo()
         ,articuloView.gastosEnvioArticulo(),articuloView.tiempoPreparacionArticulo());
-        IclienteDao dao= new ArticuloDaoImpl();
-        dao.añadirArticulo2(datos.getArticulo());
-
+        IDatosDao dao= new ArticuloDaoImpl();
+        if (dao.añadirArticulo2(datos.getArticulo())==false)
+        {
+            articuloView.warning(datos.getArticulo().getCodigo(),true);
+        }
     }
 
-
-
-
     public void añadirArticulo() {
-
-
         String codigo;
         articuloView.adCabecera();
         codigo = articuloView.codigoArticulo();
@@ -330,8 +343,9 @@ public class Controlador {
         }
         else {
             articuloView.warning(codigo,false);
-        }       
+        }
     }
+
 
     private void muestraClientes() {
         clienteVista.showCabecera();

@@ -19,6 +19,15 @@ public class Datos {
         
     }
 
+    public Articulo setArticulo3 (Articulo art)
+    {
+        if (art!=null)
+        {
+            articulo=new Articulo(art.getCodigo(),art.getDescripcion(), art.getPvpVenta(),art.getGastosEnvio(),art.getTiempoPreparacion());
+            return articulo;
+        }
+        else return null;
+    }
     public Articulo setArticulo2(String codigo, String descripcion, float pvpVenta, float gastosEnviom, int tiempoPreparacion)
     {
         articulo=new Articulo(codigo,descripcion,pvpVenta,gastosEnviom,tiempoPreparacion);
