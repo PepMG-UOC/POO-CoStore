@@ -9,4 +9,5 @@ public interface DAOpersona {
     public void eliminar(Persona per) throws Exception;
     public List<Persona> listar() throws Exception;
 
+
 }
