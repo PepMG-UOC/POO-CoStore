@@ -17,7 +17,13 @@ public class Datos {
         listaClientes = new ListaClientes();
         listaPedidos = new ListaPedidos ();
         
-    }    
+    }
+
+    public Articulo setArticulo2(String codigo, String descripcion, float pvpVenta, float gastosEnviom, int tiempoPreparacion)
+    {
+        articulo=new Articulo(codigo,descripcion,pvpVenta,gastosEnviom,tiempoPreparacion);
+        return articulo;
+    }
    
     public void setArticulo (String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
         articulo = new Articulo(codigo, descripcion, pvpVenta, gastosEnvio, tiempoPreparacion);  

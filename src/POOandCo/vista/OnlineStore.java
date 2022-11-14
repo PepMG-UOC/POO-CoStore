@@ -4,22 +4,33 @@
  * 
  */
 package POOandCo.vista;
-import java.sql.*;
-
-
-import java.sql.DriverManager;
-import java.util.Scanner;
+import POOandCo.dao.DAOpersonaImpl;
+import POOandCo.modelo.Persona;
 
 
 public class OnlineStore {
 
     public static void main(String[] args) {
 
-        int lastid;
+
+      /*  Persona per = new Persona();
+        per.setNombre("root");
 
         try{
+            DAOpersona dao = new DAOpersonaImpl();
+            dao.registrar(per);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        */
+
+
+/*
+        try{
+
+
         //CREAR CONEXION
-            Connection miConexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/productotres", "root", "????");
+            Connection miConexion= DriverManager.getConnection("jdbc:mysql://localhost:3306/productotres", "root", "Perryman43");
 
             //CREAR OBJETO STATEMENT
             Statement miStatement = miConexion.createStatement();
@@ -35,16 +46,7 @@ public class OnlineStore {
 
             }
 
-/*
-            if (miResulset.next()){
-                lastid = miResulset.getInt(1);
-                lastid++;
 
-            }else{
-
-            }
-
- */
 
             //insertar valores en la tabla
 
@@ -69,14 +71,13 @@ public class OnlineStore {
             miStatement.executeUpdate(sql3);
 
 
-
-
-
         }catch(Exception e){
 
             System.out.println("no conecta");
             e.printStackTrace();
         }
+
+ */
 
         GestionOS gestion = new GestionOS();
         gestion.inicio();
