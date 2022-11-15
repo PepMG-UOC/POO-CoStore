@@ -41,7 +41,7 @@ public class ClienteDAOImpl implements DAO<Cliente> {
             altaCliente=true;
 
         } catch (SQLException e) {
-            System.out.println("Error: Clase ArticuloDaoImpl, método AñadirArticulo2");
+            System.out.println("Error: Clase ClienteDAOImpl, método AñadirCliente2");
             e.printStackTrace();
         }
 
