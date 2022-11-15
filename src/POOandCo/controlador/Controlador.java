@@ -3,6 +3,7 @@ package POOandCo.controlador;
 
 import POOandCo.idao.ArticuloDaoImpl;
 import POOandCo.dao.DAO;
+import POOandCo.idao.ClienteDAOImpl;
 import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
 import java.time.LocalDateTime;
@@ -109,27 +110,21 @@ public class Controlador {
     }
 
 
-
     public void añadirCliente2() {
 
         clienteVista.adCabecera();
+
         datos.setCliente2(clienteVista.eMailCliente(), clienteVista.nombreCliente(), clienteVista.domicilioCliente()
                 ,clienteVista.nifCliente(), clienteVista.tipoCliente());
-        DAO dao= new ArticuloDaoImpl();
+        DAO dao= new ClienteDAOImpl();
         try {
-            dao.registrar(datos.getListaClientes());
+            dao.registrar(datos.getCliente());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 
-
-
-
     public void añadirArticulo() {
-
-
         String codigo;
         articuloView.adCabecera();
         codigo = articuloView.codigoArticulo();
