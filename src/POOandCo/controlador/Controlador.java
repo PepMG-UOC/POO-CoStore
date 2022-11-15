@@ -111,14 +111,21 @@ public class Controlador {
 
 
     public void añadirCliente2() {
-
+        String tipo;
         clienteVista.adCabecera();
-
+        tipo = clienteVista.tipoCliente();
         datos.setCliente2(clienteVista.eMailCliente(), clienteVista.nombreCliente(), clienteVista.domicilioCliente()
-                ,clienteVista.nifCliente(), clienteVista.tipoCliente());
+                ,clienteVista.nifCliente(), tipo);
         DAO dao= new ClienteDAOImpl();
         try {
-            dao.registrar(datos.getCliente());
+            if (tipo.equals("1")) {
+                dao.registrar(datos.getCliente1());
+                dao.registrar1(datos.getCliente1());
+            } else if(tipo.equals("2")){
+                dao.registrar(datos.getCliente2());
+                dao.registrar2(datos.getCliente1());
+            }
+            //dao.registrar(datos.getCliente());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -31,19 +31,25 @@ public class Datos {
     public Cliente setCliente2(String eMail, String nombre, String domicilio, String nif, String tipo){
         if (tipo.equals("1")) {
             clienteStd = new ClienteEstandard(eMail,nombre,domicilio,nif);
-            //listaClientes.add(clienteStd);
+            listaClientes.add(clienteStd);
             return clienteStd;
         }
         else if (tipo.equals("2")) {
             clientePrm = new ClientePremium(eMail,nombre,domicilio,nif);
-            //listaClientes.add(clientePrm);
+            listaClientes.add(clientePrm);
             return clientePrm;
         }
         return null;
     }
-    public Cliente getCliente()
+
+    public Cliente getCliente1()
     {
         return clienteStd;
+    }
+
+    public Cliente getCliente2()
+    {
+        return clientePrm;
     }
 
     public void setArticulo (String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {

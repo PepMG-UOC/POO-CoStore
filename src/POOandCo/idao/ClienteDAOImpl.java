@@ -49,6 +49,56 @@ public class ClienteDAOImpl implements DAO<Cliente> {
     }
 
     @Override
+    public boolean registrar1(Cliente cliente) throws Exception {
+
+        Statement stm= null;
+        Connection con=null;
+        boolean altaCliente=false;
+
+        String sql="INSERT INTO clienteestandard values ('"+cliente.geteMail()+
+                "','"+"0"+"','"+"0"+ "')";
+        try {
+            con= Conexion.conectar();
+            stm= con.createStatement();
+            stm.execute(sql);
+
+            stm.close();
+            con.close();
+            altaCliente=true;
+
+        } catch (SQLException e) {
+            System.out.println("Error: Clase ClienteDAOImpl, método AñadirCliente2");
+            e.printStackTrace();
+        }
+        return altaCliente;
+    }
+
+    @Override
+    public boolean registrar2(Cliente cliente) throws Exception {
+        Statement stm= null;
+        Connection con=null;
+        boolean altaCliente=false;
+
+        String sql="INSERT INTO clientepremium values ('"+cliente.geteMail()+
+                "','"+"20"+"','"+"30"+ "')";
+        try {
+            con= Conexion.conectar();
+            stm= con.createStatement();
+            stm.execute(sql);
+
+            stm.close();
+            con.close();
+            altaCliente=true;
+
+        } catch (SQLException e) {
+            System.out.println("Error: Clase ClienteDAOImpl, método AñadirCliente2");
+            e.printStackTrace();
+        }
+        return altaCliente;
+    }
+
+
+    @Override
     public void modificar(Cliente cliente) throws Exception {
 
     }

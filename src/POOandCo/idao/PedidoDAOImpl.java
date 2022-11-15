@@ -26,6 +26,16 @@ public class PedidoDAOImpl implements DAO<Pedido> {
     }
 
     @Override
+    public boolean registrar1(Cliente cliente) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean registrar2(Cliente cliente) throws Exception {
+        return false;
+    }
+
+    @Override
     public void modificar(Pedido pedido) throws Exception {
 
     }

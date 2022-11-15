@@ -5,6 +5,7 @@ import java.util.List;
 import POOandCo.dao.Conexion;
 import POOandCo.dao.DAO;
 import POOandCo.modelo.Articulo;
+import POOandCo.modelo.Cliente;
 
 
 public class ArticuloDaoImpl implements DAO<Articulo> {
@@ -36,6 +37,15 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
         return altaArticulo;
     }
 
+    @Override
+    public boolean registrar1(Cliente cliente) throws Exception {
+        return false;
+    }
+
+    @Override
+    public boolean registrar2(Cliente cliente) throws Exception {
+        return false;
+    }
 
 
     @Override
