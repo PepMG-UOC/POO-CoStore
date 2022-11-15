@@ -1,8 +1,5 @@
 package POOandCo.idao;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 import POOandCo.dao.Conexion;
@@ -39,24 +36,44 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
         return altaArticulo;
     }
 
+
+
+    @Override
+    public void mostrar(Articulo articulo) throws Exception {
+
+        Statement stm= null;
+        Connection con=null;
+        con = Conexion.conectar();
+
+        ResultSet resultSet = stm.executeQuery("SELECT * FROM articulo");
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
+        while (resultSet.next()) {
+            for (int i = 1; i <= columnsNumber; i++) {
+                if (i > 1) System.out.print(",  ");
+                String columnValue = resultSet.getString(i);
+                System.out.print(columnValue + " " + rsmd.getColumnName(i));
+            }
+            System.out.println("");
+        }
+        stm.close();
+        con.close();
+
+    }
+
+
+
     /*
     @Override
     public void mostrarArticulo2() {
 
     }
-
      */
 
     @Override
     public List<Articulo> listar() throws Exception {
         return null;
     }
-
-    @Override
-    public void mostrar(Articulo articulo) throws Exception {
-
-    }
-
 
     @Override
     public void modificar(Articulo articulo) throws Exception {
