@@ -1,15 +1,16 @@
-package POOandCo.dao;
+package POOandCo.idao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import POOandCo.idao.IDAO;
+import POOandCo.dao.Conexion;
+import POOandCo.dao.DAO;
 import POOandCo.modelo.Articulo;
 
 
-public class ArticuloDaoImpl implements DAOarticulo {
+public class ArticuloDaoImpl implements DAO<Articulo> {
 
 
     @Override
@@ -38,10 +39,13 @@ public class ArticuloDaoImpl implements DAOarticulo {
         return altaArticulo;
     }
 
+    /*
     @Override
     public void mostrarArticulo2() {
 
     }
+
+     */
 
     @Override
     public List<Articulo> listar() throws Exception {

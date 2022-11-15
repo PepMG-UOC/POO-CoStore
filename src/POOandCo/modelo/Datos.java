@@ -2,11 +2,14 @@
 package POOandCo.modelo;
 
 
+import jdk.dynalink.NamedOperation;
+
 public class Datos {
     private ListaArticulos listaArticulos;
     private ListaClientes listaClientes;
     private ListaPedidos listaPedidos;
     private Articulo articulo;
+    private Cliente cliente;
     private ClienteEstandard clienteStd;
     private ClientePremium clientePrm;
     private Pedido pedido;
@@ -24,7 +27,19 @@ public class Datos {
         articulo=new Articulo(codigo,descripcion,pvpVenta,gastosEnviom,tiempoPreparacion);
         return articulo;
     }
-   
+
+    public void setCliente2(String eMail, String nombre, String domicilio, String nif, String tipo){
+        if (tipo.equals("1")) {
+            clienteStd = new ClienteEstandard(eMail,nombre,domicilio,nif);
+            listaClientes.add(clienteStd);
+        }
+        else if (tipo.equals("2")) {
+            clientePrm = new ClientePremium(eMail,nombre,domicilio,nif);
+            listaClientes.add(clientePrm);
+        }
+    }
+
+
     public void setArticulo (String codigo, String descripcion, float pvpVenta, float gastosEnvio, int tiempoPreparacion) {
         articulo = new Articulo(codigo, descripcion, pvpVenta, gastosEnvio, tiempoPreparacion);  
         listaArticulos.add(articulo); 

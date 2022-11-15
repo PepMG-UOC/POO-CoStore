@@ -1,13 +1,10 @@
-package POOandCo.idao;
+package POOandCo.dao;
 
-import POOandCo.modelo.Articulo;
-
-import java.sql.SQLException;
 import java.util.List;
 
-public interface IDAO<T> {
+public interface DAO<T> {
     //public boolean añadirArticulo2(Articulo articulo);
-    public void mostrarArticulo2();
+    //public void mostrarArticulo2();
 
     List<T> listar() throws Exception;
 
