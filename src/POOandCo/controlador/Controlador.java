@@ -1,8 +1,8 @@
 
 package POOandCo.controlador;
 
-import POOandCo.dao.ArticuloDaoImpl;
-import POOandCo.idao.IclienteDao;
+import POOandCo.idao.ArticuloDaoImpl;
+import POOandCo.dao.DAO;
 import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
 import java.time.LocalDateTime;
@@ -54,7 +54,8 @@ public class Controlador {
             resultado = clienteVista.menuPrincipal();
             switch (resultado) {
                 case '1':
-                    añadirCliente();
+                    //añadirCliente();
+                    añadirCliente2();
                     break;
                 case '2':
                     muestraClientes();
@@ -95,13 +96,31 @@ public class Controlador {
             } while (!salir);
     }
 
-    public void añadirArticulo2()
-    {
+    public void añadirArticulo2() {
         articuloView.adCabecera();
         datos.setArticulo2(articuloView.codigoArticulo(), articuloView.descripcionArticulo(), articuloView.pvpVentaArticulo()
         ,articuloView.gastosEnvioArticulo(),articuloView.tiempoPreparacionArticulo());
-        IclienteDao dao= new ArticuloDaoImpl();
-        dao.añadirArticulo2(datos.getArticulo());
+        DAO dao= new ArticuloDaoImpl();
+        try {
+            dao.registrar(datos.getArticulo());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+    public void añadirCliente2() {
+
+        clienteVista.adCabecera();
+        datos.setCliente2(clienteVista.eMailCliente(), clienteVista.nombreCliente(), clienteVista.domicilioCliente()
+                ,clienteVista.nifCliente(), clienteVista.tipoCliente());
+        DAO dao= new ArticuloDaoImpl();
+        try {
+            dao.registrar(datos.getListaClientes());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
