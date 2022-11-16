@@ -42,11 +42,6 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
     }
 
     @Override
-    public boolean registrarTipo(Cliente cliente) throws Exception {
-        return false;
-    }
-
-    @Override
     public List<Articulo> listar() throws Exception {
         return null;
     }
