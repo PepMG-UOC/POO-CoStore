@@ -45,15 +45,12 @@ public class Datos {
         DAO dao= new ClienteDAOImpl();
         try {
             if (tipo.equals("1")) {
-                cliente = new ClienteEstandard(eMail,nombre,domicilio,nif);
-                success = dao.registrar(cliente);
-                if(success) dao.registrarTipo(cliente);
+                cliente = new ClienteEstandard(eMail,nombre,domicilio,nif);                               
             } 
             else if(tipo.equals("2")) {
-                cliente = new ClientePremium(eMail,nombre,domicilio,nif);
-                success = dao.registrar(cliente);
-                if(success) dao.registrarTipo(cliente);
-            }           
+                cliente = new ClientePremium(eMail,nombre,domicilio,nif);                              
+            } 
+            success = dao.registrar(cliente);           
         } catch (Exception e) {
             success = false;
             throw new RuntimeException(e);
@@ -69,7 +66,7 @@ public class Datos {
     }
 
 
-    public Cliente getCliente1()
+    /* public Cliente getCliente1()
     {
         return clienteStd;
     }
@@ -77,7 +74,7 @@ public class Datos {
     public Cliente getCliente2()
     {
         return clientePrm;
-    }
+    } */
 
     
     public Articulo getArticulo()

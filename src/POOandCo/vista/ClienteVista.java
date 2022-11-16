@@ -80,8 +80,13 @@ public class ClienteVista {
 
     public String nifCliente(){
         String nif;
+        do {
         System.out.print("NIF: ");
         nif = teclado.nextLine();
+        if(!(nif.length()<=9)) {
+            System.out.println("    Maximo 9 digitos!");
+        }
+        }  while (!(nif.length()<=9));            
         return nif;
     }
 

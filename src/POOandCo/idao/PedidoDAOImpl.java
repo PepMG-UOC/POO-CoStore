@@ -1,7 +1,7 @@
 package POOandCo.idao;
 
+import POOandCo.dao.Conexion;
 import POOandCo.dao.DAO;
-import POOandCo.dao.DAOpedido;
 import POOandCo.modelo.*;
 
 import java.util.List;
@@ -23,12 +23,7 @@ public class PedidoDAOImpl implements DAO<Pedido> {
     public boolean registrar(Pedido pedido) throws Exception {
         return false;
     }
-
-    @Override
-    public boolean registrarTipo(Cliente cliente) throws Exception {
-        return false;
-    }
-
+    
     @Override
     public void modificar(Pedido pedido) throws Exception {
 
