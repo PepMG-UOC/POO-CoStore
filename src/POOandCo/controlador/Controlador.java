@@ -41,7 +41,8 @@ public class Controlador {
                     añadirArticulo2();
                     break;
                 case '2':
-                    muestraArticulo();
+                    //muestraArticulo();
+                    muestraArticulo2();
                     break;
                 }
                 if (resultado == '0') salir = true;
@@ -97,6 +98,27 @@ public class Controlador {
             } while (!salir);
     }
 
+
+
+    //IMPLEMENTADO FACTORY
+    public void añadirArticulo2()
+    {
+        articuloView.adCabecera();
+        datos.setArticulo2(articuloView.codigoArticulo(), articuloView.descripcionArticulo(), articuloView.pvpVentaArticulo()
+                ,articuloView.gastosEnvioArticulo(),articuloView.tiempoPreparacionArticulo());
+        DAO dao= new ArticuloDaoImpl();
+        try {
+            if (dao.registrar(datos.getArticulo())==false)
+            {
+                articuloView.warning(datos.getArticulo().getCodigo(),true);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    /*
     public void añadirArticulo2() {
         articuloView.adCabecera();
         datos.setArticulo2(articuloView.codigoArticulo(), articuloView.descripcionArticulo(), articuloView.pvpVentaArticulo()
@@ -108,6 +130,9 @@ public class Controlador {
             throw new RuntimeException(e);
         }
     }
+
+     */
+
 
 
     public void añadirCliente2() {
@@ -130,6 +155,23 @@ public class Controlador {
             throw new RuntimeException(e);
         }
     }
+
+
+    private void muestraArticulo2() {
+        String codigo;
+        articuloView.showCabecera();
+
+        codigo=articuloView.codigoArticulo();
+        DAO dao= new ArticuloDaoImpl();
+        if (datos.setArticulo3(dao.mostrarArticulo2(codigo))!=null)
+        {
+            articuloView.showArticulo( datos.getArticulo().toString());
+
+
+        } else articuloView.warning(codigo,false);
+
+    }
+
 
     public void añadirArticulo() {
         String codigo;

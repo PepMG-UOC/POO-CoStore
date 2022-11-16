@@ -107,4 +107,9 @@ public class ClienteDAOImpl implements DAO<Cliente> {
     public void eliminar(Cliente cliente) throws Exception {
 
     }
+
+    @Override
+    public Articulo mostrarArticulo2(String idArticulo) {
+        return null;
+    }
 }

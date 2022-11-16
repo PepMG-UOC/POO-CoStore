@@ -42,6 +42,18 @@ public class Datos {
         return null;
     }
 
+
+    public Articulo setArticulo3 (Articulo art)
+    {
+        if (art!=null)
+        {
+            articulo=new Articulo(art.getCodigo(),art.getDescripcion(), art.getPvpVenta(),art.getGastosEnvio(),art.getTiempoPreparacion());
+            return articulo;
+        }
+        else return null;
+    }
+
+
     public Cliente getCliente1()
     {
         return clienteStd;
