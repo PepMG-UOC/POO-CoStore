@@ -11,7 +11,7 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
     
     @Override
     public boolean registrar(Articulo articulo) throws SQLException {
-        Statement stm= null;
+        //Statement stm= null;
         Connection con=null;
         boolean altaArticulo=false;
       
@@ -42,12 +42,7 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
     }
 
     @Override
-    public boolean registrar1(Cliente cliente) throws Exception {
-        return false;
-    }
-
-    @Override
-    public boolean registrar2(Cliente cliente) throws Exception {
+    public boolean registrarTipo(Cliente cliente) throws Exception {
         return false;
     }
 

@@ -47,12 +47,12 @@ public class Datos {
             if (tipo.equals("1")) {
                 cliente = new ClienteEstandard(eMail,nombre,domicilio,nif);
                 success = dao.registrar(cliente);
-                if(success) dao.registrar1(cliente);
+                if(success) dao.registrarTipo(cliente);
             } 
             else if(tipo.equals("2")) {
                 cliente = new ClientePremium(eMail,nombre,domicilio,nif);
                 success = dao.registrar(cliente);
-                if(success) dao.registrar2(cliente);
+                if(success) dao.registrarTipo(cliente);
             }           
         } catch (Exception e) {
             success = false;
