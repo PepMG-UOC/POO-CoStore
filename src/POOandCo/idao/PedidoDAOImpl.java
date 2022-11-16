@@ -2,6 +2,7 @@ package POOandCo.idao;
 
 import POOandCo.dao.DAO;
 import POOandCo.dao.DAOpedido;
+import POOandCo.modelo.Articulo;
 import POOandCo.modelo.Cliente;
 import POOandCo.modelo.Pedido;
 
@@ -43,5 +44,10 @@ public class PedidoDAOImpl implements DAO<Pedido> {
     @Override
     public void eliminar(Pedido pedido) throws Exception {
 
+    }
+
+    @Override
+    public Articulo mostrarArticulo2(String idArticulo) {
+        return null;
     }
 }
