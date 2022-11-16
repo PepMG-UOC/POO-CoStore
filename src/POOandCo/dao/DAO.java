@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DAO<T> {
     //public boolean añadirArticulo2(Articulo articulo);
-    //public void mostrarArticulo2();
+    //public void getArticuloDAOById2();
 
     List<T> listar() throws Exception;
 
@@ -17,7 +17,7 @@ public interface DAO<T> {
     public boolean registrar2(Cliente cliente) throws Exception;
     public void modificar(T t) throws Exception;
     public void eliminar(T t) throws Exception;
-    public Articulo mostrarArticulo2(String idArticulo);
+    public Articulo getArticuloDAOById(String idArticulo);
 
 
 }

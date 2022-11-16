@@ -1,9 +1,9 @@
 
 package POOandCo.controlador;
 
-import POOandCo.idao.ArticuloDaoImpl;
+/* import POOandCo.idao.ArticuloDaoImpl;
 import POOandCo.dao.DAO;
-import POOandCo.idao.ClienteDAOImpl;
+import POOandCo.idao.ClienteDAOImpl; */
 import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
 import java.time.LocalDateTime;
@@ -17,10 +17,7 @@ public class Controlador {
     
 
     public Controlador() {
-        datos = new Datos ();  
-        DatosPredefinidos datosPredefinidos = new DatosPredefinidos();
-        datosPredefinidos.Carga(datos);
-        
+        datos = new Datos ();       
     }
     
     public Datos getDatos() {
@@ -38,11 +35,10 @@ public class Controlador {
             resultado = articuloView.menuPrincipal();
             switch (resultado) {
                 case '1':
-                    añadirArticulo2();
+                    añadirArticulo();
                     break;
-                case '2':
-                    //muestraArticulo();
-                    muestraArticulo2();
+                case '2':                    
+                    muestraArticulo();
                     break;
                 }
                 if (resultado == '0') salir = true;
@@ -55,9 +51,8 @@ public class Controlador {
         do {
             resultado = clienteVista.menuPrincipal();
             switch (resultado) {
-                case '1':
-                    //añadirCliente();
-                    añadirCliente2();
+                case '1':                    
+                    añadirCliente();
                     break;
                 case '2':
                     muestraClientes();
@@ -101,41 +96,19 @@ public class Controlador {
 
 
     //IMPLEMENTADO FACTORY
-    public void añadirArticulo2()
+    public void añadirArticulo()
     {
+        boolean success;
         articuloView.adCabecera();
-        datos.setArticulo2(articuloView.codigoArticulo(), articuloView.descripcionArticulo(), articuloView.pvpVentaArticulo()
+        success = datos.setArticulo3(articuloView.codigoArticulo(), articuloView.descripcionArticulo(), articuloView.pvpVentaArticulo()
                 ,articuloView.gastosEnvioArticulo(),articuloView.tiempoPreparacionArticulo());
-        DAO dao= new ArticuloDaoImpl();
-        try {
-            if (dao.registrar(datos.getArticulo())==false)
-            {
-                articuloView.warning(datos.getArticulo().getCodigo(),true);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        if(!success) {
+            articuloView.warning(datos.getArticulo().getCodigo(),true);
+        }        
     }
+ 
 
-
-    /*
-    public void añadirArticulo2() {
-        articuloView.adCabecera();
-        datos.setArticulo2(articuloView.codigoArticulo(), articuloView.descripcionArticulo(), articuloView.pvpVentaArticulo()
-        ,articuloView.gastosEnvioArticulo(),articuloView.tiempoPreparacionArticulo());
-        DAO dao= new ArticuloDaoImpl();
-        try {
-            dao.registrar(datos.getArticulo());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-     */
-
-
-
-    public void añadirCliente2() {
+    /* public void añadirCliente2() {
         String tipo;
         clienteVista.adCabecera();
         tipo = clienteVista.tipoCliente();
@@ -154,49 +127,30 @@ public class Controlador {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-
-    private void muestraArticulo2() {
-        String codigo;
-        articuloView.showCabecera();
-
-        codigo=articuloView.codigoArticulo();
-        DAO dao= new ArticuloDaoImpl();
-        if (datos.setArticulo3(dao.mostrarArticulo2(codigo))!=null)
-        {
-            articuloView.showArticulo( datos.getArticulo().toString());
-
-
-        } else articuloView.warning(codigo,false);
-
-    }
-
-
-    public void añadirArticulo() {
-        String codigo;
-        articuloView.adCabecera();
-        codigo = articuloView.codigoArticulo();
-        if (articuloByCodigo(codigo)!=-1)
-        {
-            articuloView.warning(codigo,true);
-            return;
-        }
-        datos.setArticulo(codigo,articuloView.descripcionArticulo(),articuloView.pvpVentaArticulo(),articuloView.gastosEnvioArticulo(),articuloView.tiempoPreparacionArticulo());        
-        //datos.addArticuloToList(datos.getArticulo()); 
-    }
-
+    }  */
+    
     public void añadirCliente() {
+        boolean success;
         String eMail;
         clienteVista.adCabecera();
         eMail = clienteVista.eMailCliente();
-        if (clienteByEmail(eMail)!=-1)
-        {
+        success = datos.setCliente(eMail, clienteVista.nombreCliente(), clienteVista.domicilioCliente()
+                ,clienteVista.nifCliente(), clienteVista.tipoCliente());  
+        if(!success) {
             clienteVista.warning(eMail,true);
-            return;
-        }              
-        datos.setCliente(eMail,clienteVista.nombreCliente(),clienteVista.domicilioCliente(),clienteVista.nifCliente(),clienteVista.tipoCliente());        
+        }      
+    }  
+
+    private void muestraArticulo() {
+        String codigo;
+        articuloView.showCabecera();
+        codigo=articuloView.codigoArticulo();        
+        if (datos.getArticuloByCodigo(codigo)!=null)
+        {
+            articuloView.showArticulo( datos.getArticulo().toString());
+        } else articuloView.warning(codigo,false);
     }
+     
 
     private void añadirPedido(){
         int numPedido;
@@ -382,20 +336,8 @@ public class Controlador {
             }
         }
         return -1;
-    }
+    }    
     
-    private void muestraArticulo() {
-        String codigo;
-        articuloView.showCabecera();        
-        codigo = articuloView.codigoArticulo();
-        if (articuloByCodigo(codigo)!=-1) {
-            articuloView.showArticulo( datos.getListaArticulos().getLista().get(articuloByCodigo(codigo)).toString());            
-        }
-        else {
-            articuloView.warning(codigo,false);
-        }       
-    }
-
     private void muestraClientes() {
         clienteVista.showCabecera();
         for(int item=0; item<(datos.getListaClientes().getLista().size()); item++) {

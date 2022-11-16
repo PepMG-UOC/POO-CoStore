@@ -47,7 +47,7 @@ public class PedidoDAOImpl implements DAO<Pedido> {
     }
 
     @Override
-    public Articulo mostrarArticulo2(String idArticulo) {
+    public Articulo getArticuloDAOById(String idArticulo) {
         return null;
     }
 }

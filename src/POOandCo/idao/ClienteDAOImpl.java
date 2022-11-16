@@ -109,7 +109,7 @@ public class ClienteDAOImpl implements DAO<Cliente> {
     }
 
     @Override
-    public Articulo mostrarArticulo2(String idArticulo) {
+    public Articulo getArticuloDAOById(String idArticulo) {
         return null;
     }
 }
