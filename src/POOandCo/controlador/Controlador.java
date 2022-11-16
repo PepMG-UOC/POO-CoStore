@@ -1,9 +1,6 @@
 
 package POOandCo.controlador;
 
-/* import POOandCo.idao.ArticuloDaoImpl;
-import POOandCo.dao.DAO;
-import POOandCo.idao.ClienteDAOImpl; */
 import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
 import java.time.LocalDateTime;
@@ -93,42 +90,17 @@ public class Controlador {
             } while (!salir);
     }
 
-
-
-    //IMPLEMENTADO FACTORY
     public void añadirArticulo()
     {
         boolean success;
         articuloView.adCabecera();
-        success = datos.setArticulo3(articuloView.codigoArticulo(), articuloView.descripcionArticulo(), articuloView.pvpVentaArticulo()
+        success = datos.setArticulo(articuloView.codigoArticulo(), articuloView.descripcionArticulo(), articuloView.pvpVentaArticulo()
                 ,articuloView.gastosEnvioArticulo(),articuloView.tiempoPreparacionArticulo());
         if(!success) {
             articuloView.warning(datos.getArticulo().getCodigo(),true);
         }        
     }
- 
-
-    /* public void añadirCliente2() {
-        String tipo;
-        clienteVista.adCabecera();
-        tipo = clienteVista.tipoCliente();
-        datos.setCliente2(clienteVista.eMailCliente(), clienteVista.nombreCliente(), clienteVista.domicilioCliente()
-                ,clienteVista.nifCliente(), tipo);
-        DAO dao= new ClienteDAOImpl();
-        try {
-            if (tipo.equals("1")) {
-                dao.registrar(datos.getCliente1());
-                dao.registrar1(datos.getCliente1());
-            } else if(tipo.equals("2")){
-                dao.registrar(datos.getCliente2());
-                dao.registrar2(datos.getCliente1());
-            }
-            //dao.registrar(datos.getCliente());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }  */
-    
+     
     public void añadirCliente() {
         boolean success;
         String eMail;
@@ -151,7 +123,6 @@ public class Controlador {
         } else articuloView.warning(codigo,false);
     }
      
-
     private void añadirPedido(){
         int numPedido;
         String eMail;
