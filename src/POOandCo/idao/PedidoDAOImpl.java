@@ -4,12 +4,7 @@ import POOandCo.dao.Conexion;
 import POOandCo.dao.DAO;
 import POOandCo.modelo.*;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Types;
+import java.sql.*;
 import java.util.List;
 import java.time.*;
 import java.util.ArrayList;
@@ -46,18 +41,17 @@ public class PedidoDAOImpl implements DAO<Pedido> {
         Connection con=null;
         boolean altaPedido=false;
         LocalDateTime localDateTime;
+        Timestamp timestamp;
 
         try {
             con=Conexion.conectar();
             CallableStatement sp= con.prepareCall("CALL añadirPedido(?,?,?,?,?)");
-            sp.setInt("Cantidad",pedido.getCantidad());
+            sp.setInt("Cantidad_ArticuloPedido",pedido.getCantidad());
             localDateTime=pedido.getFechaYhora();
-            LocalDate localDate = localDateTime.toLocalDate();
-            LocalTime localTime = localDateTime.toLocalTime();
-           // sp.setDate("Fecha",Date.valueOf(localDateTime));
-            sp.setTime("Hora",Time.valueOf(localTime));
+            timestamp = Timestamp.valueOf(localDateTime);
+            sp.setTimestamp("FechaHora_Pedido",timestamp);            
             sp.setString("id_ArticuloPedido",pedido.getArticulo().getCodigo());
-            sp.setString("id_eMailPedido",pedido.getCliente().geteMail());
+            sp.setString("id_eMailClientePedido",pedido.getCliente().geteMail());
             sp.registerOutParameter("guardado", Types.BOOLEAN);
             sp.execute();
             
