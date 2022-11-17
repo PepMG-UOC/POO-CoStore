@@ -118,23 +118,41 @@ public class Controlador {
     }
 
     public void añadirPedido()
-    {
-        //el numpedido se tiene que rellenar solo.
+    {          
+        int numPedido;
+        String eMail;
+        String codigo;           
+        float gastos;  
+        float descuento;
+        int cantidad;
         boolean success;
-        //int numPedido;
+         
         pedidoVista.adCabecera();
-        //numPedido = pedidoVista.numPedido();
-        success = datos.setPedido(pedidoVista.cantidadPedido(), clienteVista.eMailCliente(), articuloView.codigoArticulo());
+        numPedido = datos.getNumeroPedido();
+        numPedido++;
+        pedidoVista.showNumPedido(numPedido);
+        eMail = clienteVista.eMailCliente();        
+        if (datos.clienteByEmail(eMail)==null)
+        {
+            clienteVista.warning(eMail,false);
+            añadirCliente();            
+        } 
+        codigo = articuloView.codigoArticulo();         
+        if (datos.getArticuloByCodigo(codigo)==null)
+        {
+            articuloView.warning(codigo,false);
+            return;
+        } 
+        gastos= datos.getArticuloByCodigo(codigo).getGastosEnvio();
+        descuento = datos.clienteByEmail(eMail).descuentoEnv();
+        cantidad =  pedidoVista.cantidadPedido();
+        success = datos.setPedido(numPedido,datos.getArticuloByCodigo(codigo), cantidad, datos.clienteByEmail(eMail));
         if(!success) {
-
+            pedidoVista.warning(numPedido,true);
+            return;
         }
     }
 
-
-    /* private void muestraClientes() {        
-        clienteVista.showCabecera();
-        datos.getTodosClientes();
-    } */
     private void muestraClientes() {        
         clienteVista.showCabecera();
         List lista = datos.getListaClientes();   
@@ -165,13 +183,7 @@ public class Controlador {
             }         
         }
     }
-        
-            
-
-    
-
-
-
+  
     private void muestraArticulo() {
         String codigo;
         articuloView.showCabecera();
@@ -182,50 +194,6 @@ public class Controlador {
         } else articuloView.warning(codigo,false);
     }
 
-
-    /*
-    private void añadirPedido(){
-        int numPedido;
-        String eMail;
-        String codigo;   
-        int itemCliente;
-        int itemArticulo;   
-        float gastos;  
-        float descuento;
-        int cantidad;
-        
-        pedidoVista.adCabecera();
-        numPedido = pedidoVista.numPedido();
-        if (pedidoByNum(numPedido)!=-1)
-        {
-            pedidoVista.warning(numPedido,true);
-            return;
-        } 
-        eMail = clienteVista.eMailCliente();
-        itemCliente = clienteByEmail(eMail);
-        if (itemCliente==-1)
-        {
-            clienteVista.warning(eMail,false);
-            añadirCliente();   
-            itemCliente = clienteByEmail(eMail);         
-        }           
-        codigo = articuloView.codigoArticulo();
-        itemArticulo = articuloByCodigo(codigo);
-        if (itemArticulo==-1)
-        {
-            articuloView.warning(codigo,false);
-            return;
-        }
-
-        gastos= datos.getListaArticulos().getLista().get(itemArticulo).getGastosEnvio();
-        descuento= datos.getListaClientes().getLista().get(itemCliente).descuentoEnv();
-        cantidad =  pedidoVista.cantidadPedido();
-        pedidoVista.showpvpVenta(datos.getListaArticulos().getLista().get(itemArticulo).getPvpVenta(),cantidad);
-        pedidoVista.showGastosEnvio(gastos,descuento);
-        datos.setPedido(numPedido, datos.getListaArticulos().getLista().get(itemArticulo),cantidad,datos.getListaClientes().getLista().get(itemCliente));         
-    }
-
-     */
 
     public void pedidosPendientes(){
         pedidoVista.showPdteCabecera();        
@@ -257,7 +225,7 @@ public class Controlador {
     public void pedidoPendienteFiltro(){
         String eMail;
         eMail = clienteVista.eMailCliente();
-        if (clienteByEmail(eMail)==-1)
+        if (datos.clienteByEmail(eMail)==null)
         {
             clienteVista.warning(eMail,false);
             return;
@@ -303,7 +271,7 @@ public class Controlador {
     public void pedidoEnviadoFiltro(){
         String eMail;
         eMail = clienteVista.eMailCliente();
-        if (clienteByEmail(eMail)==-1)
+        if (datos.clienteByEmail(eMail)==null)
         {
             clienteVista.warning(eMail,false);
             return;
@@ -352,16 +320,8 @@ public class Controlador {
         }
         return false;
     }
-
     
-    public int clienteByEmail(String eMail){
-         for(int item=0; item<(datos.getListaClientes().size()); item++) {
-            if (eMail.equals(datos.getListaClientes().get(item).geteMail())){
-                return item;
-            }
-        }
-        return -1;
-    }
+    
 
     public int pedidoByNum(int numPedido){
         for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++) {

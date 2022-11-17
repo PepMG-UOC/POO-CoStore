@@ -19,6 +19,7 @@ public interface DAO<T> {
     public void modificar(T t) throws Exception;
     public void eliminar(T t) throws Exception;
     public Articulo getArticuloDAOById(String idArticulo);
+    public int getNumPedido();
 
     //public void clientesDAO();
     public void clientesDAOEst();

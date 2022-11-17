@@ -200,6 +200,11 @@ public class ClienteDAOImpl implements DAO<Cliente> {
     }
     
     @Override
+    public int getNumPedido(){
+        return 0;
+    }
+    
+    @Override
     public void modificar(Cliente cliente) throws Exception {
 
     }
