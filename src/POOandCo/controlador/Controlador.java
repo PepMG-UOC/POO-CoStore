@@ -4,7 +4,10 @@ package POOandCo.controlador;
 import POOandCo.idao.PedidoDAOImpl;
 import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
+import java.util.List;
 import java.time.LocalDateTime;
+
+import com.mysql.cj.jdbc.result.ResultSetFactory;
 
 
 public class Controlador {
@@ -128,23 +131,44 @@ public class Controlador {
     }
 
 
-    private void muestraClientes() {
-
+    /* private void muestraClientes() {        
         clienteVista.showCabecera();
         datos.getTodosClientes();
-
+    } */
+    private void muestraClientes() {        
+        clienteVista.showCabecera();
+        List lista = datos.getListaClientes();   
+        if (lista!=null){
+            for(int item=0; item<(lista.size()); item++) {
+                clienteVista.showClientes(lista.get(item).toString());
+            }
+        }  
     }
 
     private void showClientesPorTipo(String tipo){
         if (tipo.equals("Estandard")) {
-            clienteVista.showCabeceraSTD();
-            datos.getClientesEstandard();
+            clienteVista.showCabeceraSTD();  
+            List lista = datos.getListaClientesSTD();   
+            if (lista!=null){
+                for(int item=0; item<(lista.size()); item++) {
+                    clienteVista.showClientes(lista.get(item).toString());
+                }
+            }         
         }
-        else
-            clienteVista.showCabeceraPRM();
-            datos.getClientesPremium();
-
+        else {
+            clienteVista.showCabeceraPRM();  
+            List lista = datos.getListaClientesPRM();   
+            if (lista!=null){
+                for(int item=0; item<(lista.size()); item++) {
+                    clienteVista.showClientes(lista.get(item).toString());
+                }
+            }         
+        }
     }
+        
+            
+
+    
 
 
 
@@ -331,8 +355,8 @@ public class Controlador {
 
     
     public int clienteByEmail(String eMail){
-         for(int item=0; item<(datos.getListaClientes().getLista().size()); item++) {
-            if (eMail.equals(datos.getListaClientes().getLista().get(item).geteMail())){
+         for(int item=0; item<(datos.getListaClientes().size()); item++) {
+            if (eMail.equals(datos.getListaClientes().get(item).geteMail())){
                 return item;
             }
         }
@@ -372,8 +396,8 @@ public class Controlador {
 
      */
     public int clienteByTipo(String tipo){
-        for(int item=0; item<(datos.getListaClientes().getLista().size()); item++) {
-            if (tipo.equals(datos.getListaClientes().getLista().get(item).tipoCliente())){
+        for(int item=0; item<(datos.getListaClientes().size()); item++) {
+            if (tipo.equals(datos.getListaClientes().get(item).tipoCliente())){
                 return item;
             }
         }

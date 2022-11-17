@@ -5,6 +5,8 @@ import POOandCo.idao.ArticuloDaoImpl;
 import POOandCo.dao.DAO;
 import POOandCo.idao.ClienteDAOImpl;
 import POOandCo.idao.PedidoDAOImpl;
+import java.util.List;
+import java.util.ArrayList;
 import jdk.dynalink.NamedOperation;
 
 public class Datos {
@@ -75,10 +77,6 @@ public class Datos {
         return true;
     }
 
-
-
-
-
     public Articulo getArticuloByCodigo (String codigo)
     {
         DAO dao= new ArticuloDaoImpl();
@@ -86,15 +84,51 @@ public class Datos {
         return articulo;
     }
 
+    public List<Cliente> getListaClientes(){              
+        Cliente cliente;
+        DAO dao= new ClienteDAOImpl();
+        try {
+            List lista = dao.listarSTD();
+            lista.addAll(dao.listarPRM());
+            return lista;
+        } catch (Exception e) {
+            throw new RuntimeException(e);            
+        }        
+    }
+
+    public List<Cliente> getListaClientesSTD(){   
+        List<Cliente> lista = new ArrayList<>();           
+        Cliente cliente;
+        DAO dao= new ClienteDAOImpl();
+        try {
+            lista = dao.listarSTD();
+            
+        } catch (Exception e) {
+            throw new RuntimeException(e);            
+        }
+        return lista;      
+    }
+
+    public List<Cliente> getListaClientesPRM(){   
+        List<Cliente> lista = new ArrayList<>();           
+        Cliente cliente;
+        DAO dao= new ClienteDAOImpl();
+        try {
+            lista = dao.listarPRM();
+            
+        } catch (Exception e) {
+            throw new RuntimeException(e);            
+        }
+        return lista;      
+    }
 
 
-
-    public void getTodosClientes ()
+    /* public void getTodosClientes ()
     {
         DAO dao= new ClienteDAOImpl();
         dao.clientesDAO();
 
-    }
+    } */
 
 
     public void getClientesEstandard ()
@@ -141,9 +175,9 @@ public class Datos {
         return listaArticulos;
     }
 
-    public ListaClientes getListaClientes() {
+    /* public ListaClientes getListaClientes() {
         return listaClientes;
-    }
+    } */
 
     public ListaPedidos getListaPedidos() {
         return listaPedidos;

@@ -5,7 +5,7 @@ import java.util.List;
 import POOandCo.dao.Conexion;
 import POOandCo.dao.DAO;
 import POOandCo.modelo.*;
-
+import java.util.ArrayList;
 
 public class ArticuloDaoImpl implements DAO<Articulo> {
     
@@ -47,9 +47,19 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
     }
 
     @Override
+    public List<Articulo> listarSTD() throws Exception {
+        return null;
+    }
+
+    @Override
+    public List<Articulo> listarPRM() throws Exception {
+        return null;
+    }
+
+    /* @Override
     public void mostrar(Articulo articulo) throws Exception {
 
-    }
+    } */
 
     @Override
     public void modificar(Articulo articulo) throws Exception {
@@ -99,10 +109,10 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
         }
     }
 
-    @Override
+  /*   @Override
     public void clientesDAO() {
 
-    }
+    } */
 
     @Override
     public void clientesDAOEst() {

@@ -6,6 +6,7 @@ import POOandCo.modelo.*;
 
 import java.sql.*;
 import java.util.List;
+import java.util.ArrayList;
 
 public class ClienteDAOImpl implements DAO<Cliente> {
 
@@ -14,8 +15,50 @@ public class ClienteDAOImpl implements DAO<Cliente> {
         return null;
     }
 
-
     @Override
+    public List<Cliente> listarSTD() throws Exception {
+        List<Cliente> lista = new ArrayList<>();        
+        Cliente cliente;
+        Connection con=null;
+
+        try{
+            con= Conexion.conectar();
+            CallableStatement sp= con.prepareCall("{CALL mostrarClientesEstandard}");
+            ResultSet rs = sp.executeQuery();
+            while(rs.next()){                
+                //cliente = new Cliente(rs.getString("id_eMail"),rs.getString("Nombre"),rs.getString("Domicilio"),rs.getString("Nif"));
+                cliente = new ClienteEstandard(rs.getString("id_eMail"), rs.getString("Nombre"),rs.getString("Domicilio"), rs.getString("Nif"));
+                lista.add(cliente);                
+            }
+            rs.close();
+        }catch (Exception e){
+            return null;
+        }
+        return lista;
+    }
+
+    @Override 
+    public List<Cliente> listarPRM() throws Exception {
+        List<Cliente> lista = new ArrayList<>();        
+        Cliente cliente;
+        Connection con=null;
+        try{
+            con= Conexion.conectar();
+            CallableStatement sp= con.prepareCall("{CALL mostrarClientesPremium}");
+            ResultSet rs = sp.executeQuery();
+            while(rs.next()){                
+                cliente = new ClientePremium(rs.getString("id_eMail"), rs.getString("Nombre"),rs.getString("Domicilio"), rs.getString("Nif"));
+                lista.add(cliente);                
+            }
+            rs.close();
+        }catch (Exception e){
+            return null;
+        }
+        return lista;        
+    }
+
+
+    /* @Override
     public void mostrar(Cliente cliente) throws Exception {
 
         /*
@@ -35,11 +78,11 @@ public class ClienteDAOImpl implements DAO<Cliente> {
 
         }
 
-         */
+         
 
-    }
+    } */
 
-    @Override
+   /*  @Override
     public void clientesDAO() {
 
         Connection con=null;
@@ -58,7 +101,7 @@ public class ClienteDAOImpl implements DAO<Cliente> {
 
         }
 
-    }
+    } */
 
     @Override
     public void clientesDAOEst() {

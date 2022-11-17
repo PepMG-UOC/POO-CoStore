@@ -57,6 +57,7 @@ public class ClienteVista {
         email=teclado.nextLine();
         return email;
     }
+    
     public void warning(String email, boolean exist){
         System.out.print("El cliente con eMail: " + email);
         if(exist) System.out.print(" ya existe.");

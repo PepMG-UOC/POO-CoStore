@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class PedidoDAOImpl implements DAO<Pedido> {
 
@@ -20,9 +21,19 @@ public class PedidoDAOImpl implements DAO<Pedido> {
     }
 
     @Override
+    public List<Pedido> listarSTD() throws Exception {
+        return null;
+    }
+
+    @Override
+    public List<Pedido> listarPRM() throws Exception {
+        return null;
+    }
+
+    /* @Override
     public void mostrar(Pedido pedido) throws Exception {
 
-    }
+    } */
 
 
     //https://www.tutorialspoint.com/how-to-insert-current-date-and-time-in-a-database-using-jdbc
@@ -79,10 +90,10 @@ public class PedidoDAOImpl implements DAO<Pedido> {
         return null;
     }
 
-    @Override
+    /* @Override
     public void clientesDAO() {
 
-    }
+    } */
 
     @Override
     public void clientesDAOEst() {
