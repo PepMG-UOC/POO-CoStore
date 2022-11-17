@@ -8,19 +8,7 @@ public class Pedido {
     private int cantidad;
     private Cliente cliente;    
     private LocalDateTime fechaYhora;
-    private String emailPedido;
-    private String ArticuloPedido;
-
-
-    public Pedido(int cantidad, String ArticuloPedido, String emailPedido) {
-
-        this.cantidad = cantidad;
-        this.ArticuloPedido = ArticuloPedido;
-        this.emailPedido = emailPedido;
-        this.fechaYhora = LocalDateTime.now();
-    }
-
-    /*
+    
     public Pedido(int numPedido, Articulo articulo, int cantidad, Cliente cliente) {
         this.numPedido = numPedido;
         this.articulo = articulo;
@@ -28,8 +16,6 @@ public class Pedido {
         this.cliente = cliente;
         this.fechaYhora = LocalDateTime.now();        
     }
-
-     */
 
     public int getNumPedido() {
         return numPedido;
@@ -58,13 +44,6 @@ public class Pedido {
     public Cliente getCliente() {
         return cliente;
     }
-
-
-    public String geteMailPedido(){return emailPedido;}
-    public String getArticuloPedido(){return ArticuloPedido;}
-
-
-
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;

@@ -6,10 +6,12 @@ import POOandCo.modelo.*;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Types;
 import java.util.List;
-import java.time.LocalDateTime;
+import java.time.*;
 import java.util.ArrayList;
 
 public class PedidoDAOImpl implements DAO<Pedido> {
@@ -35,7 +37,7 @@ public class PedidoDAOImpl implements DAO<Pedido> {
 
     } */
 
-
+    //https://stackoverflow.com/questions/39836994/how-to-insert-datetime-field-in-mysql-database-using-preparedstatement-in-java
     //https://www.tutorialspoint.com/how-to-insert-current-date-and-time-in-a-database-using-jdbc
     //CURRENT_TIMESTAMP
     @Override
@@ -43,27 +45,26 @@ public class PedidoDAOImpl implements DAO<Pedido> {
         //Statement stm= null;
         Connection con=null;
         boolean altaPedido=false;
+        LocalDateTime localDateTime;
 
         try {
             con=Conexion.conectar();
-            CallableStatement sp= con.prepareCall("CALL añadirPedido(?,?,?)");
-            //sp.setInt("id_Pedido", pedido.getNumPedido());
+            CallableStatement sp= con.prepareCall("CALL añadirPedido(?,?,?,?,?)");
             sp.setInt("Cantidad",pedido.getCantidad());
-
-            //sp.getTime("FechaHora", '2012-12-10 13:38:00.000');
-            System.out.println("llegamos");
-            sp.setString("id_ArticuloPedido",pedido.getArticuloPedido());
-            sp.setString("id_eMailPedido",pedido.geteMailPedido());
-            //sp.registerOutParameter("guardado", Types.BOOLEAN);
+            localDateTime=pedido.getFechaYhora();
+            LocalDate localDate = localDateTime.toLocalDate();
+            LocalTime localTime = localDateTime.toLocalTime();
+           // sp.setDate("Fecha",Date.valueOf(localDateTime));
+            sp.setTime("Hora",Time.valueOf(localTime));
+            sp.setString("id_ArticuloPedido",pedido.getArticulo().getCodigo());
+            sp.setString("id_eMailPedido",pedido.getCliente().geteMail());
+            sp.registerOutParameter("guardado", Types.BOOLEAN);
             sp.execute();
-
-            /*
+            
             if (sp.getBoolean("guardado")==true)
             {
                 altaPedido=true;
-            } else  altaPedido=false;
-
-             */
+            } else  altaPedido=false;             
 
             sp.close();
             con.close();
@@ -75,6 +76,25 @@ public class PedidoDAOImpl implements DAO<Pedido> {
 
     }
     
+    @Override
+    public int getNumPedido(){
+        int numPedido=0;
+        Connection con=null;
+        try {
+            con=Conexion.conectar();
+            CallableStatement sp= con.prepareCall("CALL getNumPedido(?)");
+            sp.registerOutParameter("numPedido", Types.INTEGER);
+            sp.execute();
+            numPedido = sp.getInt("numPedido");
+            sp.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error: Clase ArticuloDaoImpl, método AñadirArticulo2");
+            e.printStackTrace();
+        }
+        return numPedido;
+    }
+
     @Override
     public void modificar(Pedido pedido) throws Exception {
 

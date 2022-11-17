@@ -1,10 +1,11 @@
 
 package POOandCo.modelo;
 
-import POOandCo.idao.ArticuloDaoImpl;
 import POOandCo.dao.DAO;
+import POOandCo.idao.ArticuloDaoImpl;
 import POOandCo.idao.ClienteDAOImpl;
 import POOandCo.idao.PedidoDAOImpl;
+
 import java.util.List;
 import java.util.ArrayList;
 import jdk.dynalink.NamedOperation;
@@ -62,19 +63,30 @@ public class Datos {
     }
 
 
-    public boolean setPedido(int cantidad, String articulo, String eMail)
-    {
-        pedido=new Pedido(cantidad,articulo,eMail);
+    public boolean setPedido(int numPedido, Articulo articulo,int cantidad, Cliente cliente)
+    {   
+        boolean success=false;
+        pedido=new Pedido(numPedido,articulo,cantidad,cliente);
         DAO dao= new PedidoDAOImpl();
         try {
-            if (dao.registrar(pedido)==false)
-            {
-                return false;
-            }
+            success = dao.registrar(pedido);            
         } catch (Exception e) {
+            success = false;
             throw new RuntimeException(e);
         }
-        return true;
+        return success;
+    }
+
+    public Cliente clienteByEmail(String eMail){
+        List<Cliente> lista = getListaClientes();
+        if(lista!=null) {
+            for(int item=0; item<(lista.size()); item++) {
+                if (eMail.equals(lista.get(item).geteMail())){
+                    return lista.get(item);
+                } 
+            }
+        }
+        return null;
     }
 
     public Articulo getArticuloByCodigo (String codigo)
@@ -95,6 +107,8 @@ public class Datos {
             throw new RuntimeException(e);            
         }        
     }
+
+    
 
     public List<Cliente> getListaClientesSTD(){   
         List<Cliente> lista = new ArrayList<>();           
@@ -120,6 +134,17 @@ public class Datos {
             throw new RuntimeException(e);            
         }
         return lista;      
+    }
+
+    public int getNumeroPedido(){
+        int numPedido=0;
+        DAO dao= new PedidoDAOImpl();
+        try {
+            numPedido=dao.getNumPedido();
+        } catch (Exception e) {
+            throw new RuntimeException(e);            
+        }
+        return numPedido;
     }
 
 

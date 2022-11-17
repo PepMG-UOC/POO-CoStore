@@ -85,7 +85,12 @@ public class PedidoVista {
                 teclado.nextLine();
             }
         } while(true);
-    }   
+    } 
+    
+    public void showNumPedido(int numero){
+        System.out.print("Numero de pedido: ");
+        System.out.println(numero);
+    }
 
     public int cantidadPedido(){
         int cantidad;

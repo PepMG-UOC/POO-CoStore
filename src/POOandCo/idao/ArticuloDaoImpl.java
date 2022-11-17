@@ -60,6 +60,10 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
     public void mostrar(Articulo articulo) throws Exception {
 
     } */
+    @Override
+    public int getNumPedido(){
+        return 0;
+    }
 
     @Override
     public void modificar(Articulo articulo) throws Exception {
