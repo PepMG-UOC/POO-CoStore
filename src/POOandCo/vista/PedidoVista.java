@@ -101,7 +101,10 @@ public class PedidoVista {
             }
         } while(true);     
     }
-            
+
+
+
+
     public void showpvpVenta(float pvpVentaArticlulo, int cantidad){
         System.out.println("Pvp Venta Artculo: " + pvpVentaArticlulo);
         System.out.println("Total pedido: " + cantidad*pvpVentaArticlulo);

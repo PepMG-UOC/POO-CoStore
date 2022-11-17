@@ -4,6 +4,7 @@ package POOandCo.modelo;
 import POOandCo.idao.ArticuloDaoImpl;
 import POOandCo.dao.DAO;
 import POOandCo.idao.ClienteDAOImpl;
+import POOandCo.idao.PedidoDAOImpl;
 import jdk.dynalink.NamedOperation;
 
 public class Datos {
@@ -56,7 +57,27 @@ public class Datos {
             throw new RuntimeException(e);
         }
         return success;
-    } 
+    }
+
+
+    public boolean setPedido(int cantidad, String articulo, String eMail)
+    {
+        pedido=new Pedido(cantidad,articulo,eMail);
+        DAO dao= new PedidoDAOImpl();
+        try {
+            if (dao.registrar(pedido)==false)
+            {
+                return false;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return true;
+    }
+
+
+
+
 
     public Articulo getArticuloByCodigo (String codigo)
     {
@@ -64,6 +85,32 @@ public class Datos {
         articulo = dao.getArticuloDAOById(codigo);
         return articulo;
     }
+
+
+
+
+    public void getTodosClientes ()
+    {
+        DAO dao= new ClienteDAOImpl();
+        dao.clientesDAO();
+
+    }
+
+
+    public void getClientesEstandard ()
+    {
+        DAO dao= new ClienteDAOImpl();
+        dao.clientesDAOEst();
+
+    }
+
+    public void getClientesPremium ()
+    {
+        DAO dao= new ClienteDAOImpl();
+        dao.clientesDAOPre();
+
+    }
+
 
 
     /* public Cliente getCliente1()
@@ -82,10 +129,13 @@ public class Datos {
         return articulo;
     }   
 
+    /*
     public void setPedido (int numPedido, Articulo articulo, int cantidad, Cliente cliente) {
         pedido = new Pedido(numPedido,articulo,cantidad,cliente);
         listaPedidos.add(pedido);
     }
+
+     */
      
     public ListaArticulos getListaArticulos() {
         return listaArticulos;
