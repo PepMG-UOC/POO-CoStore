@@ -14,10 +14,90 @@ public class ClienteDAOImpl implements DAO<Cliente> {
         return null;
     }
 
+
     @Override
     public void mostrar(Cliente cliente) throws Exception {
 
+        /*
+        Connection con=null;
+
+        try{
+            con= Conexion.conectar();
+            CallableStatement sp= con.prepareCall("{CALL mostrarClientes}");
+            ResultSet rs = sp.executeQuery();
+
+            while(rs.next()){
+                System.out.println(rs.getString(1)+" "+rs.getString(2));
+            }
+            rs.close();
+
+        }catch (Exception e){
+
+        }
+
+         */
+
     }
+
+    @Override
+    public void clientesDAO() {
+
+        Connection con=null;
+
+        try{
+            con= Conexion.conectar();
+            CallableStatement sp= con.prepareCall("{CALL mostrarClientes}");
+            ResultSet rs = sp.executeQuery();
+
+            while(rs.next()){
+                System.out.println(rs.getString("id_eMail")+ " "+(rs.getString("Nombre")));
+            }
+            rs.close();
+
+        }catch (Exception e){
+
+        }
+
+    }
+
+    @Override
+    public void clientesDAOEst() {
+        Connection con=null;
+
+        try{
+            con= Conexion.conectar();
+            CallableStatement sp= con.prepareCall("{CALL mostrarClientesEstandard}");
+            ResultSet rs = sp.executeQuery();
+
+            while(rs.next()){
+                System.out.println(rs.getString("id_eMailestandard"));
+            }
+            rs.close();
+
+        }catch (Exception e){
+
+        }
+    }
+
+    @Override
+    public void clientesDAOPre() {
+        Connection con=null;
+
+        try{
+            con= Conexion.conectar();
+            CallableStatement sp= con.prepareCall("{CALL mostrarClientesPremium}");
+            ResultSet rs = sp.executeQuery();
+
+            while(rs.next()){
+                System.out.println(rs.getString("id_eMailPremium"));
+            }
+            rs.close();
+
+        }catch (Exception e){
+
+        }
+    }
+
 
     @Override
     public boolean registrar(Cliente cliente) throws Exception {        
@@ -90,4 +170,6 @@ public class ClienteDAOImpl implements DAO<Cliente> {
     public Articulo getArticuloDAOById(String idArticulo) {
         return null;
     }
+
+
 }

@@ -6,12 +6,21 @@
 package POOandCo.vista;
 
 
+import POOandCo.dao.Conexion;
+import POOandCo.idao.ClienteDAOImpl;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+
 public class OnlineStore {
 
     public static void main(String[] args) {
+
         GestionOS gestion = new GestionOS();
         gestion.inicio();
     }
+
 
 
 

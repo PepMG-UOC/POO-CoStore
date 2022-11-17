@@ -98,4 +98,19 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
             return null;
         }
     }
+
+    @Override
+    public void clientesDAO() {
+
+    }
+
+    @Override
+    public void clientesDAOEst() {
+
+    }
+
+    @Override
+    public void clientesDAOPre() {
+
+    }
 }

@@ -1,6 +1,7 @@
 
 package POOandCo.controlador;
 
+import POOandCo.idao.PedidoDAOImpl;
 import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
 import java.time.LocalDateTime;
@@ -111,7 +112,41 @@ public class Controlador {
         if(!success) {
             clienteVista.warning(eMail,true);
         }      
-    }  
+    }
+
+    public void añadirPedido()
+    {
+        //el numpedido se tiene que rellenar solo.
+        boolean success;
+        //int numPedido;
+        pedidoVista.adCabecera();
+        //numPedido = pedidoVista.numPedido();
+        success = datos.setPedido(pedidoVista.cantidadPedido(), clienteVista.eMailCliente(), articuloView.codigoArticulo());
+        if(!success) {
+
+        }
+    }
+
+
+    private void muestraClientes() {
+
+        clienteVista.showCabecera();
+        datos.getTodosClientes();
+
+    }
+
+    private void showClientesPorTipo(String tipo){
+        if (tipo.equals("Estandard")) {
+            clienteVista.showCabeceraSTD();
+            datos.getClientesEstandard();
+        }
+        else
+            clienteVista.showCabeceraPRM();
+            datos.getClientesPremium();
+
+    }
+
+
 
     private void muestraArticulo() {
         String codigo;
@@ -122,7 +157,9 @@ public class Controlador {
             articuloView.showArticulo( datos.getArticulo().toString());
         } else articuloView.warning(codigo,false);
     }
-     
+
+
+    /*
     private void añadirPedido(){
         int numPedido;
         String eMail;
@@ -163,6 +200,8 @@ public class Controlador {
         pedidoVista.showGastosEnvio(gastos,descuento);
         datos.setPedido(numPedido, datos.getListaArticulos().getLista().get(itemArticulo),cantidad,datos.getListaClientes().getLista().get(itemCliente));         
     }
+
+     */
 
     public void pedidosPendientes(){
         pedidoVista.showPdteCabecera();        
@@ -308,13 +347,16 @@ public class Controlador {
         }
         return -1;
     }    
-    
+
+    /*
     private void muestraClientes() {
         clienteVista.showCabecera();
         for(int item=0; item<(datos.getListaClientes().getLista().size()); item++) {
         clienteVista.showClientes(datos.getListaClientes().getLista().get(item).toString()); 
         }       
     }
+
+
    
     private void showClientesPorTipo(String tipo){
         if (tipo.equals("Estandard")) clienteVista.showCabeceraSTD();
@@ -327,6 +369,8 @@ public class Controlador {
                 
     }
 
+
+     */
     public int clienteByTipo(String tipo){
         for(int item=0; item<(datos.getListaClientes().getLista().size()); item++) {
             if (tipo.equals(datos.getListaClientes().getLista().get(item).tipoCliente())){
