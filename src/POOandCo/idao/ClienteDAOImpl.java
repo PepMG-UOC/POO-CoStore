@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 public class ClienteDAOImpl implements DAO<Cliente> {
 
-    @Override
+   /* @Override
     public List<Cliente> listar() throws Exception {
         return null;
-    }
+    }*/
 
     @Override
     public List<Cliente> listarSTD() throws Exception {
@@ -204,15 +204,15 @@ public class ClienteDAOImpl implements DAO<Cliente> {
         return 0;
     }
     
-    @Override
+   /* @Override
     public void modificar(Cliente cliente) throws Exception {
 
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void eliminar(Cliente cliente) throws Exception {
 
-    }
+    }*/
 
     @Override
     public Articulo getArticuloDAOById(String idArticulo) {

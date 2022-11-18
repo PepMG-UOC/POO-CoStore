@@ -41,10 +41,10 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
 
     }
 
-    @Override
+   /* @Override
     public List<Articulo> listar() throws Exception {
         return null;
-    }
+    }*/
 
     @Override
     public List<Articulo> listarSTD() throws Exception {
@@ -65,16 +65,16 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
         return 0;
     }
 
-    @Override
+   /* @Override
     public void modificar(Articulo articulo) throws Exception {
 
-    }
+    }*/
 
-    @Override
+  /*  @Override
     public void eliminar(Articulo articulo) throws Exception {
 
-    }
-   
+    }*/
+
     @Override
     public Articulo getArticuloDAOById(String id) {
         Statement stm= null;

@@ -217,11 +217,12 @@ public class Controlador {
         }
 
     public void allPedidosPdte(){
-        for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
+
+        /*for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
             if(!pedidoEnviado(item)){
                 pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());                
             }
-        }
+        }*/
     }
 
     public void pedidoPendienteFiltro(){
@@ -304,11 +305,11 @@ public class Controlador {
         {
             pedidoVista.warning(numPedido,false);
             return;
-        } 
-        if(!pedidoEnviado(pedidoByNum(numPedido))){
-            datos.getListaPedidos().getLista().remove(pedidoByNum(numPedido));
+        } else
+        {
+            datos.borrarPedido(numPedido);
+            pedidoVista.eliminaOk(numPedido);
         }
-        pedidoVista.eliminaOk(numPedido);
     }
 
     public boolean pedidoEnviado(int item){
@@ -326,12 +327,13 @@ public class Controlador {
     
 
     public int pedidoByNum(int numPedido){
-        for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++) {
-            if (numPedido==(datos.getListaPedidos().getLista().get(item).getNumPedido())){
-                return item;
-            }
+        if (datos.existePedido(numPedido)==true)
+        {
+            return numPedido;
         }
-        return -1;
+        else return -1;
+
+
     }    
 
     /*

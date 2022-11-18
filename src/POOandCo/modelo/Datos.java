@@ -2,6 +2,7 @@
 package POOandCo.modelo;
 
 import POOandCo.dao.DAO;
+import POOandCo.dao.DaoPedido;
 import POOandCo.idao.ArticuloDaoImpl;
 import POOandCo.idao.ClienteDAOImpl;
 import POOandCo.idao.PedidoDAOImpl;
@@ -67,7 +68,7 @@ public class Datos {
     {   
         boolean success=false;
         pedido=new Pedido(numPedido,articulo,cantidad,cliente);
-        DAO dao= new PedidoDAOImpl();
+        DaoPedido dao= new PedidoDAOImpl();
         try {
             success = dao.registrar(pedido);            
         } catch (Exception e) {
@@ -138,7 +139,7 @@ public class Datos {
 
     public int getNumeroPedido(){
         int numPedido=0;
-        DAO dao= new PedidoDAOImpl();
+        DaoPedido dao= new PedidoDAOImpl();
         try {
             numPedido=dao.getNumPedido();
         } catch (Exception e) {
@@ -146,6 +147,26 @@ public class Datos {
         }
         return numPedido;
     }
+    public boolean existePedido(int id_Pedido) {
+        DaoPedido dao = new PedidoDAOImpl();
+        boolean existe=false;
+        try {
+            existe=dao.existePedido(id_Pedido);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return existe;
+    }
+    public void borrarPedido(int id_Pedido) {
+        DaoPedido dao= new PedidoDAOImpl();
+        try
+        {
+            dao.borrarPedido(id_Pedido);
+        } catch (Exception e) {
+            throw  new RuntimeException(e);
+        }
+    }
+
 
 
     /* public void getTodosClientes ()
@@ -207,6 +228,10 @@ public class Datos {
     public ListaPedidos getListaPedidos() {
         return listaPedidos;
     }
+
+
+
+
     
     
 }
