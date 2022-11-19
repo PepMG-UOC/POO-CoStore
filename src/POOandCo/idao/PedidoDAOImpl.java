@@ -1,15 +1,12 @@
 package POOandCo.idao;
 
 import POOandCo.dao.Conexion;
-import POOandCo.dao.DAO;
 import POOandCo.dao.DaoPedido;
 import POOandCo.modelo.*;
 
 import java.sql.*;
-import java.util.List;
 import java.time.*;
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
 
 public class PedidoDAOImpl implements DaoPedido<Pedido> {
 
@@ -106,34 +103,181 @@ public class PedidoDAOImpl implements DaoPedido<Pedido> {
 
     }
 
+    private Articulo devuelvoArticulo (String idArticulo, Connection con)
+    {
+        //Tengo los datos y ahora tengo que saber que articulo es y que cliente
+        //Primero Articulo. Utilizaré el mostrar artículo.
+        Articulo art;
+        try
+        {
+            CallableStatement spArticulo=con.prepareCall("CALL mostrarArticulo(?,?,?,?,?,?)");
+            spArticulo.setString("id_Articulo",idArticulo);
+            spArticulo.registerOutParameter("Descripcion_Articulo", Types.VARCHAR);
+            spArticulo.registerOutParameter("PvpVenta_Articulo",Types.FLOAT);
+            spArticulo.registerOutParameter("GastosEnvio_Articulo",Types.FLOAT);
+            spArticulo.registerOutParameter("TiempoPreparacion_Articulo", Types.INTEGER);
+            spArticulo.registerOutParameter("encontrado", Types.BOOLEAN);
+            spArticulo.execute();
+            if (spArticulo.getBoolean("encontrado")==false)
+            {
+                art=null;
+            }
+            else
+            {
+                art=new Articulo(idArticulo,spArticulo.getString("Descripcion_Articulo"),
+                        spArticulo.getFloat("PvpVenta_Articulo"), spArticulo.getFloat("GastosEnvio_Articulo"),
+                        spArticulo.getInt("TiempoPreparacion_Articulo"));
+            }
+            spArticulo.close();
+        }
+        catch (SQLException e) {
+            System.out.println("Error: Clase ArticuloDaoImpl, método getArticuloDAOById2");
+            e.printStackTrace();
+            return null;
+        }
+        return art;
+    }
+    private ClientePremium devuelvoClientePremium(String id_cliente, Connection con)
+    {
+        ClientePremium cliPre=null;
+        try
+        {
+            CallableStatement spClientePremium=con.prepareCall("CALL devolverClientePremium(?)");
+            spClientePremium.setString("id_Email",id_cliente);
+            ResultSet rs=spClientePremium.executeQuery();
+            while(rs.next()){
+                cliPre=new ClientePremium(rs.getString("id_Email"),rs.getString("Nombre"),
+                        rs.getString("Domicilio"), rs.getString("Nif"));
+                cliPre.setDescuento(rs.getFloat("Descuento"));
+                cliPre.setCalculo(rs.getFloat("TarifaAnual"));
+            }
+        }
+        catch (Exception e){
+            return null;
+        }
+        return cliPre;
+    }
+
+    private ClienteEstandard devuelvoClienteEstandard(String id_cliente, Connection con)
+    {
+        ClienteEstandard cli=null;
+        try {
+            CallableStatement spClienteEstandard=con.prepareCall("CALL devolverClienteEstandard(?)");
+            spClienteEstandard.setString("id_Email",id_cliente);
+            ResultSet rs=spClienteEstandard.executeQuery();
+            while(rs.next()){
+                cli = new ClienteEstandard(rs.getString("id_Email"), rs.getString("Nombre"),rs.getString("Domicilio"),
+                        rs.getString("Nif"));
+            }
+        }
+        catch (Exception e){
+            return null;
+        }
+        return cli;
+    }
+
     @Override
-    public List<Pedido> listarTodosPedidos() throws Exception {
-       /* List<Pedido> lista = new ArrayList<>();
+    public ArrayList<Pedido> listarTodosPedidos() throws Exception {
+        ArrayList<Pedido> lista = new ArrayList<>();
         Pedido pedido;
+
         Connection con=null;
+        int id_Pedido;
+        int cantidad_Pedido;
+        Timestamp fechaHora_Pedido;
+        String id_Articulo_Pedido;
+        String id_eMail_Pedido;
+        boolean esClienteEstandard= false;
         ClienteEstandard clienteEstandard;
         ClientePremium clientePremium;
+        Articulo art;
 
         try{
             con= Conexion.conectar();
             CallableStatement sp= con.prepareCall("{CALL devolverTodosPedidos}");
             ResultSet rs = sp.executeQuery();
             while(rs.next()){
+                //Voy a leer lo que devuelva para identificar el articulo y el cliente
+                id_Pedido=rs.getInt("idPedido");
+                cantidad_Pedido=rs.getInt("Cantidad");
+                fechaHora_Pedido=rs.getTimestamp("FechaHora");
+                id_Articulo_Pedido=rs.getString("idArticuloPedido");
+                id_eMail_Pedido=rs.getString("id_eMailPedido");
 
-
-
-                //cliente = new Cliente(rs.getString("id_eMail"),rs.getString("Nombre"),rs.getString("Domicilio"),rs.getString("Nif"));
-                //cliente = new ClienteEstandard(rs.getString("id_eMail"), rs.getString("Nombre"),rs.getString("Domicilio"), rs.getString("Nif"));
-                //lista.add(cliente);
+                art=devuelvoArticulo(id_Articulo_Pedido,con);
+                //Ahora tengo que saber el cliente
+                clienteEstandard=devuelvoClienteEstandard(id_eMail_Pedido,con);
+                if (clienteEstandard!=null)
+                {
+                    pedido=new Pedido(id_Pedido,art,cantidad_Pedido,clienteEstandard);
+                    pedido.setFechaYhora(fechaHora_Pedido.toLocalDateTime());
+                } else
+                {
+                    clientePremium=devuelvoClientePremium(id_eMail_Pedido,con);
+                    if (clientePremium!=null)
+                    {
+                        pedido=new Pedido(id_Pedido,art,cantidad_Pedido,clientePremium);
+                        pedido.setFechaYhora((fechaHora_Pedido.toLocalDateTime()));
+                    } else pedido=null;
+                }
+                lista.add(pedido);
             }
             rs.close();
         }catch (Exception e){
             return null;
         }
         return lista;
-        */
+    }
 
-        return null;
+    @Override
+    public ListaPedidos listarToPedidos() throws Exception {
+        ListaPedidos lista= new ListaPedidos();
+        //ArrayList<Pedido> lista = new ArrayList<>();
+        Pedido pedido;
+
+        Connection con=null;
+        int id_Pedido;
+        int cantidad_Pedido;
+        Timestamp fechaHora_Pedido;
+        String id_Articulo_Pedido;
+        String id_eMail_Pedido;
+        boolean esClienteEstandard= false;
+        ClienteEstandard clienteEstandard;
+        ClientePremium clientePremium;
+        Articulo art;
+
+        try{
+            con= Conexion.conectar();
+            CallableStatement sp= con.prepareCall("{CALL devolverTodosPedidos}");
+            ResultSet rs = sp.executeQuery();
+            while(rs.next()){
+                //Voy a leer lo que devuelva para identificar el articulo y el cliente
+                id_Pedido=rs.getInt("idPedido");
+                cantidad_Pedido=rs.getInt("Cantidad");
+                fechaHora_Pedido=rs.getTimestamp("FechaHora");
+                id_Articulo_Pedido=rs.getString("idArticuloPedido");
+                id_eMail_Pedido=rs.getString("id_eMailPedido");
+
+                art=devuelvoArticulo(id_Articulo_Pedido,con);
+                //Ahora tengo que saber el cliente
+                clienteEstandard=devuelvoClienteEstandard(id_eMail_Pedido,con);
+                if (clienteEstandard!=null)
+                {
+                    pedido=new Pedido(id_Pedido,art,cantidad_Pedido,clienteEstandard);
+                    pedido.setFechaYhora(fechaHora_Pedido.toLocalDateTime());
+                } else {
+                    clientePremium=devuelvoClientePremium(id_eMail_Pedido,con );
+                    pedido=new Pedido(id_Pedido,art,cantidad_Pedido,clientePremium);
+                    pedido.setFechaYhora(fechaHora_Pedido.toLocalDateTime());
+                }
+                lista.add(pedido);
+            }
+            rs.close();
+        }catch (Exception e){
+            return null;
+        }
+        return lista;
+
     }
 
 }
