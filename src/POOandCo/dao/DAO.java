@@ -10,15 +10,19 @@ public interface DAO<T> {
     //public boolean añadirArticulo2(Articulo articulo);
     //public void getArticuloDAOById2();
 
-    public List<T> listar() throws Exception;
+   /* public List<T> listar() throws Exception;*/
     public List<T> listarSTD() throws Exception;
     public List<T> listarPRM() throws Exception;
 
     //public void mostrar(T t) throws Exception;
-    public boolean registrar(T t) throws Exception;         
-    public void modificar(T t) throws Exception;
-    public void eliminar(T t) throws Exception;
+    public boolean registrar(T t) throws Exception;
+
+    //public void modificar(T t) throws Exception;
+    //public void eliminar(T t) throws Exception;
+
+
     public Articulo getArticuloDAOById(String idArticulo);
+
     public int getNumPedido();
 
     //public void clientesDAO();

@@ -6,9 +6,9 @@ public class Conexion {
     public static Connection conectar() {
         Connection con = null;
 
-        String password = "poobd123";
+        String password = "1111";
         String usuario = "root";
-        String url = "jdbc:mysql://localhost:3306/poobbdd?user=" + usuario
+        String url = "jdbc:mysql://localhost:3306/producto3?user=" + usuario
                 + "&password=" + password;
         try {
             con = DriverManager.getConnection(url);

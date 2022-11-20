@@ -3,6 +3,7 @@ package POOandCo.controlador;
 
 import POOandCo.idao.PedidoDAOImpl;
 import POOandCo.modelo.Datos;
+import POOandCo.modelo.ListaPedidos;
 import POOandCo.vista.*;
 import java.util.List;
 import java.time.LocalDateTime;
@@ -217,9 +218,10 @@ public class Controlador {
         }
 
     public void allPedidosPdte(){
+        datos.setListaPedidos();
         for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
             if(!pedidoEnviado(item)){
-                pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());                
+               pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());
             }
         }
     }
@@ -238,7 +240,7 @@ public class Controlador {
                     pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());
                 }                                
             }
-        } 
+        }
     }
 
     public void pedidosEnviados(){
@@ -262,6 +264,7 @@ public class Controlador {
 
         
     public void allPedidosEnviados(){
+        datos.setListaPedidos();
         pedidoVista.showEnviosCabecera();
         for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
             if(pedidoEnviado(item)){
@@ -271,6 +274,7 @@ public class Controlador {
     }
 
     public void pedidoEnviadoFiltro(){
+        datos.setListaPedidos();
         String eMail;
         eMail = clienteVista.eMailCliente();
         if (datos.clienteByEmail(eMail)==null)
@@ -284,7 +288,7 @@ public class Controlador {
                     pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());
                 }                                
             }
-        } 
+        }
     }
 
     public int articuloByCodigo(String codigo){        
@@ -304,11 +308,11 @@ public class Controlador {
         {
             pedidoVista.warning(numPedido,false);
             return;
-        } 
-        if(!pedidoEnviado(pedidoByNum(numPedido))){
-            datos.getListaPedidos().getLista().remove(pedidoByNum(numPedido));
+        } else
+        {
+            datos.borrarPedido(numPedido);
+            pedidoVista.eliminaOk(numPedido);
         }
-        pedidoVista.eliminaOk(numPedido);
     }
 
     public boolean pedidoEnviado(int item){
@@ -326,12 +330,13 @@ public class Controlador {
     
 
     public int pedidoByNum(int numPedido){
-        for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++) {
-            if (numPedido==(datos.getListaPedidos().getLista().get(item).getNumPedido())){
-                return item;
-            }
+        if (datos.existePedido(numPedido)==true)
+        {
+            return numPedido;
         }
-        return -1;
+        else return -1;
+
+
     }    
 
     /*

@@ -2,13 +2,13 @@
 package POOandCo.modelo;
 
 import POOandCo.dao.DAO;
+import POOandCo.dao.DaoPedido;
 import POOandCo.idao.ArticuloDaoImpl;
 import POOandCo.idao.ClienteDAOImpl;
 import POOandCo.idao.PedidoDAOImpl;
 
 import java.util.List;
 import java.util.ArrayList;
-import jdk.dynalink.NamedOperation;
 
 public class Datos {
     private ListaArticulos listaArticulos;
@@ -67,7 +67,7 @@ public class Datos {
     {   
         boolean success=false;
         pedido=new Pedido(numPedido,articulo,cantidad,cliente);
-        DAO dao= new PedidoDAOImpl();
+        DaoPedido dao= new PedidoDAOImpl();
         try {
             success = dao.registrar(pedido);            
         } catch (Exception e) {
@@ -78,6 +78,7 @@ public class Datos {
     }
 
     public Cliente clienteByEmail(String eMail){
+
         List<Cliente> lista = getListaClientes();
         if(lista!=null) {
             for(int item=0; item<(lista.size()); item++) {
@@ -108,8 +109,6 @@ public class Datos {
         }        
     }
 
-    
-
     public List<Cliente> getListaClientesSTD(){   
         List<Cliente> lista = new ArrayList<>();           
         Cliente cliente;
@@ -138,7 +137,7 @@ public class Datos {
 
     public int getNumeroPedido(){
         int numPedido=0;
-        DAO dao= new PedidoDAOImpl();
+        DaoPedido dao= new PedidoDAOImpl();
         try {
             numPedido=dao.getNumPedido();
         } catch (Exception e) {
@@ -146,14 +145,25 @@ public class Datos {
         }
         return numPedido;
     }
-
-
-    /* public void getTodosClientes ()
-    {
-        DAO dao= new ClienteDAOImpl();
-        dao.clientesDAO();
-
-    } */
+    public boolean existePedido(int id_Pedido) {
+        DaoPedido dao = new PedidoDAOImpl();
+        boolean existe=false;
+        try {
+            existe=dao.existePedido(id_Pedido);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return existe;
+    }
+    public void borrarPedido(int id_Pedido) {
+        DaoPedido dao= new PedidoDAOImpl();
+        try
+        {
+            dao.borrarPedido(id_Pedido);
+        } catch (Exception e) {
+            throw  new RuntimeException(e);
+        }
+    }
 
 
     public void getClientesEstandard ()
@@ -167,20 +177,7 @@ public class Datos {
     {
         DAO dao= new ClienteDAOImpl();
         dao.clientesDAOPre();
-
     }
-
-
-
-    /* public Cliente getCliente1()
-    {
-        return clienteStd;
-    }
-
-    public Cliente getCliente2()
-    {
-        return clientePrm;
-    } */
 
     
     public Articulo getArticulo()
@@ -188,25 +185,31 @@ public class Datos {
         return articulo;
     }   
 
-    /*
-    public void setPedido (int numPedido, Articulo articulo, int cantidad, Cliente cliente) {
-        pedido = new Pedido(numPedido,articulo,cantidad,cliente);
-        listaPedidos.add(pedido);
-    }
-
-     */
      
     public ListaArticulos getListaArticulos() {
         return listaArticulos;
     }
 
-    /* public ListaClientes getListaClientes() {
-        return listaClientes;
-    } */
-
-    public ListaPedidos getListaPedidos() {
-        return listaPedidos;
+    public void setListaPedidos() {
+        try
+        {
+            DaoPedido dao = new PedidoDAOImpl();
+            listaPedidos.setLista((dao.listarToPedidos().getLista()));
+        }
+        catch (Exception e) {
+        e.printStackTrace();
     }
-    
-    
+
+    }
+
+    public ListaPedidos getListaPedidos()  {
+        try {
+            return listaPedidos;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
 }
