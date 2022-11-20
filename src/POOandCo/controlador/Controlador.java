@@ -1,13 +1,11 @@
 
 package POOandCo.controlador;
 
-import POOandCo.idao.PedidoDAOImpl;
+
 import POOandCo.modelo.Datos;
 import POOandCo.vista.*;
 import java.util.List;
 import java.time.LocalDateTime;
-
-import com.mysql.cj.jdbc.result.ResultSetFactory;
 
 
 public class Controlador {
@@ -217,15 +215,15 @@ public class Controlador {
         }
 
     public void allPedidosPdte(){
-        for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
+       /*  for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
             if(!pedidoEnviado(item)){
                 pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());                
             }
-        }
+        } */
     }
 
     public void pedidoPendienteFiltro(){
-        String eMail;
+       /*  String eMail;
         eMail = clienteVista.eMailCliente();
         if (datos.clienteByEmail(eMail)==null)
         {
@@ -238,7 +236,7 @@ public class Controlador {
                     pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());
                 }                                
             }
-        } 
+        }  */
     }
 
     public void pedidosEnviados(){
@@ -262,16 +260,16 @@ public class Controlador {
 
         
     public void allPedidosEnviados(){
-        pedidoVista.showEnviosCabecera();
+       /*  pedidoVista.showEnviosCabecera();
         for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
             if(pedidoEnviado(item)){
                 pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());                
             }
-        }
+        } */
     }
 
     public void pedidoEnviadoFiltro(){
-        String eMail;
+       /*  String eMail;
         eMail = clienteVista.eMailCliente();
         if (datos.clienteByEmail(eMail)==null)
         {
@@ -284,20 +282,20 @@ public class Controlador {
                     pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());
                 }                                
             }
-        } 
+        }  */
     }
 
     public int articuloByCodigo(String codigo){        
-        for(int item=0; item<(datos.getListaArticulos().getLista().size()); item++) { 
+       /*  for(int item=0; item<(datos.getListaArticulos().getLista().size()); item++) { 
          if (codigo.equals(datos.getListaArticulos().getLista().get(item).getCodigo())){
              return item;
          }
-        }
+        } */
         return -1;        
     }
 
     public void eliminarPedido(){
-        int numPedido;              
+       /*  int numPedido;              
         pedidoVista.delCabecera();
         numPedido = pedidoVista.numPedido();
         if (pedidoByNum(numPedido)==-1)
@@ -308,29 +306,29 @@ public class Controlador {
         if(!pedidoEnviado(pedidoByNum(numPedido))){
             datos.getListaPedidos().getLista().remove(pedidoByNum(numPedido));
         }
-        pedidoVista.eliminaOk(numPedido);
+        pedidoVista.eliminaOk(numPedido); */
     }
 
     public boolean pedidoEnviado(int item){
-        LocalDateTime fechahoraPedido;
+       /*  LocalDateTime fechahoraPedido;
         LocalDateTime fechahoraAhora= LocalDateTime.now();  
         int tiempoPrepara;
         fechahoraPedido=datos.getListaPedidos().getLista().get(item).getFechaYhora();
         tiempoPrepara=datos.getListaPedidos().getLista().get(item).getArticulo().getTiempoPreparacion();
         if (fechahoraPedido.plusMinutes(tiempoPrepara).isBefore(fechahoraAhora)) {
            return true; 
-        }
+        } */
         return false;
     }
     
     
 
     public int pedidoByNum(int numPedido){
-        for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++) {
+      /*   for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++) {
             if (numPedido==(datos.getListaPedidos().getLista().get(item).getNumPedido())){
                 return item;
             }
-        }
+        } */
         return -1;
     }    
 
@@ -369,11 +367,11 @@ public class Controlador {
     
     public int ArticuloByCodigo(String codigo){
         
-        for(int item=0; item<(datos.getListaArticulos().getLista().size()); item++) {
+      /*   for(int item=0; item<(datos.getListaArticulos().getLista().size()); item++) {
          if (codigo.equals(datos.getListaArticulos().getLista().get(item).getCodigo())){
              return item;
          }
-        }
+        } */
         return -1;        
     }
 

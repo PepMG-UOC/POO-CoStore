@@ -1,13 +1,12 @@
 package POOandCo.idao;
+
 import java.sql.*;
 import java.util.List;
-
-import POOandCo.dao.Conexion;
-import POOandCo.dao.DAO;
+import POOandCo.dao.*;
 import POOandCo.modelo.*;
 import java.util.ArrayList;
 
-public class ArticuloDaoImpl implements DAO<Articulo> {
+public class ArticuloDaoImpl implements DaoArticulo<Articulo> {
     
     @Override
     public boolean registrar(Articulo articulo) throws SQLException {
@@ -38,40 +37,6 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
             e.printStackTrace();
         }
         return altaArticulo;
-
-    }
-
-    @Override
-    public List<Articulo> listar() throws Exception {
-        return null;
-    }
-
-    @Override
-    public List<Articulo> listarSTD() throws Exception {
-        return null;
-    }
-
-    @Override
-    public List<Articulo> listarPRM() throws Exception {
-        return null;
-    }
-
-    /* @Override
-    public void mostrar(Articulo articulo) throws Exception {
-
-    } */
-    @Override
-    public int getNumPedido(){
-        return 0;
-    }
-
-    @Override
-    public void modificar(Articulo articulo) throws Exception {
-
-    }
-
-    @Override
-    public void eliminar(Articulo articulo) throws Exception {
 
     }
    
@@ -113,18 +78,4 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
         }
     }
 
-  /*   @Override
-    public void clientesDAO() {
-
-    } */
-
-    @Override
-    public void clientesDAOEst() {
-
-    }
-
-    @Override
-    public void clientesDAOPre() {
-
-    }
 }

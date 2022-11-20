@@ -1,10 +1,8 @@
 
 package POOandCo.modelo;
 
-import POOandCo.dao.DAO;
-import POOandCo.idao.ArticuloDaoImpl;
-import POOandCo.idao.ClienteDAOImpl;
-import POOandCo.idao.PedidoDAOImpl;
+import POOandCo.dao.*;
+import POOandCo.idao.*;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -32,7 +30,7 @@ public class Datos {
     public boolean setArticulo(String codigo, String descripcion, float pvpVenta, float gastosEnviom, int tiempoPreparacion)
     {
         articulo=new Articulo(codigo,descripcion,pvpVenta,gastosEnviom,tiempoPreparacion);
-        DAO dao= new ArticuloDaoImpl();
+        DaoArticulo dao= new ArticuloDaoImpl();
         try {
             if (dao.registrar(articulo)==false)
             {
@@ -46,7 +44,7 @@ public class Datos {
    
     public boolean setCliente(String eMail, String nombre, String domicilio, String nif, String tipo){
         boolean success=false;
-        DAO dao= new ClienteDAOImpl();
+        DaoCliente dao= new ClienteDAOImpl();
         try {
             if (tipo.equals("1")) {
                 cliente = new ClienteEstandard(eMail,nombre,domicilio,nif);                               
@@ -67,7 +65,7 @@ public class Datos {
     {   
         boolean success=false;
         pedido=new Pedido(numPedido,articulo,cantidad,cliente);
-        DAO dao= new PedidoDAOImpl();
+        DaoPedido dao= new PedidoDAOImpl();
         try {
             success = dao.registrar(pedido);            
         } catch (Exception e) {
@@ -91,14 +89,14 @@ public class Datos {
 
     public Articulo getArticuloByCodigo (String codigo)
     {
-        DAO dao= new ArticuloDaoImpl();
+        DaoArticulo dao= new ArticuloDaoImpl();
         articulo = dao.getArticuloDAOById(codigo);
         return articulo;
     }
 
     public List<Cliente> getListaClientes(){              
         Cliente cliente;
-        DAO dao= new ClienteDAOImpl();
+        DaoCliente dao= new ClienteDAOImpl();
         try {
             List lista = dao.listarSTD();
             lista.addAll(dao.listarPRM());
@@ -113,7 +111,7 @@ public class Datos {
     public List<Cliente> getListaClientesSTD(){   
         List<Cliente> lista = new ArrayList<>();           
         Cliente cliente;
-        DAO dao= new ClienteDAOImpl();
+        DaoCliente dao= new ClienteDAOImpl();
         try {
             lista = dao.listarSTD();
             
@@ -126,7 +124,7 @@ public class Datos {
     public List<Cliente> getListaClientesPRM(){   
         List<Cliente> lista = new ArrayList<>();           
         Cliente cliente;
-        DAO dao= new ClienteDAOImpl();
+        DaoCliente dao= new ClienteDAOImpl();
         try {
             lista = dao.listarPRM();
             
@@ -138,7 +136,7 @@ public class Datos {
 
     public int getNumeroPedido(){
         int numPedido=0;
-        DAO dao= new PedidoDAOImpl();
+        DaoPedido dao= new PedidoDAOImpl();
         try {
             numPedido=dao.getNumPedido();
         } catch (Exception e) {
@@ -146,67 +144,13 @@ public class Datos {
         }
         return numPedido;
     }
-
-
-    /* public void getTodosClientes ()
-    {
-        DAO dao= new ClienteDAOImpl();
-        dao.clientesDAO();
-
-    } */
-
-
-    public void getClientesEstandard ()
-    {
-        DAO dao= new ClienteDAOImpl();
-        dao.clientesDAOEst();
-
-    }
-
-    public void getClientesPremium ()
-    {
-        DAO dao= new ClienteDAOImpl();
-        dao.clientesDAOPre();
-
-    }
-
-
-
-    /* public Cliente getCliente1()
-    {
-        return clienteStd;
-    }
-
-    public Cliente getCliente2()
-    {
-        return clientePrm;
-    } */
-
     
     public Articulo getArticulo()
     {
         return articulo;
     }   
 
-    /*
-    public void setPedido (int numPedido, Articulo articulo, int cantidad, Cliente cliente) {
-        pedido = new Pedido(numPedido,articulo,cantidad,cliente);
-        listaPedidos.add(pedido);
-    }
-
-     */
-     
-    public ListaArticulos getListaArticulos() {
-        return listaArticulos;
-    }
-
-    /* public ListaClientes getListaClientes() {
-        return listaClientes;
-    } */
-
-    public ListaPedidos getListaPedidos() {
-        return listaPedidos;
-    }
+   
     
     
 }

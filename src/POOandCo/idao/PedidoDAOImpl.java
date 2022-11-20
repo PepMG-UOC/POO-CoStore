@@ -1,7 +1,6 @@
 package POOandCo.idao;
 
-import POOandCo.dao.Conexion;
-import POOandCo.dao.DAO;
+import POOandCo.dao.*;
 import POOandCo.modelo.*;
 
 import java.sql.*;
@@ -9,35 +8,11 @@ import java.util.List;
 import java.time.*;
 import java.util.ArrayList;
 
-public class PedidoDAOImpl implements DAO<Pedido> {
+public class PedidoDAOImpl implements DaoPedido<Pedido> {
 
 
     @Override
-    public List<Pedido> listar() throws Exception {
-        return null;
-    }
-
-    @Override
-    public List<Pedido> listarSTD() throws Exception {
-        return null;
-    }
-
-    @Override
-    public List<Pedido> listarPRM() throws Exception {
-        return null;
-    }
-
-    /* @Override
-    public void mostrar(Pedido pedido) throws Exception {
-
-    } */
-
-    //https://stackoverflow.com/questions/39836994/how-to-insert-datetime-field-in-mysql-database-using-preparedstatement-in-java
-    //https://www.tutorialspoint.com/how-to-insert-current-date-and-time-in-a-database-using-jdbc
-    //CURRENT_TIMESTAMP
-    @Override
-    public boolean registrar(Pedido pedido) throws Exception {
-        //Statement stm= null;
+    public boolean registrar(Pedido pedido) throws Exception {        
         Connection con=null;
         boolean altaPedido=false;
         LocalDateTime localDateTime;
@@ -62,8 +37,7 @@ public class PedidoDAOImpl implements DAO<Pedido> {
 
             sp.close();
             con.close();
-        } catch (SQLException e) {
-            System.out.println("Error Pedido");
+        } catch (SQLException e) {            
             e.printStackTrace();
         }
         return altaPedido;
@@ -82,40 +56,72 @@ public class PedidoDAOImpl implements DAO<Pedido> {
             numPedido = sp.getInt("numPedido");
             sp.close();
             con.close();
-        } catch (SQLException e) {
-            System.out.println("Error: Clase ArticuloDaoImpl, método AñadirArticulo2");
+        } catch (SQLException e) {           
             e.printStackTrace();
         }
         return numPedido;
     }
 
     @Override
-    public void modificar(Pedido pedido) throws Exception {
+    public List<String> listarPedidos() throws Exception {
+        List<String> lista = new ArrayList<>();        
+        Connection con = null;
+        try{ 
+            con= Conexion.conectar();
+            CallableStatement sp= con.prepareCall("{CALL devolverTodosPedidos}");
+            ResultSet rs = sp.executeQuery();
+            while(rs.next()){
+                Pedido pedido = new Pedido(rs.getInt("idPedido"), null, rs.getInt("Cantidad"), null);
+                pedido.setFechaYhora(rs.getTimestamp("FechaHora").toLocalDateTime());
+                
+                
+                rs.getString("idArticuloPedido");
+                rs.getString("id_eMailPedido");
 
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+        return lista;
+     }
+
+    @Override
+    public boolean existePedido(int id_Pedido) {
+        Connection con=null;
+        boolean existe=false;
+        try {
+            con=Conexion.conectar();
+            CallableStatement sp=con.prepareCall("CALL existePedido(?,?)");
+            sp.setInt("id_Pedido",id_Pedido);
+            sp.registerOutParameter("encontrado", Types.BOOLEAN);
+            sp.execute();
+            existe= sp.getBoolean("encontrado");
+            sp.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return existe;
     }
 
     @Override
-    public void eliminar(Pedido pedido) throws Exception {
+    public void borrarPedido(int id_Pedido) {
+        Connection con=null;
+        boolean existe=false;
+        try {
+            con=Conexion.conectar();
+            CallableStatement sp=con.prepareCall("CALL eliminarPedido(?)");
+            sp.setInt("id_Pedido",id_Pedido);
+            sp.execute();
+            sp.close();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
-    @Override
-    public Articulo getArticuloDAOById(String idArticulo) {
-        return null;
-    }
 
-    /* @Override
-    public void clientesDAO() {
 
-    } */
-
-    @Override
-    public void clientesDAOEst() {
-
-    }
-
-    @Override
-    public void clientesDAOPre() {
-
-    }
 }

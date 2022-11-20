@@ -1,4 +1,4 @@
-package POOandCo.dao;
+/* package POOandCo.dao;
 
 import POOandCo.modelo.Articulo;
 import POOandCo.modelo.Cliente;
@@ -27,3 +27,4 @@ public interface DAO<T> {
 
 
 }
+ */
