@@ -128,10 +128,17 @@ public class PedidoVista {
         teclado.nextLine();
     }    
 
-    public void eliminaOk(int numPedido){
-        System.out.print("El pedido " + numPedido + " se ha eliminado.");        
-        System.out.println(); 
-        teclado.nextLine();
+    public void eliminaOk(int numPedido, boolean eliminado){
+        if(eliminado) {
+            System.out.print("El pedido " + numPedido + " se ha eliminado.");        
+            System.out.println(); 
+            teclado.nextLine();
+        } else {
+            System.out.print("El pedido " + numPedido + " ya se envio y no puede ser eliminado.");        
+            System.out.println(); 
+            teclado.nextLine();
+        }
+        
     }
 
     public void showPedido(String pedido){

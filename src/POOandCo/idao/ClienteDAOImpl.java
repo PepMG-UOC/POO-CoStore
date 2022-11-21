@@ -100,8 +100,7 @@ public class ClienteDAOImpl implements DaoCliente<Cliente> {
                 }
             }
             con.close();            
-        } catch (SQLException e) {
-            System.out.println("Error: Clase ClienteDAOImpl, método AñadirCliente");
+        } catch (SQLException e) {            
             e.printStackTrace();
         }
 

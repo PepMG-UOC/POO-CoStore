@@ -32,8 +32,7 @@ public class ArticuloDaoImpl implements DaoArticulo<Articulo> {
 
             sp.close();
             con.close();
-        } catch (SQLException e) {
-            System.out.println("Error: Clase ArticuloDaoImpl, método AñadirArticulo2");
+        } catch (SQLException e) {           
             e.printStackTrace();
         }
         return altaArticulo;
@@ -70,9 +69,7 @@ public class ArticuloDaoImpl implements DaoArticulo<Articulo> {
             sp.close();
             con.close();
             return art;
-
-        } catch (SQLException e) {
-            System.out.println("Error: Clase ArticuloDaoImpl, método getArticuloDAOById2");
+        } catch (SQLException e) {            
             e.printStackTrace();
             return null;
         }

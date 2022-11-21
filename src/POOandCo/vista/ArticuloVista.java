@@ -38,6 +38,10 @@ public class ArticuloVista {
         System.out.println(); 
     }
 
+    public void introducido(boolean success) {
+        if(success) System.out.println("Introducido correctamente en BBDD");
+        else System.out.println("No se pudo guardar en BBDD");
+    }
 
     public String codigoArticulo()
     {        

@@ -63,20 +63,24 @@ public class PedidoDAOImpl implements DaoPedido<Pedido> {
     }
 
     @Override
-    public List<String> listarPedidos() throws Exception {
-        List<String> lista = new ArrayList<>();        
+    public List<Pedido> listarPedidos() throws Exception {
+        List<Pedido> lista = new ArrayList<>();        
         Connection con = null;
         try{ 
             con= Conexion.conectar();
-            CallableStatement sp= con.prepareCall("{CALL devolverTodosPedidos}");
+            CallableStatement sp= con.prepareCall("{CALL listarPedidos}");
             ResultSet rs = sp.executeQuery();
             while(rs.next()){
-                Pedido pedido = new Pedido(rs.getInt("idPedido"), null, rs.getInt("Cantidad"), null);
+                Cliente cliente;
+                Articulo articulo = new Articulo(rs.getString("idArticuloPedido"), rs.getString("Descripcion"),rs.getFloat("PvpVenta"), rs.getFloat("GastosEnvio"), rs.getInt("TiempoPreparacion"));
+                if(rs.getFloat("TarifaAnual")==0) {
+                    cliente = new ClienteEstandard(rs.getString("id_eMail"), rs.getString("Nombre"), rs.getString("Domicilio"), rs.getString("Nif"));
+                } else {
+                    cliente = new ClientePremium(rs.getString("id_eMail"), rs.getString("Nombre"), rs.getString("Domicilio"), rs.getString("Nif"));
+                }
+                Pedido pedido = new Pedido(rs.getInt("idPedido"), articulo, rs.getInt("Cantidad"), cliente);
                 pedido.setFechaYhora(rs.getTimestamp("FechaHora").toLocalDateTime());
-                
-                
-                rs.getString("idArticuloPedido");
-                rs.getString("id_eMailPedido");
+                lista.add(pedido);
 
             }
         } catch (SQLException e){
@@ -86,25 +90,7 @@ public class PedidoDAOImpl implements DaoPedido<Pedido> {
         return lista;
      }
 
-    @Override
-    public boolean existePedido(int id_Pedido) {
-        Connection con=null;
-        boolean existe=false;
-        try {
-            con=Conexion.conectar();
-            CallableStatement sp=con.prepareCall("CALL existePedido(?,?)");
-            sp.setInt("id_Pedido",id_Pedido);
-            sp.registerOutParameter("encontrado", Types.BOOLEAN);
-            sp.execute();
-            existe= sp.getBoolean("encontrado");
-            sp.close();
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return existe;
-    }
-
+    
     @Override
     public void borrarPedido(int id_Pedido) {
         Connection con=null;

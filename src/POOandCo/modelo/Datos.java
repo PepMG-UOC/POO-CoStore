@@ -7,11 +7,9 @@ import POOandCo.idao.*;
 import java.util.List;
 import java.util.ArrayList;
 import jdk.dynalink.NamedOperation;
+import java.time.LocalDateTime;
 
-public class Datos {
-    private ListaArticulos listaArticulos;
-    private ListaClientes listaClientes;
-    private ListaPedidos listaPedidos;
+public class Datos {    
     private Articulo articulo;
     private Cliente cliente;
     private ClienteEstandard clienteStd;
@@ -19,11 +17,7 @@ public class Datos {
     private Pedido pedido;
  
        
-    public Datos (){
-        listaArticulos = new ListaArticulos();
-        listaClientes = new ListaClientes();
-        listaPedidos = new ListaPedidos ();
-        
+    public Datos (){        
     }
 
     //IMPLEMENTADO FACTORY
@@ -109,8 +103,7 @@ public class Datos {
     
 
     public List<Cliente> getListaClientesSTD(){   
-        List<Cliente> lista = new ArrayList<>();           
-        Cliente cliente;
+        List<Cliente> lista = new ArrayList<>();       
         DaoCliente dao= new ClienteDAOImpl();
         try {
             lista = dao.listarSTD();
@@ -122,8 +115,7 @@ public class Datos {
     }
 
     public List<Cliente> getListaClientesPRM(){   
-        List<Cliente> lista = new ArrayList<>();           
-        Cliente cliente;
+        List<Cliente> lista = new ArrayList<>();       
         DaoCliente dao= new ClienteDAOImpl();
         try {
             lista = dao.listarPRM();
@@ -132,6 +124,45 @@ public class Datos {
             throw new RuntimeException(e);            
         }
         return lista;      
+    }
+
+    public List<Pedido> getListaPedidos() {
+        List<Pedido> lista = new ArrayList<>();
+        DaoPedido dao = new PedidoDAOImpl();
+        try {
+            lista = dao.listarPedidos();
+        } catch (Exception e) {
+            throw new RuntimeException(e);                      
+        }
+        return lista; 
+    }
+
+    public List<Pedido> getEnviadosByCliente(String eMail) {
+        List<Pedido> listaCompleta = new ArrayList<>();
+        List<Pedido> listaByCliente = new ArrayList<>();
+        listaCompleta = getListaPedidos();
+        for(int item=0; item<(listaCompleta.size()); item++){
+            if(pedidoEnviado(listaCompleta, item)){
+                if(listaCompleta.get(item).getCliente().geteMail().equals(eMail)){
+                    listaByCliente.add(listaCompleta.get(item));                
+                }                                
+            }
+        } 
+        return listaByCliente;
+    }
+
+    public List<Pedido> getPendienteByCliente(String eMail) {
+        List<Pedido> listaCompleta = new ArrayList<>();
+        List<Pedido> listaByCliente = new ArrayList<>();
+        listaCompleta = getListaPedidos();
+        for(int item=0; item<(listaCompleta.size()); item++){
+            if(!pedidoEnviado(listaCompleta, item)){
+                if(listaCompleta.get(item).getCliente().geteMail().equals(eMail)){
+                    listaByCliente.add(listaCompleta.get(item));                
+                }                                
+            }
+        } 
+        return listaByCliente;
     }
 
     public int getNumeroPedido(){
@@ -144,13 +175,45 @@ public class Datos {
         }
         return numPedido;
     }
+
+    public int pedidoByNum(int numPedido){
+        List<Pedido> lista = new ArrayList<>();
+        lista = getListaPedidos();
+        for(int item=0; item<(lista.size()); item++) {
+            if (numPedido==(lista.get(item).getNumPedido())){
+                  return item;
+            }
+          }
+          return -1;
+      } 
+
     
     public Articulo getArticulo()
     {
         return articulo;
     }   
 
-   
+    public boolean pedidoEnviado(List<Pedido> lista,int item){
+         LocalDateTime fechahoraPedido;
+         LocalDateTime fechahoraAhora= LocalDateTime.now();  
+         int tiempoPrepara;
+         fechahoraPedido=lista.get(item).getFechaYhora();
+         tiempoPrepara=lista.get(item).getArticulo().getTiempoPreparacion();
+         if (fechahoraPedido.plusMinutes(tiempoPrepara).isBefore(fechahoraAhora)) {
+            return true; 
+         }
+         return false;
+     }
+
+     public void borrarPedido(int id_Pedido) {
+        DaoPedido dao= new PedidoDAOImpl();
+        try
+        {
+            dao.borrarPedido(id_Pedido);
+        } catch (Exception e) {
+            throw  new RuntimeException(e);
+        }
+    }
     
     
 }

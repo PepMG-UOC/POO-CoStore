@@ -94,25 +94,31 @@ public class Controlador {
 
     public void añadirArticulo()
     {
-        boolean success;
+        boolean success=false;
+        String codigo;
         articuloView.adCabecera();
-        success = datos.setArticulo(articuloView.codigoArticulo(), articuloView.descripcionArticulo(), articuloView.pvpVentaArticulo()
+        codigo = articuloView.codigoArticulo();
+        if (datos.getArticuloByCodigo(codigo)==null) {
+            success = datos.setArticulo(codigo, articuloView.descripcionArticulo(), articuloView.pvpVentaArticulo()
                 ,articuloView.gastosEnvioArticulo(),articuloView.tiempoPreparacionArticulo());
-        if(!success) {
-            articuloView.warning(datos.getArticulo().getCodigo(),true);
-        }        
+        } else {
+            articuloView.warning(codigo,true);
+        }         
+        articuloView.introducido(success);      
     }
      
     public void añadirCliente() {
-        boolean success;
+        boolean success=false;
         String eMail;
         clienteVista.adCabecera();
         eMail = clienteVista.eMailCliente();
-        success = datos.setCliente(eMail, clienteVista.nombreCliente(), clienteVista.domicilioCliente()
-                ,clienteVista.nifCliente(), clienteVista.tipoCliente());  
-        if(!success) {
+        if(datos.clienteByEmail(eMail)==null) {
+            success = datos.setCliente(eMail, clienteVista.nombreCliente(), clienteVista.domicilioCliente()
+                ,clienteVista.nifCliente(), clienteVista.tipoCliente()); 
+        } else {
             clienteVista.warning(eMail,true);
-        }      
+        }         
+        clienteVista.introducido(success);             
     }
 
     public void añadirPedido()
@@ -194,7 +200,6 @@ public class Controlador {
         } else articuloView.warning(codigo,false);
     }
 
-
     public void pedidosPendientes(){
         pedidoVista.showPdteCabecera();        
         char resultado;
@@ -214,31 +219,6 @@ public class Controlador {
             } while (!salir);
         }
 
-    public void allPedidosPdte(){
-       /*  for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
-            if(!pedidoEnviado(item)){
-                pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());                
-            }
-        } */
-    }
-
-    public void pedidoPendienteFiltro(){
-       /*  String eMail;
-        eMail = clienteVista.eMailCliente();
-        if (datos.clienteByEmail(eMail)==null)
-        {
-            clienteVista.warning(eMail,false);
-            return;
-        }   
-        for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
-            if(!pedidoEnviado(item)){
-                if(datos.getListaPedidos().getLista().get(item).getCliente().geteMail().equals(eMail)){
-                    pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());
-                }                                
-            }
-        }  */
-    }
-
     public void pedidosEnviados(){
         pedidoVista.showEnviosCabecera();        
         char resultado;
@@ -254,107 +234,78 @@ public class Controlador {
                     break;
 
                 }
-                if (resultado == '0') salir = true;
-            } while (!salir);
-        }
-
-        
-    public void allPedidosEnviados(){
-       /*  pedidoVista.showEnviosCabecera();
-        for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
-            if(pedidoEnviado(item)){
-                pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());                
-            }
-        } */
+            if (resultado == '0') salir = true;
+        } while (!salir);
     }
 
-    public void pedidoEnviadoFiltro(){
-       /*  String eMail;
+    public void allPedidosPdte(){
+        pedidoVista.showPdteCabecera();
+        List lista = datos.getListaPedidos();
+        for(int item=0; item<(lista.size()); item++){
+            if(!datos.pedidoEnviado(lista, item)){
+                pedidoVista.showPedido(lista.get(item).toString());                
+            } 
+        }
+    }
+ 
+    public void pedidoPendienteFiltro(){
+        String eMail;
         eMail = clienteVista.eMailCliente();
         if (datos.clienteByEmail(eMail)==null)
         {
             clienteVista.warning(eMail,false);
             return;
-        }   
-        for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++){
-            if(pedidoEnviado(item)){
-                if(datos.getListaPedidos().getLista().get(item).getCliente().geteMail().equals(eMail)){
-                    pedidoVista.showPedido(datos.getListaPedidos().getLista().get(item).toString());
-                }                                
-            }
-        }  */
+        } 
+        List lista = datos.getPendienteByCliente(eMail);          
+        for(int item=0; item<(lista.size()); item++){           
+            pedidoVista.showPedido(lista.get(item).toString());            
+        }         
+     } 
+
+    public void allPedidosEnviados(){
+        pedidoVista.showEnviosCabecera();
+        List lista = datos.getListaPedidos();
+        for(int item=0; item<(lista.size()); item++){
+            if(datos.pedidoEnviado(lista, item)){
+                pedidoVista.showPedido(lista.get(item).toString());                
+            } 
+        }
     }
 
-    public int articuloByCodigo(String codigo){        
-       /*  for(int item=0; item<(datos.getListaArticulos().getLista().size()); item++) { 
-         if (codigo.equals(datos.getListaArticulos().getLista().get(item).getCodigo())){
-             return item;
-         }
-        } */
-        return -1;        
+    public void pedidoEnviadoFiltro(){
+        String eMail;
+        eMail = clienteVista.eMailCliente();
+        if (datos.clienteByEmail(eMail)==null)
+        {
+            clienteVista.warning(eMail,false);
+            return;
+        } 
+        List lista = datos.getEnviadosByCliente(eMail);          
+        for(int item=0; item<(lista.size()); item++){           
+            pedidoVista.showPedido(lista.get(item).toString());            
+        }  
     }
 
+        
     public void eliminarPedido(){
-       /*  int numPedido;              
+        int numPedido;              
         pedidoVista.delCabecera();
         numPedido = pedidoVista.numPedido();
-        if (pedidoByNum(numPedido)==-1)
+        if (datos.pedidoByNum(numPedido)==-1)
         {
             pedidoVista.warning(numPedido,false);
             return;
         } 
-        if(!pedidoEnviado(pedidoByNum(numPedido))){
-            datos.getListaPedidos().getLista().remove(pedidoByNum(numPedido));
+        List lista = datos.getListaPedidos();
+        if(!datos.pedidoEnviado(lista, datos.pedidoByNum(numPedido))){
+            datos.borrarPedido(numPedido); 
+            pedidoVista.eliminaOk(numPedido,true);           
+        } else {
+            pedidoVista.eliminaOk(numPedido,false);  
         }
-        pedidoVista.eliminaOk(numPedido); */
+         
     }
-
-    public boolean pedidoEnviado(int item){
-       /*  LocalDateTime fechahoraPedido;
-        LocalDateTime fechahoraAhora= LocalDateTime.now();  
-        int tiempoPrepara;
-        fechahoraPedido=datos.getListaPedidos().getLista().get(item).getFechaYhora();
-        tiempoPrepara=datos.getListaPedidos().getLista().get(item).getArticulo().getTiempoPreparacion();
-        if (fechahoraPedido.plusMinutes(tiempoPrepara).isBefore(fechahoraAhora)) {
-           return true; 
-        } */
-        return false;
-    }
-    
-    
-
-    public int pedidoByNum(int numPedido){
-      /*   for(int item=0; item<(datos.getListaPedidos().getLista().size()); item++) {
-            if (numPedido==(datos.getListaPedidos().getLista().get(item).getNumPedido())){
-                return item;
-            }
-        } */
-        return -1;
-    }    
-
-    /*
-    private void muestraClientes() {
-        clienteVista.showCabecera();
-        for(int item=0; item<(datos.getListaClientes().getLista().size()); item++) {
-        clienteVista.showClientes(datos.getListaClientes().getLista().get(item).toString()); 
-        }       
-    }
-
-
-   
-    private void showClientesPorTipo(String tipo){
-        if (tipo.equals("Estandard")) clienteVista.showCabeceraSTD();
-        else clienteVista.showCabeceraPRM();
-        for(int item=0; item<(datos.getListaClientes().getLista().size()); item++) {
-            if (tipo.equals(datos.getListaClientes().getLista().get(item).tipoCliente())){
-                clienteVista.showClientes(datos.getListaClientes().getLista().get(item).toString());
-            }
-        }
-                
-    }
-
-
-     */
+     
     public int clienteByTipo(String tipo){
         for(int item=0; item<(datos.getListaClientes().size()); item++) {
             if (tipo.equals(datos.getListaClientes().get(item).tipoCliente())){
@@ -365,18 +316,6 @@ public class Controlador {
     }
     
     
-    public int ArticuloByCodigo(String codigo){
-        
-      /*   for(int item=0; item<(datos.getListaArticulos().getLista().size()); item++) {
-         if (codigo.equals(datos.getListaArticulos().getLista().get(item).getCodigo())){
-             return item;
-         }
-        } */
-        return -1;        
-    }
-
-    
-
     
 
 }
