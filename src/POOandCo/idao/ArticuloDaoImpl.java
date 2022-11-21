@@ -70,12 +70,42 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
 
     }*/
 
-  /*  @Override
-    public void eliminar(Articulo articulo) throws Exception {
+public boolean existeArticulo(String id_Articulo) {
+        Connection con=null;
+        boolean existe=false;
+        try {
+            con=Conexion.conectar();
+            CallableStatement sp=con.prepareCall("CALL existeArticulo(?,?)");
+            sp.setString("id_Articulo",id_Articulo);
+            sp.registerOutParameter("encontrado", Types.BOOLEAN);
+            sp.execute();
+            existe= sp.getBoolean("encontrado");
+            sp.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error: Clase ArticuloDaoImpl, método existeArticulo");
+        }
+        return existe;
+    }   
+    
+public void borrarArticulo(String id_Articulo ) {
+    
+    Connection con=null;
+        boolean existe=false;
+        try {
+            con=Conexion.conectar();
+            CallableStatement sp=con.prepareCall("CALL eliminarArticulo(?)");
+            sp.setString("id_Articulo", id_Articulo);
+            sp.execute();
+            sp.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error: Clase ArticuloDaoImpl, método borrarArticulo");
+        }
 
-    }*/
+    }
 
-    @Override
+    
     public Articulo getArticuloDAOById(String id) {
         Statement stm= null;
         Connection con=null;
@@ -127,4 +157,5 @@ public class ArticuloDaoImpl implements DAO<Articulo> {
     public void clientesDAOPre() {
 
     }
+    
 }
