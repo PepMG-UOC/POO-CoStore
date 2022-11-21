@@ -6,19 +6,15 @@ public class Conexion {
     public static Connection conectar() {
         Connection con = null;
 
-        String password = "1111";
+        String password = "poobd123";
         String usuario = "root";
-        String url = "jdbc:mysql://localhost:3306/producto3?user=" + usuario
+        String url = "jdbc:mysql://localhost:3306/poobbdd?user=" + usuario
                 + "&password=" + password;
         try {
-            con = DriverManager.getConnection(url);
-            /* if (con != null) {
-                System.out.println("Conectado");
-            } */
-        } catch (SQLException e) {
-           // System.out.println("No se pudo conectar a la base de datos");
+            con = DriverManager.getConnection(url);          
+            } catch (SQLException e) {          
             e.printStackTrace();
-        }
+            }
         return con;
     }
 }

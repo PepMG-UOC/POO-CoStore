@@ -1,6 +1,5 @@
 package POOandCo.modelo;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class Pedido {

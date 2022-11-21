@@ -64,6 +64,11 @@ public class ClienteVista {
         else System.out.print(" no existe.");
         System.out.println(); 
     }
+
+    public void introducido(boolean success) {
+        if(success) System.out.println("Introducido correctamente en BBDD");
+        else System.out.println("No se pudo guardar en BBDD");
+    }
     
     public String nombreCliente(){
         String nombre;
